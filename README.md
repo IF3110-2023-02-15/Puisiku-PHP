@@ -23,3 +23,38 @@ PSQL_NAME=puisiku-db
 PSQL_USER=puisiku
 PSQL_PASSWORD=puisiku
 ```
+
+## Project Structure
+
+```bash
+├───migrations : Contains script for PostgreSQL database migrations
+├───public : The publicly accessible directory, contains the `index.php` file as entrypoint
+│   ├───audio
+│   ├───css
+│   ├───fonts
+│   ├───img
+│   └───js
+└───src : The main source directory, not publicly accessible, contains the application’s PHP classes
+    ├───controllers : Contains the page controllers which handle the logic for different pages of the application.
+    ├───database : Contains the PSQL class for database transactions.
+    ├───middlewares : Contains middleware functions such as authentication checks
+    ├───models : Contains classes that handle query logic and interact with the database.
+    ├───services : Contains business logic for the application.
+    │   ├───login
+    │   └───register
+    └───views : Contains PHP files for rendering views.
+        ├───components
+        ├───layouts
+        └───pages
+            ├───dashboard
+            ├───errors
+            ├───home
+            ├───login
+            └───register
+```
+
+## Steps to Access the Database in DBeaver
+
+1. Set the host to `localhost`.
+2. Specify the port number as `5433`.
+3. Enter the database name, username, and password as provided in environment variables (env).
