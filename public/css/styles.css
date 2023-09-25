@@ -1,0 +1,41 @@
+:root {
+  /* Breakpoints */
+  --sm: 640px;
+  --md: 768px;
+  --lg: 1024px;
+  --xl: 1280px;
+  --2xl: 1536px;
+}
+
+* {
+  margin: 0;
+}
+
+.login-register {
+  display: flex;
+  gap: 20px;
+}
+
+.login-register button {
+  border-radius: 10px;
+  background: transparent;
+  padding: 10px 15px;
+}
+
+.login-register button:hover {
+  background-color: rgb(199, 199, 199);
+}
+
+#audioPlayer {
+  width: 300px;
+  background-color: coral;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+/* Style the audio player controls */
+#audioPlayer audio {
+  width: 100%;
+  outline: none;
+}
