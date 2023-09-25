@@ -1,20 +1,25 @@
-## Panduan Pengerjaan
-Berikut adalah hal yang harus diperhatikan untuk pengumpulan tugas ini:
-1. Buatlah grup pada Gitlab dengan format "IF3110-2023-KXX-01-YY", dengan XX adalah nomor kelas dan YY adalah nomor kelompok.
-2. Tambahkan anggota tim pada grup anda.
-3. **Fork** pada repository ini dengan organisasi yang telah dibuat.
-4. Ubah hak akses repository hasil Fork anda menjadi **private**.
-5. Hal-hal yang harus diperhatikan.
-    * Silakan commit pada repository anda (hasil fork)
-    * Lakukan beberapa commit dengan pesan yang bermakna, contoh: “add register form”, “fix logout bug”, jangan seperti “final”, “benerin dikit”, “fix bug”.
-    * Disarankan untuk tidak melakukan commit dengan perubahan yang besar karena akan mempengaruhi penilaian (contoh: hanya melakukan satu commit kemudian dikumpulkan).
-    * Commit dari setiap anggota tim akan mempengaruhi penilaian.
-    * Jadi, setiap anggota tim harus melakukan commit yang berpengaruh terhadap proses pembuatan aplikasi.
-    * Sebagai panduan bisa mengikuti [semantic commit](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716).
-6. Buatlah file README yang berisi:
-    * Deskripsi aplikasi web
-    * Daftar requirement
-    * Cara instalasi
-    * Cara menjalankan server
-    * Screenshot tampilan aplikasi (tidak perlu semua kasus, minimal 1 per halaman), dan 
-    * Penjelasan mengenai pembagian tugas masing-masing anggota (lihat formatnya pada bagian pembagian tugas).
+# Puisiku: A Personal Library of Poems
+
+Puisiku is a monolithic application built with PHP, HTML, CSS, and JS. It serves as a personal library for storing and retrieving poems. The application uses a PostgreSQL database for data persistence and runs in a Docker container for easy setup and deployment.
+
+## Prerequisites
+
+To run Puisiku, `Docker` must be installed. If Docker is not yet installed, it can be downloaded from the official Docker website.
+
+## Pre-run Setup
+
+Setting up environment variables is necessary before running the application. An example of these variables is provided in the `.env.example` file. Follow these steps to set up the environment variables:
+
+1. Find the `.env.example` file in the root directory of the project.
+2. Copy this file in the same directory.
+3. Rename the copied file to `.env`.
+
+After these steps, open the `.env` file and replace the placeholder values with the actual environment variables. Here are the default values:
+
+```bash
+PSQL_HOST=puisiku-db
+PSQL_PORT=5432
+PSQL_NAME=puisiku-db
+PSQL_USER=puisiku
+PSQL_PASSWORD=puisiku
+```
