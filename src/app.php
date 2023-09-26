@@ -1,7 +1,7 @@
 <?php
 
 require_once SRC_DIR . 'router.php';
-require_once VIEWS_DIR . 'components/notification.php';
+require_once SRC_DIR . 'middlewares/auth.php';
 
 class App {
     private $router;
@@ -15,19 +15,24 @@ class App {
     private function defineRoutes() {
         // Define routes
         $this->router->define([
-            '' => 'home',
-            'login' => 'login',
-            'register' => 'register',
-            'dashboard' => 'dashboard',
+            '' => ['home'],
+            'login' => ['login'],
+            'register' => ['register'],
+            'dashboard' => ['dashboard', ['user', 'admin', 'creator']],
+            'logout' => ['logout', ['user', 'admin', 'creator']],
         ]);
     }
 
     private function handleRequest() {
         // Get the current URI
         $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-        
+
+        // Get the role of the current user
+        $middleware = new Middleware();
+        $role = $middleware->getRole();
+
         // Direct the request to the appropriate controller
-        $controllerName = $this->router->direct($uri);
+        $controllerName = $this->router->direct($uri, $role);
 
         require CONTROLLER_DIR . $controllerName . '_controller.php';
 
@@ -37,3 +42,4 @@ class App {
         $controller->index();
     }
 }
+
