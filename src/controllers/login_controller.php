@@ -1,7 +1,7 @@
 <?php
 
 require_once 'controller.php';
-require_once SRC_DIR . 'services/login/index.php';
+require_once SERVICES_DIR . 'user/index.php';
 
 class Login extends Controller {
     public function index() {
@@ -13,7 +13,7 @@ class Login extends Controller {
                 $this->login();
                 break;
             default:
-                $this->loadPageNotFound();
+                $this->methodNotAllowed();
                 break;
         }
     }
@@ -23,20 +23,39 @@ class Login extends Controller {
     }
 
     private function login() {
-        if (isset($_POST['email']) && isset($_POST['password'])) {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
+        // Set the content type to application/json
+        header('Content-Type: application/json');
 
-            $login_service = new LoginService();
-            $result = $login_service->login($email, $password);
-
-
-            $this->showNotification($result);
-            header("Location: /dashboard");
+        // Check if all required fields are set
+        if (!isset($_POST['email']) || !isset($_POST['password'])) {
+            echo json_encode(['status' => 'ERROR', 'message' => 'Please fill all the required fields!']);
             exit();
-        } else {
-            $this->showNotification('Please fill all the required fields!');
         }
+
+        // Sanitize user input
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+
+        // Attempt to log in
+        $login_service = new UserService();
+        $result = $login_service->login($email, $password);
+
+        switch ($result) {
+            case SUCCESS:
+                echo json_encode(['status' => 'SUCCESS', 'message' => 'Login success!']);
+                break;
+            case 'USER_NOT_FOUND':
+                echo json_encode(['status' => 'ERROR', 'message' => 'User not found. Please check your email.']);
+                break;
+            case 'PASSWORD_INCORRECT':
+                echo json_encode(['status' => 'ERROR', 'message' => 'Incorrect password. Please check your password.']);
+                break;
+            default:
+                echo json_encode(['status' => 'ERROR', 'message' => $result]);
+                break;
+        }
+
+        exit();
     }
 }
 
