@@ -13,11 +13,7 @@ class User {
         try {
             $this->db->query($sql, [$username, $email, $hashed_password, $role, $image_path, $description]);
         } catch (PDOException $e) {
-            if ($e->errorInfo[1] == 1062) {
-                return EMAIL_ALREADY_EXISTED;
-            } else {
-                throw $e;
-            }
+            throw $e;
         }
     }
 
@@ -26,12 +22,12 @@ class User {
         return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }    
 
-    public function read_by_id($id) {
+    public function findById($id) {
         $sql = 'SELECT * FROM Users WHERE id = ?';
         return $this->db->query($sql, [$id])->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function read_by_email($email) {
+    public function findByEmail($email) {
         $sql = 'SELECT * FROM Users WHERE email = ?';
         return $this->db->query($sql, [$email])->fetch(PDO::FETCH_ASSOC);
     }
