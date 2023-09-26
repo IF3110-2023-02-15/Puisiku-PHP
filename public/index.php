@@ -1,5 +1,8 @@
 <?php
 
+require_once __DIR__ . '/../src/init.php';
+require_once __DIR__ . '/../src/views/components/notification.php';
+
 // Start the session if it's not already started
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -13,7 +16,5 @@ if (isset($_SESSION['notification'])) {
     // Unset the notification message so it doesn't keep showing up on refresh
     unset($_SESSION['notification']);
 }
-
-require_once __DIR__ . '/../src/init.php';
 
 $app = new App();
