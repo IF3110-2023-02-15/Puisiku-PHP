@@ -52,6 +52,26 @@ CREATE TABLE PlaylistItems (
     FOREIGN KEY (poem_id) REFERENCES Poems(id)
 );
 
+-- Creating the UserLikedPoems table
+CREATE TABLE UserLikedPoems (
+    user_id INTEGER,
+    poem_id INTEGER,
+    liked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_id, poem_id),
+    FOREIGN KEY (user_id) REFERENCES Users(id),
+    FOREIGN KEY (poem_id) REFERENCES Poems(id)
+);
+
+-- Creating the UserSavedPlaylists table
+CREATE TABLE UserSavedPlaylists (
+    user_id INTEGER,
+    playlist_id INTEGER,
+    saved_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_id, playlist_id),
+    FOREIGN KEY (user_id) REFERENCES Users(id),
+    FOREIGN KEY (playlist_id) REFERENCES Playlists(id)
+);
+
 -- TRIGGERS
 -- Triggers to update 'updated_at' column
 CREATE OR REPLACE FUNCTION update_modified_column()
@@ -115,3 +135,29 @@ VALUES
 (4, 4),
 (5, 1),
 (5, 5);
+
+-- Seeding data into UserLikedPoems table
+INSERT INTO UserLikedPoems (user_id, poem_id)
+VALUES
+(1, 1),
+(1, 2),
+(2, 3),
+(2, 4),
+(3, 5),
+(4, 1),
+(4, 2),
+(5, 3),
+(5, 4);
+
+-- Seeding data into UserSavedPlaylists table
+INSERT INTO UserSavedPlaylists (user_id, playlist_id)
+VALUES
+(1, 1),
+(1, 2),
+(2, 3),
+(2, 4),
+(3, 5),
+(4, 1),
+(4, 2),
+(5, 3),
+(5, 4);
