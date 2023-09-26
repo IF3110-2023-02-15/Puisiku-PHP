@@ -5,10 +5,10 @@ require_once MODELS_DIR . 'users.php';
 class RegisterService {
     public function register($username, $email, $password) {
         $userModel = new User();
-        $user = $userModel->read_by_email($email);
+        $user = $userModel->findByEmail($email);
     
         if ($user) {
-            return USER_ALREADY_EXISTS;
+            return EMAIL_ALREADY_EXISTED;
         }
 
         $hashed_password = $this->hashPassword($password);
@@ -16,11 +16,7 @@ class RegisterService {
         try {
             $userModel->create($username, $email, $hashed_password);
         } catch (PDOException $e) {
-            if ($e->errorInfo[1] == 1062) {
-                return EMAIL_ALREADY_EXISTED;
-            } else {
-                return $e;
-            }
+            return $e;
         }
         
         return SUCCESS;
