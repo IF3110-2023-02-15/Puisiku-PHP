@@ -11,6 +11,10 @@
   margin: 0;
 }
 
+.error-message {
+  color: red;
+}
+
 .login-register {
   display: flex;
   gap: 20px;
