@@ -10,6 +10,10 @@
 <body>
     <h2>Dashboard</h2>
 
+    <form action="/logout" method="post">
+        <button type="submit">Logout</button>
+    </form>
+
     <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ipsa nulla minima commodi iusto accusantium vel maxime debitis ab quod autem voluptatum doloremque corrupti, ullam, odio eius? Accusantium, inventore unde.
 
