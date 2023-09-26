@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <h1>Register</h1>
 
-    <form method="POST" action="/register">
+    <form id="register-form" method="POST" action="/register">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
 
@@ -30,6 +30,8 @@
 
         <br><br>
 
+        <div id="register-error-message" class="error-message"></div>
+
         <input type="submit" value="Submit">
     </form>
 
@@ -38,5 +40,7 @@
             Back to Home
         </button>   
     </a>
+
+    <script src="/js/register.js"></script>
 </body>
 </html>
