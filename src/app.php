@@ -20,6 +20,7 @@ class App {
             'register' => ['register'],
             'dashboard' => ['dashboard', ['user', 'admin', 'creator']],
             'logout' => ['logout', ['user', 'admin', 'creator']],
+            'upload' => ['file', ['user', 'admin', 'creator']]
         ]);
     }
 

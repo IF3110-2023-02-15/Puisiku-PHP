@@ -17,6 +17,10 @@ COPY public/ ./public
 COPY src/ ./src
 COPY public/.htaccess ./public/.htaccess
 
+# Change permissions and ownership of directories after they have been copied
+RUN chmod 755 /var/www/html/public/img/ && chown -R www-data:www-data /var/www/html/public/img/
+RUN chmod 755 /var/www/html/public/audio/ && chown -R www-data:www-data /var/www/html/public/audio/
+
 # Copy your custom Apache configuration file into the image
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
 
