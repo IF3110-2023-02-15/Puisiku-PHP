@@ -5,6 +5,20 @@
   --lg: 1024px;
   --xl: 1280px;
   --2xl: 1536px;
+  --dark-purple : #564A78; /*main color*/
+  --light-purple: #977082; /*profile color and searchbar*/
+  --dark-pink : #AA7C75; /*sidebar color*/
+  --recom-pink : #B9838C; /*recom number color*/
+  --pink : #D49B92; /*background color*/
+  --dark-blue : #2E316A; /*title color*/
+}
+
+@font-face {
+  font-family: 'StretchPro';
+  src: url('/fonts/stretchpro.woff');
+
+  font-weight: normal;
+  font-style: normal;
 }
 
 * {
