@@ -8,11 +8,10 @@
     <link rel="stylesheet" href="/css/navbar.css">
 </head>
 <body>
-    <?php
-        require_once SRC_DIR . 'views/components/navbar.php';
-    ?>
-
     <h2>Welcome to Puisiku</h2>
+    <a href="/login">
+        <button>Login</button>
+    </a>
 
     <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ipsa nulla minima commodi iusto accusantium vel maxime debitis ab quod autem voluptatum doloremque corrupti, ullam, odio eius? Accusantium, inventore unde.
