@@ -11,35 +11,20 @@
   margin: 0;
 }
 
-.error-message {
-  color: red;
+a {
+  text-decoration: none;
+  color: black;
 }
 
-.login-register {
-  display: flex;
-  gap: 20px;
+ul {
+  padding:0;
+  list-style-type: none;
 }
 
-.login-register button {
-  border-radius: 10px;
-  background: transparent;
-  padding: 10px 15px;
+li {
+  text-align: center;
 }
 
-.login-register button:hover {
-  background-color: rgb(199, 199, 199);
-}
-
-#audioPlayer {
-  width: 300px;
-  background-color: coral;
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 15px;
-}
-
-/* Style the audio player controls */
-#audioPlayer audio {
-  width: 100%;
-  outline: none;
+button {
+  cursor: pointer;
 }
