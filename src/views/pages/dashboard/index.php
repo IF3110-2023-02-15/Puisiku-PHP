@@ -5,22 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/layout.css">
     <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
 </head>
 <body>
-    <h2>Dashboard</h2>
+    <?php
+    require_once VIEWS_DIR . 'layouts/layout.php';
 
-    <form action="/logout" method="post">
-        <button type="submit">Logout</button>
-    </form>
+    ob_start();
+    include 'view.php';
+    $content = ob_get_clean();
 
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ipsa nulla minima commodi iusto accusantium vel maxime debitis ab quod autem voluptatum doloremque corrupti, ullam, odio eius? Accusantium, inventore unde.
-
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat at consequuntur cum corrupti iste dicta et perspiciatis veniam voluptatum explicabo quis, aperiam maiores praesentium error. Pariatur aut porro nemo molestias!
-
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio corrupti tempora magni fugiat, facere architecto laboriosam nesciunt quis dicta, consequatur veniam perferendis, itaque debitis sequi eligendi deserunt voluptas possimus eveniet.
-    </p>
-    
+    layout($current_page, $playlists, $role, $display_search, $profile_url, $content);
+    ?>
 </body>
 </html>
