@@ -1,6 +1,33 @@
-version: '3.3'
+version: "3.3"
 services:
-  web:
-    image: tubes-1:latest
+  puisiku-web:
+    build: .
     ports:
-      - 8008:80
+      - "5000:80"
+    env_file:
+      - .env
+    volumes:
+      - ./public:/var/www/html/public
+      - ./src:/var/www/html/src
+      - puisiku_audio_volume:/var/www/html/public/audio
+      - puisiku_img_volume:/var/www/html/public/img
+    depends_on:
+      - puisiku-db
+  puisiku-db:
+    image: postgres
+    hostname: ${PSQL_HOST}
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${PSQL_NAME}
+      POSTGRES_USER: ${PSQL_USER}
+      POSTGRES_PASSWORD: ${PSQL_PASSWORD}
+    ports:
+      - "5433:${PSQL_PORT}"
+    volumes:
+      - puisiku_db_volume:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d
+volumes:
+  puisiku_audio_volume:
+  puisiku_img_volume:
+  puisiku_db_volume:
