@@ -1,4 +1,22 @@
 .navbar {
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
+  align-items: center;
+
+  padding: 12px 35px;
+}
+
+.profile-image {
+  border-radius: 50%;
+  width: 40px;
+}
+
+.search-bar {
+  background: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 400px;
+  outline: none
 }
