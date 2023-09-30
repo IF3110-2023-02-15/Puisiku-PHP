@@ -20,7 +20,8 @@ class App {
             'register' => ['register'],
             'home' => ['home', ['user', 'admin', 'creator']],
             'logout' => ['logout', ['user', 'admin', 'creator']],
-            'upload' => ['file', ['user', 'admin', 'creator']]
+            'upload' => ['file', ['user', 'admin', 'creator']],
+//            'playlist/:id' => ['playlist', ['user', 'admin', 'creator']]
         ]);
     }
 
