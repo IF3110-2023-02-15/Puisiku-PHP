@@ -5,21 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/landing.css">
 </head>
-<body>
-    <h2>Welcome to Puisiku</h2>
-    <a href="/login">
-        <button>Login</button>
-    </a>
-
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ipsa nulla minima commodi iusto accusantium vel maxime debitis ab quod autem voluptatum doloremque corrupti, ullam, odio eius? Accusantium, inventore unde.
-
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat at consequuntur cum corrupti iste dicta et perspiciatis veniam voluptatum explicabo quis, aperiam maiores praesentium error. Pariatur aut porro nemo molestias!
-
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio corrupti tempora magni fugiat, facere architecto laboriosam nesciunt quis dicta, consequatur veniam perferendis, itaque debitis sequi eligendi deserunt voluptas possimus eveniet.
-    </p>
+<body id="grad">
+    <div class="center">
+        <div class="container">
+            <p class="header-homepage">Welcome to Puisiku</p>
+            <p class="text-style">
+                Read and Listen to Puisiku. Millions of the best poems for you to listen every day
+            </p> 
+            <a href="/login">
+                <button class="rounded-button">Get Started</button> 
+            </a>
+        </div>
+    </div>
     
 </body>
 </html>
