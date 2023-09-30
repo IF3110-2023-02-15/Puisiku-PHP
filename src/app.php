@@ -15,10 +15,10 @@ class App {
     private function defineRoutes() {
         // Define routes
         $this->router->define([
-            '' => ['home'],
+            '' => ['landing'],
             'login' => ['login'],
             'register' => ['register'],
-            'dashboard' => ['dashboard', ['user', 'admin', 'creator']],
+            'home' => ['home', ['user', 'admin', 'creator']],
             'logout' => ['logout', ['user', 'admin', 'creator']],
             'upload' => ['file', ['user', 'admin', 'creator']]
         ]);

@@ -13,9 +13,9 @@ class Router {
     }
 
     public function direct($uri, $role) {
-        // If the user is logged in and tries to access the home, user, or register routes, redirect them to the dashboard
+        // If the user is logged in and tries to access the home, user, or register routes, redirect them to the homepage
         if ($role !== null && in_array($uri, ['', 'login', 'register'])) {
-            header('Location: /dashboard');
+            header('Location: /home');
             exit();
         }
 

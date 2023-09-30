@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             let response = JSON.parse(xhr.responseText);
 
                             if (response.status === 'SUCCESS') {
-                                window.location.href = '/dashboard';
+                                window.location.href = '/home';
                             } else {
                                 loginErrorMessage.textContent = 'Login failed. Please check your email and password.';
                             }
