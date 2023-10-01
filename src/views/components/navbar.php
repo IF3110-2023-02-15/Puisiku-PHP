@@ -1,10 +1,11 @@
 <?php
+
 function navbar($display_search, $profile_url) {
     $search_bar = '';
     if ($display_search) {
-        $search_bar = <<<EOT
-        <input type="text" placeholder="Search..." class="search-bar">
-EOT;
+        ob_start();
+        include 'search.php';
+        $search_bar = ob_get_clean();
     }
 
     $navbar = <<<EOT

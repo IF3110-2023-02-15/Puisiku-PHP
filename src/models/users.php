@@ -1,13 +1,8 @@
 <?php
+require_once 'models.php';
 require_once SRC_DIR . 'database/psql.php';
 
-class User {
-    private $db;
-
-    public function __construct() {
-        $this->db = new PSQL();
-    }
-
+class UsersModel extends Models{
     public function create($username, $email, $hashed_password, $role="user", $image_path="/img/queencard.jpeg", $description="") {
         $sql = 'INSERT INTO Users (username, email, hashed_password, role, image_path, description) VALUES (?, ?, ?, ?, ?, ?)';
         try {
