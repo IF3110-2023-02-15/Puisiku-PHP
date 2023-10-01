@@ -10,7 +10,7 @@ class Home extends Controller {
     }
 
     private function loadView() {
-        $current_page = 'Dashboard';
+        $current_page = 'Home';
         $playlists = [];
         $role = $_SESSION['role'];
         $display_search = false;
