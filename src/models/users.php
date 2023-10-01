@@ -17,6 +17,16 @@ class User {
         }
     }
 
+    public function getAllUsernames() {
+        $sql = 'SELECT username FROM Users';
+        return $this->db->query($sql)->fetchAll(PDO::FETCH_COLUMN);
+    }
+
+    public function getIDUsernames(){
+        $sql ='SELECT id, username FROM Users';
+        return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function readAll() {
         $sql = 'SELECT * FROM Users';
         return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
@@ -33,7 +43,7 @@ class User {
     }
 
     public function delete($id) {
-        $sql = 'DELETE FROM Users WHERE id = ?';
+        $sql = 'DELETE CASCADE FROM Users WHERE id = ?';
         $this->db->query($sql, [$id]);
     }
 }

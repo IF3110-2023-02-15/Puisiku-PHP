@@ -18,6 +18,7 @@ class App {
             '' => ['landing'],
             'login' => ['login'],
             'register' => ['register'],
+            'admin' => ['admin', ['admin']], 
             'home' => ['home', ['user', 'admin', 'creator']],
             'logout' => ['logout', ['user', 'admin', 'creator']],
             'upload' => ['file', ['user', 'admin', 'creator']]
