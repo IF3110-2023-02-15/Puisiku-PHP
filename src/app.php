@@ -21,6 +21,8 @@ class App {
             'home' => ['home', ['user', 'admin', 'creator']],
             'logout' => ['logout', ['user', 'admin', 'creator']],
             'upload' => ['file', ['user', 'admin', 'creator']],
+            'profile' => ['profile', ['user', 'admin', 'creator']]
+
 //            'playlist/:id' => ['playlist', ['user', 'admin', 'creator']]
         ]);
     }
