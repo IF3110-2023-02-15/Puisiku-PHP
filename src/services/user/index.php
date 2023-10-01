@@ -61,4 +61,10 @@ class UserService {
     private function hashPassword($password) {
         return password_hash($password, PASSWORD_DEFAULT);
     }
+
+    public function getData($id){
+        $userModel = new User();
+        $user = $userModel->findById($id);
+        return $user;
+    }
 }
