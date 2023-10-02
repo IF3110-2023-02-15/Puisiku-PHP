@@ -24,7 +24,8 @@ class App {
             'logout' => ['logout', $logged_in_role],
             'upload' => ['file', $logged_in_role],
             'poems' => ['poems', $logged_in_role],
-            'search' => ['search', $logged_in_role]
+            'search' => ['search', $logged_in_role],
+            'poem/:id' => ['poem', $logged_in_role]
 //            'playlist/:id' => ['playlist', ['user', 'admin', 'creator']]
         ]);
     }
