@@ -1,0 +1,58 @@
+body {
+    background-color: var(--pink);
+    height: 100vh;
+    padding: 20px;
+
+}
+
+.poem-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 25px;
+    padding: 10px;
+    flex-grow: 1;
+}
+
+.poem-text-container {
+    height: 100%;
+    width: 500px;
+    padding: 20px;
+    background-color: var(--light-purple);
+    border: 3px solid var(--dark-purple);
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.poem-text-container h1 {
+
+}
+
+.poem-text-container h3 {
+    font-size: 15px;
+    font-weight: normal;
+    text-align: right;
+}
+
+.poem-text-container p {
+    margin-top: 25px;
+}
+
+.poem-attr-container {
+    width: 300px;
+    height: fit-content;
+    padding: 20px;
+    background-color: var(--light-purple);
+    border: 3px solid var(--dark-purple);
+    border-radius: 20px;
+}
+
+.poem-attr-container img{
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+
+.poem-attr-container audio{
+    margin-top: 20px;
+}

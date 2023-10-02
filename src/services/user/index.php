@@ -4,7 +4,7 @@ require_once MODELS_DIR . 'users.php';
 
 class UserService {
     public function login($email, $password) {
-        $userModel = new User();
+        $userModel = new UsersModel();
         $user = $userModel->findByEmail($email);
 
         if (!$user) {
@@ -31,7 +31,7 @@ class UserService {
     }
 
     public function register($username, $email, $password) {
-        $userModel = new User();
+        $userModel = new UsersModel();
         $user = $userModel->findByEmail($email);
 
         if ($user) {

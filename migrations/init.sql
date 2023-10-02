@@ -108,13 +108,33 @@ VALUES
 ('RobertBrown', 'robert@example.com', 'Hi, nice to meet you!', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/queencard.jpeg');
 
 -- Seeding data into Poems table
-INSERT INTO Poems (title, creator_id, genre, content, image_path)
-VALUES 
-('The Lonely Mountain', 2, 'Epic', 'An epic poem about a lonely mountain.', '/img/queencard.jpeg'),
-('Love in Springtime', 5, 'Romantic', 'A romantic poem about finding love in spring.', '/img/queencard.jpeg'),
-('Sorrowful Departure', 2, 'Sad', 'A sad poem about a sorrowful departure.', '/img/queencard.jpeg'),
-('Cherry Blossoms Dancing', 5, 'Haiku', 'A haiku about cherry blossoms dancing in the wind.', '/img/queencard.jpeg'),
-('The Mighty Ocean Waves', 2, 'Epic', 'An epic poem about the mighty ocean waves.', '/img/queencard.jpeg');
+INSERT INTO Poems (title, creator_id, genre, content, image_path, audio_path)
+VALUES
+('The Lonely Mountain', 2, 'Epic',
+E'In the realm of code, where logic is king,\n
+Binary whispers and algorithms sing.\n
+Strings of data, in memory they lie,\n
+Under silicon skies, where electrons fly.\n
+
+Functions and loops, in harmony they play,\n
+Crafting worlds in arrays, night and day.\n
+In the heart of the machine, no room for the absurd,\n
+Every action defined, by a well-written word.\n
+
+Errors and bugs, like shadows they creep,\n
+In the depth of the code, where secrets sleep.\n
+But fear not, for the coder is near,\n
+With a mind full of logic, and devoid of fear.\n
+
+With every line written, and every test run,\n
+A battle is fought, a victory won.\n
+For in this digital realm, creation is key,\n
+Crafted by coders, for all to see.'
+, '/img/queencard.jpeg', '/audio/queencard.mp3'),
+('Love in Springtime', 5, 'Romantic', 'A romantic poem about finding love in spring.', '/img/queencard.jpeg', '/audio/queencard.mp3'),
+('Sorrowful Departure', 2, 'Sad', 'A sad poem about a sorrowful departure.', '/img/queencard.jpeg', '/audio/queencard.mp3'),
+('Cherry Blossoms Dancing', 5, 'Haiku', 'A haiku about cherry blossoms dancing in the wind.', '/img/queencard.jpeg', '/audio/queencard.mp3'),
+('The Mighty Ocean Waves', 2, 'Epic', 'An epic poem about the mighty ocean waves.', '/img/queencard.jpeg', '/audio/queencard.mp3');
 
 -- Seeding data into Playlists table
 INSERT INTO Playlists (title, owner_id, image_path, is_private)
