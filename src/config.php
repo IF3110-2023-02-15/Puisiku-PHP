@@ -1,5 +1,8 @@
 <?php
 
+define('IMAGE_VOLUME', $_ENV['PWD'] . '/public/img/');
+define('AUDIO_VOLUME', $_ENV['PWD'] . '/public/audio/');
+
 define('SRC_DIR', __DIR__ . '/');
 
 define('CONTROLLER_DIR', SRC_DIR . 'controllers/');
