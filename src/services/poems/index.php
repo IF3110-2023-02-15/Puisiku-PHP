@@ -29,4 +29,13 @@ class PoemsService {
         ];
     }
 
+    public function searchById($id) {
+        $result = $this->poemsModel->findById($id);
+
+        if (!$result) {
+            return POEM_NOT_FOUND;
+        }
+
+        return $result;
+    }
 }

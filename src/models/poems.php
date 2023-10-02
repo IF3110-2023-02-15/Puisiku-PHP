@@ -63,4 +63,11 @@ class PoemsModel extends Models {
         return (int)$this->db->query($query, $params)->fetchColumn();
     }
 
+    public function findById($id) {
+        $sql = 'SELECT Poems.*, 
+            (SELECT Users.username FROM Users WHERE Users.id = Poems.creator_id) AS creator_name
+            FROM Poems 
+            WHERE Poems.id = ?';
+        return $this->db->query($sql, [$id])->fetch(PDO::FETCH_ASSOC);
+    }
 }
