@@ -28,7 +28,7 @@ CREATE TABLE Poems (
     audio_path VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (creator_id) REFERENCES Users(id)
+    FOREIGN KEY (creator_id) REFERENCES Users(id) ON DELETE CASCADE
 );
 
 -- Creating the Playlists table
@@ -40,7 +40,7 @@ CREATE TABLE Playlists (
     is_private BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (owner_id) REFERENCES Users(id)
+    FOREIGN KEY (owner_id) REFERENCES Users(id) ON DELETE CASCADE
 );
 
 -- Creating the PlaylistItems table (to store the relationship between Playlists and Poems)
@@ -48,8 +48,8 @@ CREATE TABLE PlaylistItems (
     playlist_id INTEGER,
     poem_id INTEGER,
     PRIMARY KEY (playlist_id, poem_id),
-    FOREIGN KEY (playlist_id) REFERENCES Playlists(id),
-    FOREIGN KEY (poem_id) REFERENCES Poems(id)
+    FOREIGN KEY (playlist_id) REFERENCES Playlists(id) ON DELETE CASCADE,
+    FOREIGN KEY (poem_id) REFERENCES Poems(id) ON DELETE CASCADE
 );
 
 -- Creating the UserLikedPoems table
@@ -58,8 +58,8 @@ CREATE TABLE UserLikedPoems (
     poem_id INTEGER,
     liked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id, poem_id),
-    FOREIGN KEY (user_id) REFERENCES Users(id),
-    FOREIGN KEY (poem_id) REFERENCES Poems(id)
+    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
+    FOREIGN KEY (poem_id) REFERENCES Poems(id) ON DELETE CASCADE
 );
 
 -- Creating the UserSavedPlaylists table
@@ -68,8 +68,8 @@ CREATE TABLE UserSavedPlaylists (
     playlist_id INTEGER,
     saved_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id, playlist_id),
-    FOREIGN KEY (user_id) REFERENCES Users(id),
-    FOREIGN KEY (playlist_id) REFERENCES Playlists(id)
+    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
+    FOREIGN KEY (playlist_id) REFERENCES Playlists(id) ON DELETE CASCADE
 );
 
 -- TRIGGERS
@@ -105,7 +105,10 @@ VALUES
 ('JaneDoe', 'jane@example.com', 'Hi, nice to meet you!', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/queencard.jpeg'),
 ('AdminUser', 'admin@example.com', 'Hi, nice to meet you!', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'admin', '/img/queencard.jpeg'),
 ('EmilySmith', 'emily@example.com', 'Hi, nice to meet you!', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'user', '/img/queencard.jpeg'),
-('RobertBrown', 'robert@example.com', 'Hi, nice to meet you!', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/queencard.jpeg');
+('RobertBrown', 'robert@example.com', 'Hi, nice to meet you!', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/queencard.jpeg')
+;
+
+
 
 -- Seeding data into Poems table
 INSERT INTO Poems (title, creator_id, genre, content, image_path)
@@ -123,7 +126,7 @@ VALUES
 ('Romantic Musings', 4, '/img/queencard.jpeg' , TRUE),
 ('Sad Goodbyes', 1, '/img/queencard.jpeg' , FALSE),
 ('Nature in Verse', 4, '/img/queencard.jpeg' , TRUE),
-('Powerful Forces of Nature ', 1, '/img/queencard.jpeg' , FALSE);
+('Powerful Forces ofNature', 1, '/img/queencard.jpeg' , FALSE);
 
 -- Seeding data into PlaylistItems table
 INSERT INTO PlaylistItems (playlist_id, poem_id)

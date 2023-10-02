@@ -1,7 +1,8 @@
 <?php
+require_once 'models.php';
 require_once SRC_DIR . 'database/psql.php';
 
-class Playlist {
+class PlaylistsModel {
     private $db;
 
     public function __construct() {
@@ -13,8 +14,18 @@ class Playlist {
         return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getIDPlaylistName(){
+        $sql = 'SELECT id, title FROM Playlists';
+        return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function readAllPlaylist(){
         $sql = 'SELECT * FROM Playlists';
         return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function deletePlaylist($id) {
+        $sql = 'DELETE FROM Playlists WHERE id = ?';
+        return $this->db->query($sql, [$id]);
     }
 }

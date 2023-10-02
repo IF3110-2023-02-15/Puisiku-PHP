@@ -1,13 +1,8 @@
 <?php
+require_once 'models.php';
 require_once SRC_DIR . 'database/psql.php';
 
-class User {
-    private $db;
-
-    public function __construct() {
-        $this->db = new PSQL();
-    }
-
+class UsersModel extends Models{
     public function create($username, $email, $hashed_password, $role="user", $image_path="/img/queencard.jpeg", $description="") {
         $sql = 'INSERT INTO Users (username, email, hashed_password, role, image_path, description) VALUES (?, ?, ?, ?, ?, ?)';
         try {
@@ -42,8 +37,8 @@ class User {
         return $this->db->query($sql, [$email])->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function delete($id) {
-        $sql = 'DELETE CASCADE FROM Users WHERE id = ?';
-        $this->db->query($sql, [$id]);
+    public function deleteUser($id) {
+        $sql = 'DELETE FROM Users WHERE id = ?';
+        return $this->db->query($sql, [$id]);
     }
 }

@@ -1,9 +1,12 @@
 .main-container {
     display: flex;
-    min-height: 100vh;
+    height: 100vh;
 }
 
 .sub-container {
     flex-grow: 1;
     background-color: #D49B92;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }

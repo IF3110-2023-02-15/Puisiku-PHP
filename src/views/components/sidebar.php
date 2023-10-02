@@ -1,6 +1,6 @@
 <?php
 function sidebar($current_page, $playlists, $role) {
-    $pages = array('Dashboard', 'Poems', 'Genres', 'Creators',);
+    $pages = array('Home', 'Poems', 'Genres', 'Creators');
     $sidebar = '<div class="sidebar">';
     $sidebar .= '<div class="upper-sidebar">';
     $sidebar .= '<h1><a href="/">Puisiku</a></h1>';
@@ -8,7 +8,8 @@ function sidebar($current_page, $playlists, $role) {
 
     foreach ($pages as $page) {
         $class = ($current_page == $page) ? 'active' : '';
-        $sidebar .= "<li class='$class'><a href='/$page'>" . ucfirst($page) . "</a></li>";
+        $lowercasePage = strtolower($page);
+        $sidebar .= "<li class='$class'><a href='/$lowercasePage'>" . ucfirst($page) . "</a></li>";
     }
 
     $sidebar .= '</ul>';
