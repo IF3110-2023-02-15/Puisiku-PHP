@@ -63,7 +63,7 @@ class UserService {
     }
 
     public function getData($id){
-        $userModel = new User();
+        $userModel = new UsersModel();
         $user = $userModel->findById($id);
         return $user;
     }
