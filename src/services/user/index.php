@@ -26,6 +26,7 @@ class UserService {
         $_SESSION['id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
+        $_SESSION['profile_url'] = $user['image_path'];
 
         return SUCCESS;
     }
@@ -60,5 +61,29 @@ class UserService {
 
     private function hashPassword($password) {
         return password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    public function getData($id){
+        $userModel = new UsersModel();
+        $user = $userModel->findById($id);
+        return $user;
+    }
+
+    public function update($id, $username, $description, $imagePath = null) {
+        $userModel = new UsersModel();
+
+        try {
+            $result = $userModel->update($id, $username, $description, $imagePath);
+
+            // Update session data
+            $_SESSION['username'] = $username;
+            if ($imagePath) {
+                $_SESSION['profile_url'] = $imagePath;
+            }
+
+            return $result;
+        } catch (Exception $e) {
+            throw new Exception('Error updating user: ' . $e->getMessage());
+        }
     }
 }

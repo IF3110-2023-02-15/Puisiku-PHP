@@ -22,11 +22,11 @@ class App {
             'register' => ['register'],
             'home' => ['home', $logged_in_role],
             'logout' => ['logout', $logged_in_role],
+            'profile' => ['profile', $logged_in_role],
             'upload' => ['file', $logged_in_role],
             'poems' => ['poems', $logged_in_role],
             'search' => ['search', $logged_in_role],
             'poem/:id' => ['poem', $logged_in_role]
-//            'playlist/:id' => ['playlist', ['user', 'admin', 'creator']]
         ]);
     }
 
@@ -49,4 +49,3 @@ class App {
         $controller->$methodName();
     }
 }
-
