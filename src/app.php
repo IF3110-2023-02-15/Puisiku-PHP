@@ -13,17 +13,20 @@ class App {
     }
 
     private function defineRoutes() {
+        $logged_in_role = ['user', 'admin', 'creator'];
+
         // Define routes
         $this->router->define([
             '' => ['landing'],
             'login' => ['login'],
             'register' => ['register'],
-            'home' => ['home', ['user', 'admin', 'creator']],
-            'logout' => ['logout', ['user', 'admin', 'creator']],
-            'upload' => ['file', ['user', 'admin', 'creator']],
-            'profile' => ['profile', ['user', 'admin', 'creator']]
-
-//            'playlist/:id' => ['playlist', ['user', 'admin', 'creator']]
+            'home' => ['home', $logged_in_role],
+            'logout' => ['logout', $logged_in_role],
+            'profile' => ['profile', $logged_in_role],
+            'upload' => ['file', $logged_in_role],
+            'poems' => ['poems', $logged_in_role],
+            'search' => ['search', $logged_in_role],
+            'poem/:id' => ['poem', $logged_in_role]
         ]);
     }
 
@@ -35,15 +38,14 @@ class App {
         $middleware = new Middleware();
         $role = $middleware->getRole();
 
-        // Direct the request to the appropriate controller
-        $controllerName = $this->router->direct($uri, $role);
+        // Direct the request to the appropriate controller and method
+        list($controllerName, $methodName) = $this->router->direct($uri, $role);
 
         require CONTROLLER_DIR . $controllerName . '_controller.php';
 
-        // Instantiate the controller class and call the index method
+        // Instantiate the controller class and call the appropriate method
         $controllerClass = ucfirst($controllerName);
         $controller = new $controllerClass();
-        $controller->index();
+        $controller->$methodName();
     }
 }
-
