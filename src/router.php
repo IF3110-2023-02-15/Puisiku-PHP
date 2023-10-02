@@ -23,7 +23,6 @@ class Router {
             exit();
         }
 
-        // Check for dynamic routes
         foreach ($this->routes as $routePath => $routeData) {
             if (strpos($routePath, ':') !== false) {
                 // Convert the route to a regular expression
@@ -39,7 +38,16 @@ class Router {
                         }
                     }
 
-                    return [$routeData[0], isset($routeData[1]) ? $routeData[1] : 'index'];
+                    // Check if the necessary keys exist in $routeData before accessing them
+                    if (isset($routeData['controller']) && isset($routeData['roles'])) {
+                        if (empty($routeData['roles']) || in_array($role, $routeData['roles'])) {
+                            return [$routeData['controller'], 'index'];
+                        } else {
+                            return ['errors', 'index'];
+                        }
+                    } else {
+                        return ['errors', 'index'];
+                    }
                 }
             }
         }
