@@ -205,7 +205,7 @@ VALUES
 -- Genre Romantic
 --1
 ('Aku Ada', 1, 'Romantic',
-'Memanggil namamu ke ujung dunia\n
+E'Memanggil namamu ke ujung dunia\n
 Tiada yang lebih pilu\n
 Tiada yang menjawabku selain hatiku\n
 Dan ombak berderu\n
@@ -241,7 +241,7 @@ Ku tahu kau tahu aku ada.\n',
 
 --2
 ('Aku Ingin', 2, 'Romantic', 
-'Aku ingin mencintaimu dengan sederhana\n
+E'Aku ingin mencintaimu dengan sederhana\n
 dengan kata yang tak sempat diucapkan\n
 kayu kepada api yang menjadikannya abu\n
 Aku ingin mencintaimu dengan sederhana\n
@@ -260,7 +260,7 @@ Hanya hutan, jauh di selatan, hujan pagi\n.',
 
 --3 
 ('Cintaku jauh di pulau', 3, 'Romantic',
-'Cintaku jauh di pulau, gadis manis, sekarang iseng sendiri\n
+E'Cintaku jauh di pulau, gadis manis, sekarang iseng sendiri\n
 Perahu melancar, bulan memancar di leher kukalungkan ole-ole buat si pacar angin\n
 membantu/ laut terang, tapi terasaaku tidak akan sampai padanya.\n
 Di air yang tenang, di angin mendayu, di perasaan penghabisan segala melaju. Ajal \n
@@ -272,7 +272,7 @@ Manisku jauh di pulau,kalau aku mati, dia mati iseng sendiri.\n',
 
 --4
 ('Cinta yang agung', 4, 'Romantic',
-'Adalah ketika kamu menitikkan air mata\n
+E'Adalah ketika kamu menitikkan air mata\n
 dan masih peduli terhadapnya..\n
 Adalah ketika dia tidak mempedulikanmu dan kamu masih\n
 menunggunya dengan setia..\n
@@ -293,7 +293,7 @@ mereka jatuh.\n',
 
 --5
 ('Episode', 5, 'Romantic',
-'Terkadang ada baiknya kita berduka\n
+E'Terkadang ada baiknya kita berduka\n
 Agar terasa betapa gembira\n
 Pada saatnya kita bersuka\n
 Terkadang ada baiknya kita menangis,\n
@@ -312,7 +312,7 @@ Kita ditakdirkan bertemu lagi.\n',
 -- Genre Patriot
 --6
 ('Penyelamat Ibu Pertiwi', 6, 'Patriot',
-'Seperti hujan yang turun membasahi bumi\n
+E'Seperti hujan yang turun membasahi bumi\n
 Menjadikan tanah kering menjadi subur\n
 Seperti itulah para pahlawan\n
 Menjadikan negara ini merdeka dari pejajahan\n
@@ -327,7 +327,7 @@ Hasil jerih payah engkau dahulu.\n',
 
 --7
 ('Dipenogoro', 7, 'Patriot',
-'Di masa pembangunan ini\n
+E'Di masa pembangunan ini\n
 Tuan hidup kembali\n
 Dan bara kagum menjadi api\n
 Di depan sekali tuan menanti\n
@@ -355,7 +355,7 @@ Februari 1943.\n',
 
 --8
 ('Maju Tak Gentar', 8, 'Patriot', 
-'Maju tak gentar\n
+E'Maju tak gentar\n
 Membela yang mungkar.\n
 Maju tak gentar\n
 Hak orang diserang.\n
@@ -365,7 +365,7 @@ Pasti kita menang!\n',
 
 --9
 ('Penjajah Harus Pergi dari Indonesia', 9, 'Patriot', 
-'Penjajah itu sudah merusak persatuan\n
+E'Penjajah itu sudah merusak persatuan\n
 Persatuan bangsa Indonesia\n
 Karena mereka telah membunuh pahlawanku\n
 Mereka juga telah menyengsarakan rakyat Indonesia\n
@@ -378,7 +378,7 @@ Menjadi bangsa yang makmur.\n',
 
 --10 
 ('Sebuah Jaket Berlumur Darah', 10, 'Patriot', 
-'Sebuah jaket berlumur darah\n
+E'Sebuah jaket berlumur darah\n
 Kami semua telah menatapmu\n
 Telah pergi duka yang agung\n
 Dalam kepedihan bertahun-tahun\n
@@ -407,7 +407,7 @@ Lanjutkan Perjuangan!\n',
 --Genre Eligi
 --11
 ('Hampa', 11, 'Eligi', 
-'Sepi di luar. Sepi menekan mendesak\n
+E'Sepi di luar. Sepi menekan mendesak\n
 Lurus kaku pohonan. Tak bergerak\n
 Sampai ke puncak. Sepi memagut\n
 Tak satu kuasa melepas renggut\n
@@ -422,7 +422,7 @@ Ini sepi terus ada. Dan menanti.\n',
 
 --12
 ('Senja Di Pelabuhan Kecil', 12, 'Eligi',
-'Ini kali tidak ada yang mencari cinta\n
+E'Ini kali tidak ada yang mencari cinta\n
 Di antara gudang, rumah tua, pada cerita\n
 Tiang serta temali.\n
 Kapal, perahu tiada berlaut\n
@@ -441,7 +441,7 @@ Sedu penghabisan bisa terdekap.\n'
 
 --13
 ('Kesaksian Akhir Abad', 13, 'Eligi',
-'Ratap tangis menerpa pintu kalbuku.\n
+E'Ratap tangis menerpa pintu kalbuku.\n
 Bau anyir darah mengganggu tidur malamku.\n
 O, tikar tafakur!\n
 O, bau sungai tohor yang kotor!\n
@@ -499,7 +499,7 @@ adalah hukum yang ditulis di atas air.\n',
 
 --14
 ('Sia - Sia', 14, 'Eligi',
-'Penghabisan kali itu kau datang\n
+E'Penghabisan kali itu kau datang\n
 Membawa kembang berkarang\n
 Mawar merah dan melati putih\n
 Darah dan suci\n
@@ -515,7 +515,7 @@ Mampus kau dikoyak-koyak sep.\n'
 
 --15
 ('Eligi Nelayan Tua', 15, 'Eligi',
-'Lelaki tua itu tersengguk-sengguk di emper gubuk\n
+E'Lelaki tua itu tersengguk-sengguk di emper gubuk\n
 Bulan layu rendah di langit\n
 Air mulai surut\n
 dan terlena digerogoti mimpi\n
@@ -544,7 +544,7 @@ terus!\n',
 --Genre Education
 --16
 ('Aku Dan Masa Depanku', 16, 'Education',
-'Ketika sang mentari menampakkan sinarnya\n
+E'Ketika sang mentari menampakkan sinarnya\n
 Diiringi kicauan burung yang menyapa\n
 Detik demi detik yang berbunyi\n
 Membangunkanku untuk menggapai cita\n
@@ -565,7 +565,7 @@ Akan cita-citaku.\n',
 
 --17
 ('Sumber Ilmuku', 17, 'Education',
-'Di mana?\n
+E'Di mana?\n
 Di sana\n
 Bagaimana?\n
 Di sana yang terbaik\n
@@ -584,7 +584,7 @@ Di kawanku di orang tuaku.\n',
 
 --18
 ('Pendidikan Dan Harapan', 18, 'Education',
-'Pendidikan adalah tangga harapan\n
+E'Pendidikan adalah tangga harapan\n
 Tangga itu menuntun manusia untuk mencapai tujuan\n
 Semua manusia berhak untuk menggunakan\n
 Untuk mengubah mimpi menjadi kenyataan\n
@@ -604,7 +604,7 @@ Agar bisa mengantar kita menjadi manusia bermoral yang hakiki.\n',
 
 --19
 ('Perjuangan Meraih Mimpi', 19, 'Education',
-'Sejuta angan dan mimpi\n
+E'Sejuta angan dan mimpi\n
 Menari di kepalaku\n
 Sejuta harapan\n
 Bergema di dalam hatiku\n
@@ -624,7 +624,7 @@ Kan kuraih mimpi setinggi bintang.\n',
 
 --20
 ('Tujuan Ilmu', 20, 'Education',
-'Aku melangkah tanpa arah tujuan\n
+E'Aku melangkah tanpa arah tujuan\n
 Hingga impian menjadi suram\n
 Aku berimajinasi seperti elang\n
 Hingga rintangan terlihat ringan\n
@@ -638,7 +638,7 @@ Agar kau damai.\n'
 --Genre Nature
 --21
 ('Hutan Karet', 21, 'Nature',
-'in memoriam: Sukabumi\n
+E'in memoriam: Sukabumi\n
 Daun-daun karet berserakan.\n
 Berserakan di hamparan waktu.\n
 Suara monyet di dahan-dahan.\n
@@ -653,7 +653,7 @@ masih kudengar suara bedug bertalu-talu.\n',
 
 --22
 ('Taman di Tengah Pulau Karang', 22, 'Nature',
-'Di tengah Manhattan menjelang musim gugur\n
+E'Di tengah Manhattan menjelang musim gugur\n
 Dalam kepungan rimba baja, pucuknya dalam awan\n
 Engkau terlalu bersendiri dengan danau kecilmu\n
 Dan perlahan melepas hijau daunan\n
@@ -675,7 +675,7 @@ Makin meninggi.\n
 
 --23
 ('Dua Gunung  Bicara Padaku', 23, 'Nature',
-'Kepada Singgalang bertanya aku\n
+E'Kepada Singgalang bertanya aku\n
 Wahai gunung masa kanakku di lututmu kampung ibuku\n
 Kenapa indahmu dari dahulu tak habis-habis jadi rinduku\n
 kepada Merapi berkata aku\n
@@ -695,7 +695,7 @@ Bertanyalah pada Yang Di Atas Sana.\n',
 
 --24
 ('Hatiku Selembar Daun', 24, 'Nature',
-'Hatiku selembar daun\n
+E'Hatiku selembar daun\n
 melayang jatuh di rumput\n
 Nanti dulu\n
 biarkan aku sejenak terbaring di sini\n
@@ -717,7 +717,7 @@ tapi yakin aku ada dalam dirimu.\n',
 
 --25
 ('Pancuran 7 Abadi', 25, 'Nature',
-'Desir angin sepoi menghembus perlahan\n
+E'Desir angin sepoi menghembus perlahan\n
 Bersama nyanyian burung di pucuk dahan\n
 Airmu menari-nari dalam nestapa\n
 Mencairkan luka oleh karena cinta\n
@@ -741,7 +741,7 @@ Pancarkan sinar keemasan dalam airmu!\n',
 --Genre Teacher 
 --26
 ('guru', 26, 'Teacher',
-'Barang siapa mau menjadi guru\n
+E'Barang siapa mau menjadi guru\n
 Biarlah dia memulai mengajar dirinya sendiri\n
 Sebelum mengajar orang lain\n
 Dan biarkan pula dia mengajar dengan teladan\n
@@ -755,7 +755,7 @@ Dan membenarkan perbuatan-perbuatan orang lain.\n'
 
 --27
 ('Maha Guru', 27, 'Teacher',
-'Bila mentari menyapa pagi\n
+E'Bila mentari menyapa pagi\n
 Semangat ceria selalu mengiringi\n
 Bukan harta benda yang kau cari\n
 Tapi pada sang ilmu kau mengabdi\n
@@ -772,7 +772,7 @@ Saat perahuku mengarung samudra.\n',
 
 --28
 ('Guru', 27, 'Teacher', 
-'Hangat senyummu menjadi pembuka hati kami\n
+E'Hangat senyummu menjadi pembuka hati kami\n
 Amarahmu adalah cambuk belaian kasih bagi kami\n
 Suaramu menggiring amu ke masa depan yang terang\n
 Wahai sang guru..\n
@@ -785,7 +785,7 @@ Semoga kebahagiaan selalu mendekapmu.\n',
 
 --29
 ('Kepada Guruku', 28, 'Teacher', 
-'Kulihat kau berdiri di pelupuk mataku\n
+E'Kulihat kau berdiri di pelupuk mataku\n
 Menyampaikan pesan waktu\n
 Tatkala tatapan bertemu\n
 Aku menangkap sejuta cahaya darimu\n
@@ -806,7 +806,7 @@ Maka, tak berdosa jika aku memberimu gelar pahlawan.\n',
 
 --30
 ('Sang Guru', 30, 'Teacher',
-'Tentang kegelapan\n
+E'Tentang kegelapan\n
 Tentang buta pada zaman dahulu kala\n
 Tentang kebodohan yang merajalela\n
 Dan tentang sosok penumpas itu semua\n
