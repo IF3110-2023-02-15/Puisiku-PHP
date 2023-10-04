@@ -4,6 +4,7 @@ function poems($poems) {
     $html = '';
     foreach ($poems as $poem) {
         // Assign poem values to variables
+        $id = htmlspecialchars($poem['id']);
         $img = htmlspecialchars($poem['image_path']);
         $title = htmlspecialchars($poem['title']);
         $genre = htmlspecialchars($poem['genre']);

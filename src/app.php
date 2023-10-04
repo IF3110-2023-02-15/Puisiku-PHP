@@ -15,7 +15,7 @@ class App {
     private function defineRoutes() {
         $logged_in_role = ['user', 'admin', 'creator'];
 
-        // Define routes    
+        // Define routes
         $this->router->define([
             '' => ['landing'],
             'login' => ['login'],
@@ -24,12 +24,17 @@ class App {
             'admin/deleteUser/:id' => ['admin', ['admin']],
             'admin/deletePoem/:id' => ['admin', ['admin']],
             'admin/deletePlaylist/:id' => ['admin', ['admin']], 
+            'admin/updateUser/:id' => ['admin', ['admin']],
+            'admin/updatePoem/:id' => ['admin', ['admin']],
+            'admin/updatePlaylist/:id' => ['admin', ['admin']],
             'home' => ['home', $logged_in_role],
             'logout' => ['logout', $logged_in_role],
             'upload' => ['file', $logged_in_role],
             'poems' => ['poems', $logged_in_role],
-            'search' => ['search', $logged_in_role]
+            'search' => ['search', $logged_in_role],
 //            'playlist/:id' => ['playlist', ['user', 'admin', 'creator']]
+            'profile' => ['profile', $logged_in_role],
+            'poem/:id' => ['poem', $logged_in_role]
         ]);
     }
 
@@ -42,14 +47,35 @@ class App {
         $role = $middleware->getRole();
 
         // Direct the request to the appropriate controller and method
-        list($controllerName, $methodName) = $this->router->direct($uri, $role);
-        
-        require CONTROLLER_DIR . $controllerName . '_controller.php';
+        // list($controllerName, $methodName) = $this->router->direct($uri, $role);
 
-        // Instantiate the controller class and call the appropriate method
-        $controllerClass = ucfirst($controllerName);
-        $controller = new $controllerClass();
-        $controller->$methodName();
+        // require CONTROLLER_DIR . $controllerName . '_controller.php';
+
+        // // Instantiate the controller class and call the appropriate method
+        // $controllerClass = ucfirst($controllerName);
+        // $controller = new $controllerClass();
+        // $controller->$methodName();
+
+        $routeData = $this->router->direct($uri, $role);
+
+        if ($routeData) {
+            $controllerName = $routeData['controller'];
+            $methodName = $routeData['method'];
+            $params = $routeData['params'];
+            
+            // Include the appropriate controller file
+            require CONTROLLER_DIR . $controllerName . '_controller.php';
+
+            // Instantiate the controller class and call the appropriate method
+            $controllerClass = ucfirst($controllerName);
+            $controller = new $controllerClass();
+            $controller->$methodName($params); // Pass the params to the method
+        } else {
+            // Handle the case where no matching route is found
+            require CONTROLLER_DIR . 'errors_controller.php';
+            $errorsController = new ErrorsController();
+            $errorsController->index();
+        }
+
     }
 }
-
