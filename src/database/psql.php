@@ -14,15 +14,20 @@ class PSQL {
         try {
             $this->pdo = new PDO($dsn, $user, $password);
         } catch (PDOException $e) {
-            // return $e->getMessage();
+             throw $e;
         }
-    }    
+    }
 
     public function query($sql, $params = []) {
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($params);
-        return $stmt;
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($params);
+            return $stmt;
+        } catch (PDOException $e) {
+            throw $e;
+        }
     }
+
 
     public function beginTransaction() {
         return $this->pdo->beginTransaction();
