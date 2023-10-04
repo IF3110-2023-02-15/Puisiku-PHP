@@ -25,13 +25,20 @@ body {
 }
 
 .poem-text-container h1 {
+    font-size: 35px;
+}
 
+.poem-text-container h2 {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
 }
 
 .poem-text-container h3 {
     font-size: 15px;
     font-weight: normal;
     text-align: right;
+    font-style: italic;
 }
 
 .poem-text-container p {
