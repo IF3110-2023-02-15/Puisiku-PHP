@@ -1,10 +1,9 @@
-let searchInput = document.getElementById('search-input');
-let genreSelect = document.getElementById('genre-select');
-let searchForm = document.getElementById('search-form');
+const searchInput = document.getElementById('search-input');
+const searchForm = document.getElementById('search-form');
 
-let genreButton = document.getElementById('genre-button');
-let genreDropdown = document.getElementById('genre-dropdown');
-let genreOkSelectButton = document.getElementById('genre-select-ok-button');
+const filterDropdown = document.getElementById('filter-dropdown');
+const filterButton = document.getElementById('filter-button');
+const filterDropdownOkButton = document.getElementById('filter-dropdown-ok-button');
 
 function fetchData(url, callback) {
     let xhr = new XMLHttpRequest();
@@ -12,7 +11,11 @@ function fetchData(url, callback) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             let response = JSON.parse(xhr.responseText);
-            callback(response);
+            if (response.error) {
+                console.log('Error: ', response.error);
+            } else {
+                callback(response);
+            }
         }
     }
     xhr.send();
@@ -66,7 +69,6 @@ function addPaginationEventListeners() {
     }
 }
 
-
 // Get data function
 function getData(page = 1) {
     let search_query = searchInput.value;
@@ -74,6 +76,9 @@ function getData(page = 1) {
     let allGenres = document.querySelectorAll('#genre-dropdown input[type="checkbox"]');
     let checkedGenres = document.querySelectorAll('#genre-dropdown input[type="checkbox"]:checked');
     let checkedGenresValue = Array.from(checkedGenres).map(cb => cb.value);
+
+    let sortBy = document.getElementById('sort-by').value;
+    let yearQuery = document.getElementById('year-query').value;
 
     let data = {};
 
@@ -86,7 +91,14 @@ function getData(page = 1) {
     if (page !== 1) {
         data.page = page;
     }
+    if (sortBy !== '') {
+        data.sort_by = sortBy;
+    }
+    if (yearQuery !== '') {
+        data.year_query = yearQuery;
+    }
 
+    console.log(data);
     return data;
 }
 
@@ -130,12 +142,12 @@ document.addEventListener('DOMContentLoaded', function() {
         fetchData('/poems/search?' + params, updateUI);
     })
 
-    genreButton.addEventListener('click', function() {
-        genreDropdown.classList.toggle('hidden');
+    filterButton.addEventListener('click', function() {
+        filterDropdown.classList.toggle('hidden');
     });
 
-    genreOkSelectButton.addEventListener('click', function() {
-        genreDropdown.classList.add('hidden');
+    filterDropdownOkButton.addEventListener('click', function() {
+        filterDropdown.classList.add('hidden');
 
         let data = getData();
         let params = new URLSearchParams(data).toString();
