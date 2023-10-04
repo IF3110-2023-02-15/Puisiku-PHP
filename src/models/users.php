@@ -1,13 +1,8 @@
 <?php
+require_once 'models.php';
 require_once SRC_DIR . 'database/psql.php';
 
-class User {
-    private $db;
-
-    public function __construct() {
-        $this->db = new PSQL();
-    }
-
+class UsersModel extends Models{
     public function create($username, $email, $hashed_password, $role="user", $image_path="/img/queencard.jpeg", $description="") {
         $sql = 'INSERT INTO Users (username, email, hashed_password, role, image_path, description) VALUES (?, ?, ?, ?, ?, ?)';
         try {
@@ -35,5 +30,24 @@ class User {
     public function delete($id) {
         $sql = 'DELETE FROM Users WHERE id = ?';
         $this->db->query($sql, [$id]);
+    }
+
+    public function update($id, $username, $description, $imagePath = null) {
+        $sql = 'UPDATE Users SET username = ?, description = ?';
+        $params = [$username, $description];
+
+        if ($imagePath != null) {
+            $sql .= ', image_path = ?';
+            $params[] = $imagePath;
+        }
+
+        $sql .= ' WHERE id = ?';
+        $params[] = $id;
+
+        try {
+            return $this->db->query($sql, $params);
+        } catch (PDOException $e) {
+            throw new Exception('Database error: ' . $e->getMessage());
+        }
     }
 }

@@ -6,28 +6,29 @@ DROP TABLE IF EXISTS PlaylistItems;
 -- CREATE TABLE
 -- Creating the Users table
 CREATE TABLE Users (
-    id SERIAL PRIMARY KEY,
-    username VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    description TEXT,
-    hashed_password VARCHAR(255) NOT NULL,
-    role VARCHAR(255) NOT NULL CHECK(role IN ('admin', 'creator', 'user')),
-    image_path VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    id              SERIAL          PRIMARY KEY,
+    username        VARCHAR(255)    NOT NULL,
+    email           VARCHAR(255)    UNIQUE NOT NULL,
+    description     TEXT,
+    hashed_password VARCHAR(255)    NOT NULL,
+    role            VARCHAR(255)    NOT NULL CHECK(role IN ('admin', 'creator', 'user')),
+    image_path      VARCHAR(255),
+    created_at      TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP       DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Creating the Poems table
 CREATE TABLE Poems (
-    id SERIAL PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    creator_id INTEGER,
-    genre VARCHAR(255) CHECK(genre IN ('Romantic', 'Patriot', 'Eligi', 'Education', 'Natural', 'Teacher')),
-    content TEXT,
-    image_path VARCHAR(255),
-    audio_path VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    id              SERIAL          PRIMARY KEY,
+    title           VARCHAR(255)    NOT NULL,
+    creator_id      INTEGER,
+    genre           VARCHAR(255)    CHECK(genre IN ('Romantic', 'Patriot', 'Eligi', 'Education', 'Nature', 'Teacher')),
+    content         TEXT,
+    image_path      VARCHAR(255),
+    audio_path      VARCHAR(255),
+    year            INTEGER         CHECK(year >= 0 AND year <= EXTRACT(YEAR FROM CURRENT_DATE)), -- Add this line
+    created_at      TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (creator_id) REFERENCES Users(id)
 );
 
@@ -37,7 +38,6 @@ CREATE TABLE Playlists (
     title VARCHAR(255) NOT NULL,
     owner_id INTEGER,
     image_path VARCHAR(255),
-    is_private BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (owner_id) REFERENCES Users(id)
@@ -50,26 +50,6 @@ CREATE TABLE PlaylistItems (
     PRIMARY KEY (playlist_id, poem_id),
     FOREIGN KEY (playlist_id) REFERENCES Playlists(id),
     FOREIGN KEY (poem_id) REFERENCES Poems(id)
-);
-
--- Creating the UserLikedPoems table
-CREATE TABLE UserLikedPoems (
-    user_id INTEGER,
-    poem_id INTEGER,
-    liked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (user_id, poem_id),
-    FOREIGN KEY (user_id) REFERENCES Users(id),
-    FOREIGN KEY (poem_id) REFERENCES Poems(id)
-);
-
--- Creating the UserSavedPlaylists table
-CREATE TABLE UserSavedPlaylists (
-    user_id INTEGER,
-    playlist_id INTEGER,
-    saved_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (user_id, playlist_id),
-    FOREIGN KEY (user_id) REFERENCES Users(id),
-    FOREIGN KEY (playlist_id) REFERENCES Playlists(id)
 );
 
 -- TRIGGERS
@@ -101,105 +81,51 @@ EXECUTE PROCEDURE update_modified_column();
 -- Seeding data into Users table, password is "password"
 INSERT INTO Users (username, email, description, hashed_password, role, image_path)
 VALUES 
--- Genre Romantic Start
+
 --1 
 ('Dewi Lestari', 'dewilestari@example.com', 'Hai, my name is Dewi Lestari, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/dewilestari.jpeg'),
 
 --2
-('Sapardi Djoko Damono', 'sapardidjokodamono@example.com', 'Hai, my name is Sapardi Djoko Damono, i have a creator' '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/sapardidjokodamono.jpg'),
+('Sapardi Djoko Damono', 'sapardidjokodamono@example.com', 'Hai, my name is Sapardi Djoko Damono, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/gusmus.jpeg'),
 
 --3
-('Chairil Anwar', 'chairilanwar@example.com', 'Hai, my name is Chairil Anwar, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/khairilanwar.jpeg'),
+('Chairil Anwar', 'chairilanwar@example.com', 'Hai, my name is Chairil Anwar, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/gusmus.jpeg'),
 
 --4
-('Kahlil Gibran', 'kahlilgibran@example.com', 'Hai, my name is Kahlil Gibran, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/kahlilgibran.jpeg'),
+('Kahlil Gibran', 'kahlilgibran@example.com', 'Hai, my name is Kahlil Gibran, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/gusmus.jpeg'),
 
 --5
-('W.S Rendra', 'wsrendra@example.com', 'Hai, my name is W.S Rendra, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/wsrendra.jpeg'),
+('W.S Rendra', 'wsrendra@example.com', 'Hai, my name is W.S Rendra, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/gusmus.jpeg'),
 
--- Genre Patriot
 --6
 ('Agung Dwi Prasetyo', 'agungdwiprasetyo@example.com', 'Hai, my name is Agung Dwi Prasetyo, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/agungdwiprasetyo.jpg'),
 
 --7
-('Chairil Anwar', 'chairilanwar@example.com', 'Hai, my name is Chairil Anwar, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/khairilanwar.jpeg'),
-
---8 
 ('Gus Mus', 'gusmus@example.com', 'Hai, my name is Gus mus, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/gusmus.jpeg'),
 
---9 
-('Mochamad Hayyu Al Fatha', 'mochamadhayyu@example.com', 'Hai, my name is Mochamad Hayyu Al Fatha, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/Mochamadhayyu.jpg'),
+--8
+('Mochamad Hayyu Al Fatha', 'mochamadhayyu@example.com', 'Hai, my name is Mochamad Hayyu Al Fatha, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/agungdwiprasetyo.jpg'),
+
+--9
+('Taufik Ismail', 'taufikismail@example.com', 'Hai, my name is Taufik Ismail, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/agungdwiprasetyo.jpg'),
 
 --10
-('Taufik Ismail', 'taufikismail@example.com', 'Hai, my name is Taufik Ismail, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/taufikismail.jpg'),
+('Halliday Resnick', 'halliday@example.com', 'Hai, my name Halliday, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/default_user.png'),
 
---Genre Eligi
 --11
-('Chairil Anwar', 'chairilanwar@example.com', 'Hai, my name is Chairil Anwar, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/khairilanwar.jpeg'),
+('Jeffrey Chow', 'chow@puisiku.com', 'Hi, chow imnida!', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'user', '/img/default_user.png'),
 
 --12
-('Chairil Anwar', 'chairilanwar@example.com', 'Hai, my name is Chairil Anwar, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/khairilanwar.jpeg')
+('Aulia MD', 'joli@puisiku.com', 'Hey, konco konco, gw Joli!', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'user', '/img/default_user.png'),
 
 --13
-('W.S Rendra', 'wsrendra@example.com', 'Hai, my name is W.S Rendra, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/wsrendra.jpeg'), 
+('Tubagus', 'bagus@puisiku.com', 'Halo, gue bagus ges!', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'user', '/img/default_user.png'),
 
 --14
-('Chairil Anwar', 'chairilanwar@example.com', 'Hai, my name is Chairil Anwar, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/khairilanwar.jpeg')
-
---15
-('Idrus Tintin', 'idrustintin@example.com', 'Hai, my name is Idrus Tintin, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/idrustintin.jpg'),
-
---Genre Education
---16
-('Ulil Albab Af-Farizi', 'ulilalbabaffarizi@example.com', 'Hai, my name is Ulil Albab Af-Farizi, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/ulilalbabaffarizi.jpg'),
-
---17
-('Ekawati Marhaenny Dukut', 'ekawatimarhaennydukut@example.com', 'Hai, my name is Ekawati Marhaenny Dukut, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/ekawati.jpg'),
-
---18
-('Dwi Arif', 'dwiarif@example.com', 'Hai, my name is Dwi Arif, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/dwiarif.jpg'),
-
---19
-('Natasha Mayfina', 'natashamayfina@example.com', 'Hai, my name is Natasha Mayfina, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/natashamayfina.jpeg'),
-
---20
-('David Aribowo', 'davidaribowo@example.com', 'Hai, my name is David Aribowo, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/davidaribowo.jpeg'),
-
---21
-('Joko Pinurbo', 'jokopinurbo@example.com', 'Hai, my name is Joko Pinurbo, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/jokopinurbo.jpg'),
-
---22
-('Taufik Ismail', 'taufikismail@example.com', 'Hai, my name is Taufik Ismail, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/taufikismail.jpg'),
-
---23
-('Taufik Ismail', 'taufikismail@example.com', 'Hai, my name is Taufik Ismail, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/taufikismail.jpg'),
-
---24
-('Sapardi Djoko Damono', 'sapardidjokodamono@example.com', 'Hai, my name is Sapardi Djoko Damono, i have a creator' '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/sapardidjokodamono.jpg'),
-
---25
-('Dede Aditya Saputra', 'adityasaputra@example.com', 'Hai, my name is Dede Aditya Saputra, i have a creator' '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/adityasaputra.jpeg'),
-
---Genre Teacher
---26
-('Kahlil Gibran', 'kahlilgibran@example.com', 'Hai, my name is Kahlil Gibran, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/kahlilgibran.jpeg'),
-
---27
-('Indra Haksari', 'indrahaksari@example.com',  'Hai, my name is Indra Haksari, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/indrahaksari.jpeg'),
-
---28
-('Eriyoko', 'eriyoko@example.com', 'Hai, my name is Eriyoko, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator', '/img/eriyoko.jpeg'),
-
---29
-('Winda Puspitasari', 'windapuspitasari@example.com', 'Hai, my name is Winda Puspitasari, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator',
-'/img/windapuspitasari.jpg'),
-
---30
-('Fitriana Munawaroh', 'fitrianamunawaroh@example.com', 'Hai, my name is Fitriana Munawaroh, i have a creator', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'creator',
-'/img/fitrianamunawaroh.jpg');
+('Admin', 'admin@puisiku.com', 'I am an Admin', '$2y$10$836Iq5/w0DfcI1QExTCgyuNoOpX2curnGwh1KArCRjgdvhmfOJNh6', 'admin', '/img/default_user.png');
 
 -- Seeding data into Poems table
-INSERT INTO Poems (title, creator_id, genre, content, image_path)
+INSERT INTO Poems (title, creator_id, genre, content, image_path, audio_path, year)
 VALUES 
 
 -- Genre Romantic
@@ -237,7 +163,7 @@ Dan bulan siaga sinari langkahmu\n
 Teruslah berjalan\n
 Teruslah melangkah\n
 Ku tahu kau tahu aku ada.\n', 
-'/img/dewilestari.jpeg'),
+'/img/default_poem.jpg', '/audio/audio_1.mp3', 2010),
 
 --2
 ('Aku Ingin', 2, 'Romantic', 
@@ -256,7 +182,7 @@ Barangkali kau telah menyeka bukan namaku\n
 Barangkali aku telah menyeka bukan namamu\n
 Barangkali kita malah tak pernah di sini\n
 Hanya hutan, jauh di selatan, hujan pagi\n.', 
-'/img/queencard.jpeg'),
+'/img/default_poem.jpg', '/audio/audio_1.mp3',2011),
 
 --3 
 ('Cintaku jauh di pulau', 3, 'Romantic',
@@ -268,7 +194,7 @@ bertakhta, sambil berkata: "Tujukan perahu ke pangkuanku saja,"\n
 Amboi! Jalan sudah bertahun ku tempuh! Perahu yang bersama akan merapuh!\n
 Mengapa Ajal memanggil dulu. Sebelum sempat berpeluk dengan cintaku?!\n
 Manisku jauh di pulau,kalau aku mati, dia mati iseng sendiri.\n',
-'/img/sapardidjokodamono.jpg'),
+'/img/default_poem.jpg', '/audio/audio_1.mp3',2012),
 
 --4
 ('Cinta yang agung', 4, 'Romantic',
@@ -289,7 +215,7 @@ bersamanya…\n
 Orang terkuat bukan mereka yang selalu menang..\n
 melainkan mereka yang tetap tegar ketika\n
 mereka jatuh.\n',
-'/img/kahlilgibran.jpeg'),
+'/img/default_poem.jpg', '/audio/audio_1.mp3',2013),
 
 --5
 ('Episode', 5, 'Romantic',
@@ -307,7 +233,7 @@ Itupun ada baiknya juga\n
 Agar terasa betapa mesra\n
 Jika pada saatnya nanti\n
 Kita ditakdirkan bertemu lagi.\n', 
-'/img/wsrendra.jpeg'),
+'/img/default_poem.jpg', '/audio/audio_1.mp3',2014),
 
 -- Genre Patriot
 --6
@@ -323,7 +249,7 @@ Demi mengusir para penjajah yang serakah\n
 Usai sudah kini perjuanganmu\n
 Tinggalah kami di sini yang menikmati\n
 Hasil jerih payah engkau dahulu.\n',
-'/img/agungdwiprasetyo.jpg'),
+'/img/default_poem.jpg', '/audio/audio_1.mp3', 2015),
 
 --7
 ('Dipenogoro', 7, 'Patriot',
@@ -351,7 +277,7 @@ Serbu.\n
 Serang.\n
 Terjang.\n
 Februari 1943.\n',
-'/img/khairilanwar.jpeg'),
+'/img/default_poem.jpg', '/audio/audio_1.mp3', 2016),
 
 --8
 ('Maju Tak Gentar', 8, 'Patriot', 
@@ -361,7 +287,7 @@ Maju tak gentar\n
 Hak orang diserang.\n
 Maju tak gentar\n
 Pasti kita menang!\n',
-'/img/gusmus.jpeg'),
+'/img/default_poem.jpg', '/audio/audio_1.mp3', 2017),
 
 --9
 ('Penjajah Harus Pergi dari Indonesia', 9, 'Patriot', 
@@ -374,7 +300,7 @@ Demi Indonesia merdeka kita harus bersatu\n
 Agar bangsa Indonesia bisa tetap harmonis\n
 Dan bersatu agar bangsa Indonesia\n
 Menjadi bangsa yang makmur.\n',
-'/img/Mochamadhayyu.jpg'),
+'/img/default_poem.jpg', '/audio/audio_1.mp3', 2017),
 
 --10 
 ('Sebuah Jaket Berlumur Darah', 10, 'Patriot', 
@@ -402,11 +328,11 @@ Prosesi jenazah ke pemakaman\n
 Mereka berkata\n
 Semuanya berkata\n
 Lanjutkan Perjuangan!\n',
-'/img/taufikismail.jpg')
+'/img/default_poem.jpg', '/audio/audio_1.mp3', 2018),
 
 --Genre Eligi
 --11
-('Hampa', 11, 'Eligi', 
+('Hampa', 1, 'Eligi',
 E'Sepi di luar. Sepi menekan mendesak\n
 Lurus kaku pohonan. Tak bergerak\n
 Sampai ke puncak. Sepi memagut\n
@@ -418,10 +344,10 @@ Memberat mencekung punda\n
 Sampai binasa segala. Belum apa-apa\n
 Udara bertuba. Setan bertampik\n
 Ini sepi terus ada. Dan menanti.\n',
-'/img/khairilanwar.jpeg')
+'/img/default_poem.jpg', '/audio/audio_2.mp3', 2018),
 
 --12
-('Senja Di Pelabuhan Kecil', 12, 'Eligi',
+('Senja Di Pelabuhan Kecil', 2, 'Eligi',
 E'Ini kali tidak ada yang mencari cinta\n
 Di antara gudang, rumah tua, pada cerita\n
 Tiang serta temali.\n
@@ -436,11 +362,11 @@ Berjalan menyisir semenanjung\n
 Masih pengap harap\n
 Sekali tiba di ujung\n
 Dan sekalian selamat jalan dari pantai keempat\n
-Sedu penghabisan bisa terdekap.\n'
-'/img/khairilanwar.jpeg')
+Sedu penghabisan bisa terdekap.\n',
+'/img/default_poem.jpg', '/audio/audio_2.mp3',  2018),
 
 --13
-('Kesaksian Akhir Abad', 13, 'Eligi',
+('Kesaksian Akhir Abad', 3, 'Eligi',
 E'Ratap tangis menerpa pintu kalbuku.\n
 Bau anyir darah mengganggu tidur malamku.\n
 O, tikar tafakur!\n
@@ -495,10 +421,10 @@ bukanlah rakyat merdeka.\n
 Hak hukum yang tidak dilindungi\n
 oleh lembaga pengadilan yang tinggi\n
 adalah hukum yang ditulis di atas air.\n',
-'/img/wsrendra.jpeg'),
+'/img/default_poem.jpg', '/audio/audio_2.mp3',  2018),
 
 --14
-('Sia - Sia', 14, 'Eligi',
+('Sia - Sia', 4, 'Eligi',
 E'Penghabisan kali itu kau datang\n
 Membawa kembang berkarang\n
 Mawar merah dan melati putih\n
@@ -510,11 +436,11 @@ Saling bertanya: apakah ini?\n
 Cinta? Kita berdua tak mengerti\n
 Sehari kita bersama. Tak gampir-menghampiri.\n
 Ah! Hatiku yang tak mau memberi\n
-Mampus kau dikoyak-koyak sep.\n'
-'/img/khairilanwar.jpeg')
+Mampus kau dikoyak-koyak sep.\n',
+'/img/default_poem.jpg', '/audio/audio_2.mp3',  2019),
 
 --15
-('Eligi Nelayan Tua', 15, 'Eligi',
+('Eligi Nelayan Tua', 5, 'Eligi',
 E'Lelaki tua itu tersengguk-sengguk di emper gubuk\n
 Bulan layu rendah di langit\n
 Air mulai surut\n
@@ -539,11 +465,11 @@ ikan-ikan masa lalu\n
 ikan-ikanku besok\n
 Dan pertarungan akan berlanjut\n
 terus!\n', 
-'/img/idrustintin.jpg'),
+'/img/default_poem.jpg', '/audio/audio_2.mp3',  2020),
 
 --Genre Education
 --16
-('Aku Dan Masa Depanku', 16, 'Education',
+('Aku Dan Masa Depanku', 6, 'Education',
 E'Ketika sang mentari menampakkan sinarnya\n
 Diiringi kicauan burung yang menyapa\n
 Detik demi detik yang berbunyi\n
@@ -561,10 +487,10 @@ Ialah candu bagiku\n
 Menambah kecerdasan\n
 Dan menjadi jembatan\n
 Akan cita-citaku.\n',
-'/img/ulilalbabaffarizi'),
+'/img/default_poem.jpg', '/audio/audio_2.mp3',  2021),
 
 --17
-('Sumber Ilmuku', 17, 'Education',
+('Sumber Ilmuku', 7, 'Education',
 E'Di mana?\n
 Di sana\n
 Bagaimana?\n
@@ -580,10 +506,10 @@ Di sana kutemukan ilmuku\n
 Sumber ilmuku\n
 Di guruku\n
 Di kawanku di orang tuaku.\n',
-'/img/ekawati.jpg'),
+'/img/default_poem.jpg', '/audio/audio_2.mp3',  2021),
 
 --18
-('Pendidikan Dan Harapan', 18, 'Education',
+('Pendidikan Dan Harapan', 8, 'Education',
 E'Pendidikan adalah tangga harapan\n
 Tangga itu menuntun manusia untuk mencapai tujuan\n
 Semua manusia berhak untuk menggunakan\n
@@ -600,10 +526,10 @@ Tangga itu harus bisa beradaptasi\n
 Dari zaman yang begitu kencang berlari\n
 Tangga itu tidak boleh dinodai\n
 Agar bisa mengantar kita menjadi manusia bermoral yang hakiki.\n',
-'/img/dwiarif.jpg'),
+'/img/default_poem.jpg', '/audio/audio_2.mp3',  2023),
 
 --19
-('Perjuangan Meraih Mimpi', 19, 'Education',
+('Perjuangan Meraih Mimpi', 9, 'Education',
 E'Sejuta angan dan mimpi\n
 Menari di kepalaku\n
 Sejuta harapan\n
@@ -620,10 +546,10 @@ Semangat perjuangan berkobar\n
 Demi mimpi di masa depan\n
 Takkan ku berpaling darinya\n
 Kan kuraih mimpi setinggi bintang.\n',
-'/img/natashamayfina.jpeg'),
+'/img/default_poem.jpg', '/audio/audio_2.mp3',  2022),
 
 --20
-('Tujuan Ilmu', 20, 'Education',
+('Tujuan Ilmu', 10, 'Education',
 E'Aku melangkah tanpa arah tujuan\n
 Hingga impian menjadi suram\n
 Aku berimajinasi seperti elang\n
@@ -632,12 +558,12 @@ Aku membuang waktu untuk tujuan\n
 Hingga pengetahuan tampak luas dan terang\n
 Aku berhasil menuntut ilmu\n
 Hingga pekerjaan terasa kesenangan\n
-Agar kau damai.\n'
-'/img/davidaribowo.jpeg'),
+Agar kau damai.\n',
+'/img/default_poem.jpg', '/audio/audio_2.mp3',  2022),
 
 --Genre Nature
 --21
-('Hutan Karet', 21, 'Nature',
+('Hutan Karet', 1, 'Nature',
 E'in memoriam: Sukabumi\n
 Daun-daun karet berserakan.\n
 Berserakan di hamparan waktu.\n
@@ -649,10 +575,10 @@ Dan sebuah jalan melingkar-lingkar.\n
 Membelit kenangan terjal.\n
 Sesaat sebelum surya berlalu\n
 masih kudengar suara bedug bertalu-talu.\n',
-'/img/jokopinurbo.jpg'),
+'/img/default_poem.jpg', '/audio/audio_3.mp3', 2020),
 
 --22
-('Taman di Tengah Pulau Karang', 22, 'Nature',
+('Taman di Tengah Pulau Karang', 2, 'Nature',
 E'Di tengah Manhattan menjelang musim gugur\n
 Dalam kepungan rimba baja, pucuknya dalam awan\n
 Engkau terlalu bersendiri dengan danau kecilmu\n
@@ -671,10 +597,10 @@ Orang tua itu berkemas dan tersaruk pergi\n
 Badai pun memutar daunan dalam kerucut\n
 Makin meninggi.\n
 1963.\n',
-'/img/taufikismail.jpg'),
+'/img/default_poem.jpg', '/audio/audio_3.mp3', 2022),
 
 --23
-('Dua Gunung  Bicara Padaku', 23, 'Nature',
+('Dua Gunung  Bicara Padaku', 3, 'Nature',
 E'Kepada Singgalang bertanya aku\n
 Wahai gunung masa kanakku di lututmu kampung ibuku\n
 Kenapa indahmu dari dahulu tak habis-habis jadi rinduku\n
@@ -691,10 +617,10 @@ Berjawab lewat desahan jutaan daun rimba raya\n
 Bergema begitu indahnya lewat margasatwa\n
 Ombak nyanyian insekta betapa merdunya\n
 Bertanyalah pada Yang Di Atas Sana.\n',
-'/img/taufikismail.jpg'),
+'/img/default_poem.jpg', '/audio/audio_3.mp3', 2018),
 
 --24
-('Hatiku Selembar Daun', 24, 'Nature',
+('Hatiku Selembar Daun', 4, 'Nature',
 E'Hatiku selembar daun\n
 melayang jatuh di rumput\n
 Nanti dulu\n
@@ -713,10 +639,10 @@ tapi percaya angin itu di sekitarmu\n
 hanya doaku yang bergetar malam ini\n
 dan tak pernah kau lihat siapa aku\n
 tapi yakin aku ada dalam dirimu.\n',
-'/img/sapardidjokodamono.jpg'),
+'/img/default_poem.jpg', '/audio/audio_3.mp3', 2019),
 
 --25
-('Pancuran 7 Abadi', 25, 'Nature',
+('Pancuran 7 Abadi', 5, 'Nature',
 E'Desir angin sepoi menghembus perlahan\n
 Bersama nyanyian burung di pucuk dahan\n
 Airmu menari-nari dalam nestapa\n
@@ -736,11 +662,11 @@ Apalagi malam Jumat orang Jawa\n
 Teruslah abadi kau Pancuran ketujuh\n
 Bersama keenam Pancuran di bawah sana\n
 Pancarkan sinar keemasan dalam airmu!\n',
-'/img/adityasaputra.jpg'),
+'/img/default_poem.jpg', '/audio/audio_3.mp3', 2022),
 
 --Genre Teacher 
 --26
-('guru', 26, 'Teacher',
+('Guru', 6, 'Teacher',
 E'Barang siapa mau menjadi guru\n
 Biarlah dia memulai mengajar dirinya sendiri\n
 Sebelum mengajar orang lain\n
@@ -750,11 +676,11 @@ Sebab, mereka yang mengajar dirinya sendiri\n
 Dengan membenarkan perbuatan-perbuatan sendiri\n
 Lebih berhak atas penghormatan dan kemuliaan\n
 Daripada mereka yang hanya mengajar orang lain\n
-Dan membenarkan perbuatan-perbuatan orang lain.\n'
-'/img/kahlilgibran'),
+Dan membenarkan perbuatan-perbuatan orang lain.\n',
+'/img/default_poem.jpg', '/audio/audio_3.mp3', 2020),
 
 --27
-('Maha Guru', 27, 'Teacher',
+('Maha Guru', 7, 'Teacher',
 E'Bila mentari menyapa pagi\n
 Semangat ceria selalu mengiringi\n
 Bukan harta benda yang kau cari\n
@@ -768,10 +694,10 @@ Meskipun kerikip caci maki kadang kau temui\n
 Hormatku untukmu maha guru\n
 Bintang yang tak pernah lelah memandu\n
 Saat perahuku mengarung samudra.\n',
-'/img/indrahaksari.jpeg'),
+'/img/default_poem.jpg', '/audio/audio_3.mp3', 2018),
 
 --28
-('Guru', 27, 'Teacher', 
+('Guru', 7, 'Teacher',
 E'Hangat senyummu menjadi pembuka hati kami\n
 Amarahmu adalah cambuk belaian kasih bagi kami\n
 Suaramu menggiring amu ke masa depan yang terang\n
@@ -781,10 +707,10 @@ Guratan pengabdianmu membekas pada jiwa kami\n
 Hanya doa yang tulus dan semangat negeri sebagai balas jasamu\n
 Terima kasih Guru\n
 Semoga kebahagiaan selalu mendekapmu.\n',
-'/img/indrahaksari.jpeg'),
+'/img/default_poem.jpg', '/audio/audio_3.mp3', 2017),
 
 --29
-('Kepada Guruku', 28, 'Teacher', 
+('Kepada Guruku', 8, 'Teacher',
 E'Kulihat kau berdiri di pelupuk mataku\n
 Menyampaikan pesan waktu\n
 Tatkala tatapan bertemu\n
@@ -802,10 +728,10 @@ Kau mempunyai laut yang terpenuhi dengan mutiara-mutiara ilmu\n
 Izinkan aku melayarinya, sehingga matiku penuh ketenangan\n
 Hidupmu penuh perjuangan\n
 Maka, tak berdosa jika aku memberimu gelar pahlawan.\n',
-'/img/windapuspitasari.jpg'),
+'/img/default_poem.jpg', '/audio/audio_3.mp3', 2023),
 
 --30
-('Sang Guru', 30, 'Teacher',
+('Sang Guru', 3, 'Teacher',
 E'Tentang kegelapan\n
 Tentang buta pada zaman dahulu kala\n
 Tentang kebodohan yang merajalela\n
@@ -822,17 +748,16 @@ Jangan kau tanyakan\n
 Aku dan kamulah sang harapan\n
 Menjadi lebih hebat dari apa yang ia ajarkan\n
 Maka genggamlah apa yang ia percayakan.\n',
-'/img/fitrianamunawaroh');
-
+'/img/default_poem.jpg', '/audio/audio_3.mp3', 2016);
 
 -- Seeding data into Playlists table
-INSERT INTO Playlists (title, owner_id, image_path, is_private)
+INSERT INTO Playlists (title, owner_id, image_path)
 VALUES 
-('Epic Journeys', 1, '/img/queencard.jpeg' , FALSE),
-('Romantic Musings', 4, '/img/queencard.jpeg' , TRUE),
-('Sad Goodbyes', 1, '/img/queencard.jpeg' , FALSE),
-('Nature in Verse', 4, '/img/queencard.jpeg' , TRUE),
-('Powerful Forces of Nature ', 1, '/img/queencard.jpeg' , FALSE);
+('Epic Journeys', 11, '/img/default_playlist.png'),
+('Romantic Musings', 12, '/img/default_playlist.png'),
+('Sad Goodbyes', 13, '/img/default_playlist.png'),
+('Nature in Verse', 11, '/img/default_playlist.png'),
+('Powerful Forces of Nature ', 12, '/img/default_playlist.png');
 
 -- Seeding data into PlaylistItems table
 INSERT INTO PlaylistItems (playlist_id, poem_id)
@@ -843,30 +768,11 @@ VALUES
 (3, 3),
 (4, 4),
 (5, 1),
-(5, 5);
-
--- Seeding data into UserLikedPoems table
-INSERT INTO UserLikedPoems (user_id, poem_id)
-VALUES
-(1, 1),
-(1, 2),
-(2, 3),
-(2, 4),
-(3, 5),
-(4, 1),
-(4, 2),
-(5, 3),
-(5, 4);
-
--- Seeding data into UserSavedPlaylists table
-INSERT INTO UserSavedPlaylists (user_id, playlist_id)
-VALUES
-(1, 1),
-(1, 2),
-(2, 3),
-(2, 4),
-(3, 5),
-(4, 1),
-(4, 2),
-(5, 3),
-(5, 4);
+(5, 5),
+(1, 11),
+(1, 15),
+(2, 12),
+(3, 13),
+(4, 14),
+(5, 11),
+(5, 15);

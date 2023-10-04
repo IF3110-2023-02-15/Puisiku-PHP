@@ -1,5 +1,8 @@
 <?php
 
+define('IMAGE_VOLUME', $_ENV['PWD'] . '/public/img/');
+define('AUDIO_VOLUME', $_ENV['PWD'] . '/public/audio/');
+
 define('SRC_DIR', __DIR__ . '/');
 
 define('CONTROLLER_DIR', SRC_DIR . 'controllers/');
@@ -13,3 +16,5 @@ define("SUCCESS", "SUCCESS");
 define("EMAIL_ALREADY_EXISTED", "EMAIL_ALREADY_EXISTED");
 define("USER_NOT_FOUND", "USER_NOT_FOUND");
 define("PASSWORD_INCORRECT", "PASSWORD_INCORRECT");
+
+define("POEM_NOT_FOUND", "POEM_NOT_FOUND");

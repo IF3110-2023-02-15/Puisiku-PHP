@@ -2,6 +2,7 @@
 
 require_once 'controller.php';
 require_once SERVICES_DIR . 'user/index.php';
+require_once SERVICES_DIR . 'file/index.php';
 
 class Profile extends Controller {
     public function index() {
@@ -28,16 +29,35 @@ class Profile extends Controller {
     private function updateProfile() {
         header('Content-Type: application/json');
 
-        // Check if all required fields are set
-        if (!isset($_POST["name"]) || !isset($_POST["description"]) || !isset($_POST["img-profile"])) {
-            echo json_encode(['status' => 'ERROR', 'message' => 'Please fill in all the required fields!']);
-            exit();
+        $id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+        $username = isset($_POST['username']) ? $_POST['username'] : null;
+        $description = isset($_POST['description']) ? $_POST['description'] : null;
+        $image = isset($_FILES['profile-image-path']['tmp_name']) ? $_FILES['profile-image-path']['tmp_name'] : null;
+
+        if ($id == null) {
+            echo json_encode(['error' => 'Unauthorized']);
         }
 
-        $name=isset($_POST['name'])?($_POST['name']):null;
-        $description=isset($_POST['description'])?($_POST['description']):null;
-        $imgProfile=isset($_POST['img-profile'])?($_POST['img-profile']):null;
+        $imagePath = null;
 
-        echo $name, $description, $imgProfile;  
+        // Try to upload file
+        if ($image != null) {
+            $fileService = new FileService();
+
+            try {
+                $imagePath = $fileService->upload($_FILES['profile-image-path']);
+            } catch (Exception $e) {
+                echo json_encode(['error' => $e->getMessage()]);
+                return;
+            }
+        }
+
+        $userService = new UserService();
+        try {
+            $result = $userService->update($id, $username, $description, $imagePath);
+            echo json_encode(['success' => 'User updated successfully', 'result' => $result]);
+        } catch (Exception $e) {
+            echo json_encode(['error' => 'Error updating user: ' . $e->getMessage()]);
+        }
     }
 }

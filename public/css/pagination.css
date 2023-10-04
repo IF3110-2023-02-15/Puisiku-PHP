@@ -1,0 +1,30 @@
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.pagination-container button {
+    background: none;
+    border: none;
+}
+
+.pagination-container button:hover {
+    filter: brightness(0.75);
+}
+
+.pagination-container button:disabled {
+    opacity: 0.5;
+    cursor: auto;
+}
+
+.pagination-container button:disabled:hover {
+    filter: none;
+}
+
+
+.page-info {
+    font-weight: bold;
+    padding: 0 10px;
+}
