@@ -9,15 +9,16 @@ class PoemsService {
         $this->poemsModel = new PoemsModel();
     }
 
-    public function search($searchKey = null, $genre = null, $page = 1, $poemsPerPage = 8, $sortBy = 'id DESC') {
+    public function search($searchKey = null, $genre = null, $year_query = null, $sort_by = 'Poems.created_at DESC', $page = 1, $poemsPerPage = 6) {
         $searchKey = $searchKey == '' ? null : $searchKey;
         $genre = $genre == '' ? null : $genre;
+        $year_query = $year_query == '' ? null : $year_query;
 
         // Find the poems
-        $poems = $this->poemsModel->findPoems($searchKey, $genre, $page, $poemsPerPage, $sortBy);
+        $poems = $this->poemsModel->findPoems($searchKey, $genre, $year_query, $sort_by, $page, $poemsPerPage);
 
         // Count the total number of poems that match the search query and genre
-        $totalPoems = $this->poemsModel->countPoems($searchKey, $genre);
+        $totalPoems = $this->poemsModel->countPoems($searchKey, $genre, $year_query);
 
         // Calculate the total number of pages needed
         $totalPages = ceil($totalPoems / $poemsPerPage);
