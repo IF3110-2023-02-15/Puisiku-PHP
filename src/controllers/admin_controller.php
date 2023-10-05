@@ -7,6 +7,7 @@ require_once MODELS_DIR . 'poems.php';
 require_once SERVICES_DIR . 'user/index.php';
 require_once SERVICES_DIR . 'poems/index.php';
 require_once SERVICES_DIR . 'playlist/index.php';
+require_once SERVICES_DIR . 'file/index.php';
 require_once VIEWS_DIR . 'components/users/index.php';
 
 class Admin extends Controller {
@@ -26,7 +27,6 @@ class Admin extends Controller {
     }
     
     public function loadView() {
-
         $current_page = 'Home';
         $playlists = [];
         $role = $_SESSION['role'];
@@ -51,13 +51,14 @@ class Admin extends Controller {
         echo json_encode($users);
     }
 
-    public function deleteUser() {
+    public function deleteUser($params) {
         if ($_SERVER['REQUEST_METHOD'] != 'DELETE') {
             $this->methodNotAllowed();
             return;
         }
 
-        $userId = $_GET['id'];
+        $userId = $params['id'];
+
 
         if ($userId) {
             $userService = new UserService();
@@ -65,6 +66,7 @@ class Admin extends Controller {
             try {
                 $result = $userService->deleteUser($userId);
                 // Return a success response with HTTP status 200
+
                 header('HTTP/1.1 200 OK');
                 header('Content-Type: application/json');
                 echo json_encode(['message' => $result]);
@@ -81,7 +83,53 @@ class Admin extends Controller {
         }
     }
 
-    public function getPoems() {
+    public function updateUser($params) {
+        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+            $this->methodNotAllowed();
+            return;
+        }
+
+        header('Content-Type: application/json');
+
+        $userId = $params['id'];
+
+        $username = isset($_POST['update-username']) ? $_POST['update-username'] : null;
+        $description = isset($_POST['update-description']) ? $_POST['update-description'] : null;
+        $image = isset($_FILES['update-image']['tmp_name']) ? $_FILES['update-image']['tmp_name'] : null;
+
+
+        $imagePath = null;
+
+        $userService = new UserService();
+
+        if (isset($_POST['update-role'])) {
+            $result = $userService->updateRole($userId);
+        }
+
+        // Try to upload file
+        if ($image != null) {
+            $fileService = new FileService();
+
+            try {
+                $imagePath = $fileService->upload($_FILES['update-image']);
+            } catch (Exception $e) {
+                echo json_encode(['error' => $e->getMessage()]);
+                return;
+            }
+        }
+
+        
+        try {
+            $result = $userService->update($userId, $username, $description, $imagePath);
+            echo json_encode(['success' => 'User updated successfully', 'result' => $result]);
+        } catch (Exception $e) {
+            echo json_encode(['error' => 'Error updating user: ' . $e->getMessage()]);
+        }
+
+        echo json_encode($userId);
+    }
+
+    public function getPoems($params) {
         if ($_SERVER['REQUEST_METHOD'] != 'GET') {
             $this->methodNotAllowed();
             return;
@@ -97,13 +145,13 @@ class Admin extends Controller {
         echo json_encode($poems);
     }
 
-    public function deletePoem() {
+    public function deletePoem($params) {
         if ($_SERVER['REQUEST_METHOD'] != 'DELETE') {
             $this->methodNotAllowed();
             return;
         }
 
-        $poemId = $_GET['id'];
+        $poemId = $params['id'];
 
         if ($poemId) {
             $poemService = new PoemsService();
@@ -127,6 +175,62 @@ class Admin extends Controller {
         }
     }
 
+    public function updatePoem($params){
+        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+            $this->methodNotAllowed();
+            return;
+        }
+
+        header('Content-Type: application/json');
+
+        $poemId = $params['id'];
+
+        $title = isset($_POST['title-update-poem']) ? $_POST['title-update-poem'] : null;
+        $genre = isset($_POST['genre-update-poem']) ? $_POST['genre-update-poem'] : null;
+        $content = isset($_POST['content-update-poem']) ? $_POST['content-update-poem'] : null;
+        $image = isset($_FILES['image-update-poem']['tmp_name']) ? $_FILES['image-update-poem']['tmp_name'] : null;
+        $audio = isset($_FILES['audio-update-poem']['tmp_name']) ? $_FILES['audio-update-poem']['tmp_name'] : null;
+
+
+        $imagePath = null;
+        $audioPath = null;
+
+        $poemService = new PoemsService();
+
+        // Try to upload file
+        if ($image != null) {
+            $fileService = new FileService();
+
+            try {
+                $imagePath = $fileService->upload($_FILES['image-update-poem']);
+            } catch (Exception $e) {
+                echo json_encode(['error' => $e->getMessage()]);
+                return;
+            }
+        }
+
+        if ($audio != null) {
+            $fileService = new FileService();
+
+            try {
+                $audioPath = $fileService->upload($_FILES['audio-update-poem']);
+            } catch (Exception $e) {
+                echo json_encode(['error' => $e->getMessage()]);
+                return;
+            }
+        }
+
+        
+        try {
+            $result = $poemService->update($poemId, $title, $genre, $content, $imagePath, $audioPath);
+            echo json_encode(['success' => 'User updated successfully', 'result' => $result]);
+        } catch (Exception $e) {
+            echo json_encode(['error' => 'Error updating user: ' . $e->getMessage()]);
+        }
+
+        echo json_encode($poemId);
+    }
+
     public function getPlaylists() {
         if ($_SERVER['REQUEST_METHOD'] != 'GET') {
             $this->methodNotAllowed();
@@ -136,19 +240,19 @@ class Admin extends Controller {
         header('Content-Type: application/json');
 
         $playlistService = new PlaylistService();
-        $result = $playlistService->getIDPlaylistName();
-        $playlist = adminBox1($result);
+        $result = $playlistService->getIDStatusPlaylistName();
+        $playlist = adminBox3($result);
 
         echo json_encode($playlist);
     }
 
-    public function deletePlaylist() {
+    public function deletePlaylist($params) {
         if ($_SERVER['REQUEST_METHOD'] != 'DELETE') {
             $this->methodNotAllowed();
             return;
         }
 
-        $playlistId = $_GET['id'];
+        $playlistId = $params['id'];
 
         if ($playlistId) {
             $playlistService = new PlaylistService();
@@ -172,6 +276,65 @@ class Admin extends Controller {
         }
     }
 
+    public function updatePlaylist($params){
+        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+            $this->methodNotAllowed();
+            return;
+        }
+
+        header('Content-Type: application/json');
+
+        $playlistId = $params['id'];
+
+        $title = isset($_POST['title-update-playlist']) ? $_POST['title-update-playlist'] : null;
+        $image = isset($_FILES['image-update-playlist']['tmp_name']) ? $_FILES['image-update-playlist']['tmp_name'] : null;
+
+        $imagePath = null;
+
+        $playlistService = new PlaylistService();
+
+        if (isset($_POST['status-public-playlist']) && $_POST['status-public-playlist'] === 'public') {
+            $status = 0;
+
+            try {
+                $result = $playlistService->updateStatus($playlistId, $status);
+                echo json_encode(['success' => 'Status updated successfully', 'result' => $result]);
+            } catch (Exception $e) {
+                echo json_encode(['error' => 'Error updating status: ' . $e->getMessage()]);
+            }
+        }
+
+        if (isset($_POST['status-private-playlist']) && $_POST['status-private-playlist'] === 'private') {
+            $status = 1;
+            try {
+                $result = $playlistService->updateStatus($playlistId, $status);
+                echo json_encode(['success' => 'Status updated successfully', 'result' => $result]);
+            } catch (Exception $e) {
+                echo json_encode(['error' => 'Error updating status: ' . $e->getMessage()]);
+            }
+        }
+
+        // Try to upload file
+        if ($image != null) {
+            $fileService = new FileService();
+
+            try {
+                $imagePath = $fileService->upload($_FILES['image-update-playlist']);
+            } catch (Exception $e) {
+                echo json_encode(['error' => $e->getMessage()]);
+                return;
+            }
+        }
+        
+        try {
+            $result = $playlistService->update($playlistId, $title, $imagePath);
+            echo json_encode(['success' => 'User updated successfully', 'result' => $result]);
+        } catch (Exception $e) {
+            echo json_encode(['error' => 'Error updating user: ' . $e->getMessage()]);
+        }
+
+        echo json_encode($playlistId);
+    }
 
     
 }

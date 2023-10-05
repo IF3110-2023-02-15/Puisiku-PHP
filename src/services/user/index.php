@@ -43,6 +43,10 @@ class UserService {
         return $this->userModel->getIDUsernames();
     }
 
+    public function readAll(){
+        return $this->userModel->readAll();
+    }
+
     public function deleteUser($id) {
         return $this->userModel->deleteUser($id);
     }
@@ -84,7 +88,7 @@ class UserService {
         return $user;
     }
 
-    public function update($id, $username, $description, $imagePath = null) {
+    public function update($id, $username, $description,  $imagePath = null) {
         $userModel = new UsersModel();
 
         try {
@@ -95,6 +99,18 @@ class UserService {
             if ($imagePath) {
                 $_SESSION['profile_url'] = $imagePath;
             }
+
+            return $result;
+        } catch (Exception $e) {
+            throw new Exception('Error updating user: ' . $e->getMessage());
+        }
+    }
+
+    public function updateRole($id) {
+        $userModel = new UsersModel();
+
+        try {
+            $result = $userModel->updateRole($id);
 
             return $result;
         } catch (Exception $e) {

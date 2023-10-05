@@ -83,5 +83,30 @@ class PoemsModel extends Models {
         return $this->db->query($sql, [$id]);
     }
 
+    public function update($poemId, $title, $genre, $content, $imagePath = null, $audioPath = null) {
+        $sql = 'UPDATE Poems SET title = ?, genre = ?, content = ?';
+        $params = [$title, $genre, $content];
+
+
+        if ($imagePath != null) {
+            $sql .= ', image_path = ?';
+            $params[] = $imagePath;
+        }
+
+        if ($audioPath != null) {
+            $sql .= ', audio_path = ?';
+            $params[] = $audioPath;
+        }
+
+        $sql .= ' WHERE id = ?';
+        $params[] = $poemId;
+
+        try {
+            return $this->db->query($sql, $params);
+        } catch (PDOException $e) {
+            throw new Exception('Database error: ' . $e->getMessage());
+        }
+    }
+
 }
 

@@ -18,7 +18,7 @@ class UsersModel extends Models{
     }
 
     public function getIDUsernames(){
-        $sql ='SELECT id, username FROM Users';
+        $sql ='SELECT id, username, role FROM Users';
         return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -46,6 +46,7 @@ class UsersModel extends Models{
         $sql = 'UPDATE Users SET username = ?, description = ?';
         $params = [$username, $description];
 
+
         if ($imagePath != null) {
             $sql .= ', image_path = ?';
             $params[] = $imagePath;
@@ -54,6 +55,17 @@ class UsersModel extends Models{
         $sql .= ' WHERE id = ?';
         $params[] = $id;
 
+        try {
+            return $this->db->query($sql, $params);
+        } catch (PDOException $e) {
+            throw new Exception('Database error: ' . $e->getMessage());
+        }
+    }
+
+    public function updateRole($id) {
+        $sql = 'UPDATE Users SET role = ? WHERE id = ?';
+        $params = ['creator', $id];
+    
         try {
             return $this->db->query($sql, $params);
         } catch (PDOException $e) {

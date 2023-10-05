@@ -75,3 +75,36 @@ svg {
 .hover-button:hover {
     fill: white;
 }
+
+.confirmation-modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 50%;
+    top: 100px;
+    transform: translate(-50%, -50%);
+}
+
+.modal-content {
+    background-color: var(--light-purple);
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 450px;
+}
+
+.modal-content h2 {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--dark-blue);
+    font-weight: bold;
+}
+
+.update-modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 50%;
+    top: 100px;
+    transform: translate(-50%, -50%);
+}
