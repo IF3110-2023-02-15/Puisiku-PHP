@@ -1,5 +1,7 @@
 <?php
 
+require_once SRC_DIR . 'database/psql.php';
+
 class Models {
     protected $db;
 
