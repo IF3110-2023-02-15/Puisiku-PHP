@@ -5,6 +5,7 @@
   --lg: 1024px;
   --xl: 1280px;
   --2xl: 1536px;
+
   --dark-purple : #564A78; /*main color*/
   --light-purple: #977082; /*profile color and searchbar*/
   --dark-pink : #AA7C75; /*sidebar color*/
@@ -19,6 +20,24 @@
 
   font-weight: normal;
   font-style: normal;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--dark-pink);
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8c635d;
 }
 
 * {
