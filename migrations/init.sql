@@ -12,7 +12,7 @@ CREATE TABLE Users (
     description     TEXT,
     hashed_password VARCHAR(255)    NOT NULL,
     role            VARCHAR(255)    NOT NULL CHECK(role IN ('admin', 'creator', 'user')),
-    image_path      VARCHAR(255),
+    image_path      VARCHAR(255)    DEFAULT '/img/default_user.png',
     created_at      TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,
     updated_at      TIMESTAMP       DEFAULT CURRENT_TIMESTAMP
 );
@@ -24,7 +24,7 @@ CREATE TABLE Poems (
     creator_id      INTEGER,
     genre           VARCHAR(255)    CHECK(genre IN ('Romantic', 'Patriot', 'Eligi', 'Education', 'Nature', 'Teacher')),
     content         TEXT,
-    image_path      VARCHAR(255),
+    image_path      VARCHAR(255)    DEFAULT '/img/default_poem.jpg',
     audio_path      VARCHAR(255),
     year            INTEGER         CHECK(year >= 0 AND year <= EXTRACT(YEAR FROM CURRENT_DATE)), -- Add this line
     created_at      TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,
@@ -37,7 +37,7 @@ CREATE TABLE Playlists (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     owner_id INTEGER,
-    image_path VARCHAR(255),
+    image_path VARCHAR(255) DEFAULT '/img/default_playlist.png',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (owner_id) REFERENCES Users(id)
@@ -49,7 +49,8 @@ CREATE TABLE PlaylistItems (
     poem_id INTEGER,
     PRIMARY KEY (playlist_id, poem_id),
     FOREIGN KEY (playlist_id) REFERENCES Playlists(id),
-    FOREIGN KEY (poem_id) REFERENCES Poems(id)
+    FOREIGN KEY (poem_id) REFERENCES Poems(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- TRIGGERS
