@@ -29,7 +29,7 @@ CREATE TABLE Poems (
     year            INTEGER         CHECK(year >= 0 AND year <= EXTRACT(YEAR FROM CURRENT_DATE)), -- Add this line
     created_at      TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,
     updated_at      TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (creator_id) REFERENCES Users(id)
+    FOREIGN KEY (creator_id) REFERENCES Users(id) ON DELETE CASCADE
 );
 
 -- Creating the Playlists table
@@ -40,7 +40,7 @@ CREATE TABLE Playlists (
     image_path VARCHAR(255) DEFAULT '/img/default_playlist.png',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (owner_id) REFERENCES Users(id)
+    FOREIGN KEY (owner_id) REFERENCES Users(id) ON DELETE CASCADE
 );
 
 -- Creating the PlaylistItems table (to store the relationship between Playlists and Poems)
@@ -48,8 +48,8 @@ CREATE TABLE PlaylistItems (
     playlist_id INTEGER,
     poem_id INTEGER,
     PRIMARY KEY (playlist_id, poem_id),
-    FOREIGN KEY (playlist_id) REFERENCES Playlists(id),
-    FOREIGN KEY (poem_id) REFERENCES Poems(id),
+    FOREIGN KEY (playlist_id) REFERENCES Playlists(id) ON DELETE CASCADE,
+    FOREIGN KEY (poem_id) REFERENCES Poems(id) ON DELETE CASCADE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

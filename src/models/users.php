@@ -9,6 +9,16 @@ class UsersModel extends Models{
         $this->db->query($sql, [$username, $email, $hashed_password, $role]);
     }
 
+    public function getAllUsernames() {
+        $sql = 'SELECT username FROM Users';
+        return $this->db->query($sql)->fetchAll(PDO::FETCH_COLUMN);
+    }
+
+    public function getIDUsernames(){
+        $sql ='SELECT id, username, role FROM Users';
+        return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function readAll() {
         $sql = 'SELECT * FROM Users';
         return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
@@ -24,14 +34,15 @@ class UsersModel extends Models{
         return $this->db->query($sql, [$email])->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function delete($id) {
+    public function deleteUser($id) {
         $sql = 'DELETE FROM Users WHERE id = ?';
-        $this->db->query($sql, [$id]);
+        return $this->db->query($sql, [$id]);
     }
 
     public function update($id, $username, $description, $imagePath = null) {
         $sql = 'UPDATE Users SET username = ?, description = ?';
         $params = [$username, $description];
+
 
         if ($imagePath != null) {
             $sql .= ', image_path = ?';
@@ -41,6 +52,17 @@ class UsersModel extends Models{
         $sql .= ' WHERE id = ?';
         $params[] = $id;
 
+        try {
+            return $this->db->query($sql, $params);
+        } catch (PDOException $e) {
+            throw new Exception('Database error: ' . $e->getMessage());
+        }
+    }
+
+    public function updateRole($id) {
+        $sql = 'UPDATE Users SET role = ? WHERE id = ?';
+        $params = ['creator', $id];
+    
         try {
             return $this->db->query($sql, $params);
         } catch (PDOException $e) {

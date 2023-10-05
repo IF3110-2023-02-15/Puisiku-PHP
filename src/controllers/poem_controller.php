@@ -5,10 +5,10 @@ require_once SERVICES_DIR . 'poems/index.php';
 
 class Poem extends Controller {
 
-    public function index() {
+    public function index($params) {
         switch($_SERVER['REQUEST_METHOD']) {
             case 'GET':
-                $this->loadView();
+                $this->loadView($params);
                 break;
             default:
                 $this->methodNotAllowed();
@@ -16,8 +16,8 @@ class Poem extends Controller {
         }
     }
 
-    private function loadView() {
-        $id = isset($_GET['id']) ? $_GET['id'] : null;
+    private function loadView($params) {
+        $id = $params['id'];
 
         $poemsService = new PoemsService();
         $result = $poemsService->searchById($id);

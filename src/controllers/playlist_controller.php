@@ -5,10 +5,10 @@ require_once SERVICES_DIR . 'playlists/index.php';
 
 class Playlist extends Controller {
 
-    public function index() {
+    public function index($params) {
         switch($_SERVER['REQUEST_METHOD']) {
             case 'GET':
-                $this->loadView();
+                $this->loadView($params);
                 break;
             default:
                 $this->methodNotAllowed();
@@ -16,8 +16,8 @@ class Playlist extends Controller {
         }
     }
 
-    private function loadView() {
-        $playlistId = $_GET['id'];
+    private function loadView($params) {
+        $playlistId = $params['id'];
 
         $current_page = $playlistId;
         $display_search = false;

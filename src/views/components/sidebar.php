@@ -56,14 +56,25 @@ EOT;
     }
 
     // Close the playlists list
-    $sidebar .= '</ul>';
+    $sidebar .= '</ul></div>';
 
-    // Add the creator button
-    $button_text = ($role == 'user') ? 'Be a creator!' : 'Creator Dashboard';
-    $sidebar .= "<button class='sidebar-creator'><a href='/creator'>$button_text</a></button>";
+    $button_text = '';
+    $button_link = '';
 
     // Close the sidebar divs
-    $sidebar .= '</div></div>';
+    if ($role == 'user'){
+        $button_text = 'Be a creator!';
+        $button_link = '/upgrade';
+    } elseif ($role == 'creator'){
+        $button_text = 'Lets make a new Poem!';
+        $button_link = '/creatorpage';
+    } elseif ($role == 'admin'){
+        $button_text = 'Go to admin page';
+        $button_link = '/admin';
+    }
+
+    $sidebar .= "<button class='sidebar-creator'><a href='$button_link'>$button_text</a></button>";
+    $sidebar .= '</div>';
 
     echo $sidebar;
 }
