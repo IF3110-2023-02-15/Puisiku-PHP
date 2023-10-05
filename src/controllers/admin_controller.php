@@ -292,26 +292,26 @@ class Admin extends Controller {
 
         $playlistService = new PlaylistService();
 
-        if (isset($_POST['status-public-playlist']) && $_POST['status-public-playlist'] === 'public') {
-            $status = 0;
+        // if (isset($_POST['status-public-playlist']) && $_POST['status-public-playlist'] === 'public') {
+        //     $status = 0;
 
-            try {
-                $result = $playlistService->updateStatus($playlistId, $status);
-                echo json_encode(['success' => 'Status updated successfully', 'result' => $result]);
-            } catch (Exception $e) {
-                echo json_encode(['error' => 'Error updating status: ' . $e->getMessage()]);
-            }
-        }
+        //     try {
+        //         $result = $playlistService->updateStatus($playlistId, $status);
+        //         echo json_encode(['success' => 'Status updated successfully', 'result' => $result]);
+        //     } catch (Exception $e) {
+        //         echo json_encode(['error' => 'Error updating status: ' . $e->getMessage()]);
+        //     }
+        // }
 
-        if (isset($_POST['status-private-playlist']) && $_POST['status-private-playlist'] === 'private') {
-            $status = 1;
-            try {
-                $result = $playlistService->updateStatus($playlistId, $status);
-                echo json_encode(['success' => 'Status updated successfully', 'result' => $result]);
-            } catch (Exception $e) {
-                echo json_encode(['error' => 'Error updating status: ' . $e->getMessage()]);
-            }
-        }
+        // if (isset($_POST['status-private-playlist']) && $_POST['status-private-playlist'] === 'private') {
+        //     $status = 1;
+        //     try {
+        //         $result = $playlistService->updateStatus($playlistId, $status);
+        //         echo json_encode(['success' => 'Status updated successfully', 'result' => $result]);
+        //     } catch (Exception $e) {
+        //         echo json_encode(['error' => 'Error updating status: ' . $e->getMessage()]);
+        //     }
+        // }
 
         // Try to upload file
         if ($image != null) {

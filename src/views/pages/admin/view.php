@@ -1,4 +1,5 @@
-
+<?php $genres = GENRES;
+?>
 <div class="tes">
     <!-- Only for testing, should not get username here, do it in controller -->
     <div class="horizontal-list">
@@ -77,10 +78,10 @@
             <div class="button-container">
                 <form id="user-update-form" enctype="multipart/form-data">
                     <label for="update-username">Username:</label><br>
-                    <input type="text" id="update-username" name="update-username" value="<?php echo $data['username'];?>" required><br>
+                    <input type="text" id="update-username" name="update-username" required><br>
 
                     <label for="description">Description:</label><br>
-                    <textarea type="text" id="update-description" name="update-description" required><?php echo $data['description'];?></textarea><br>
+                    <textarea type="text" id="update-description" name="update-description" required></textarea><br>
 
                     <input type="radio" id="update-role-creator" name="update-role" value="user">
                     <label for="update-role-creator" id="update-radiobutton-text">Upgrade to Creator</label><br>
@@ -103,11 +104,9 @@
 
                 <label for="genre-update-poem">Genre:</label><br>
                 <select id="genre-update-poem" name="genre-update-poem" required>
-                    <option value="Romantic">Romantic</option>
-                    <option value="National">National</option>
-                    <option value="Sad">Sad</option>
-                    <option value="Epic">Epic</option>
-                    <option value="Haiku">Haiku</option>
+                    <?php foreach($genres as $genre) { ?>
+                        <option value="<?php echo $genre; ?>"><?php echo $genre; ?></option>
+                    <?php } ?>
                 </select><br>
 
                 <label for="content-update-poem">Content:</label><br>
@@ -134,11 +133,11 @@
                 <label for="image-update-playlist">Image:</label><br>
                 <input id="image-update-playlist" type="file" name="image-update-playlist" accept=".jpg, .jpeg, .png"><br>
 
-                <input type="radio" id="status-public-update-playlist" name="status-public-playlist" value="public">
+                <!-- <input type="radio" id="status-public-update-playlist" name="status-public-playlist" value="public">
                 <label for="status-public-update-playlist" id="update-radiobutton-text-public-playlist">Public playlist</label><br>
 
                 <input type="radio" id="status-private-update-playlist" name="status-private-playlist" value="private">
-                <label for="status-private-update-playlist" id="update-radiobutton-text-private-playlist">Private playlist</label><br>
+                <label for="status-private-update-playlist" id="update-radiobutton-text-private-playlist">Private playlist</label><br> -->
 
                 <button id="submit-update-playlist">Submit</button>
             </form>
