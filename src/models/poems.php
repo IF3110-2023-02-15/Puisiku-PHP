@@ -1,7 +1,6 @@
 <?php
 
 require_once 'models.php';
-require_once SRC_DIR . 'database/psql.php';
 
 class PoemsModel extends Models {
     public function buildQuery($searchKey = null, $genre = null, $year_query = null) {
