@@ -1,4 +1,18 @@
-table {
+.information {
+
+}
+
+.playlist-image-container {
+
+}
+
+.playlist-image-container img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.playlist-table-container table {
     border: none;
     border-spacing: 0;
 }
@@ -7,3 +21,4 @@ table {
     cursor: pointer;
     background-color: var(--recom-pink);
 }
+

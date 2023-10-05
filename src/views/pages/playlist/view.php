@@ -27,12 +27,14 @@
         </div>
     </div>
 
-    <?php
-        require_once VIEWS_DIR . 'components/table.php';
+    <div class="playlist-table-container">
+        <?php
+            require_once VIEWS_DIR . 'components/table.php';
 
-        $headers = ['#', 'Title', 'Creator', 'Genre', 'Year'];
-        echo createTable($headers, $items);
-    ?>
+            $headers = ['#', 'Title', 'Creator', 'Genre', 'Year'];
+            echo createTable($headers, $items);
+        ?>
+    </div>
 
     <script defer src="/js/playlist.js"></script>
 </body>
