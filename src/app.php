@@ -26,7 +26,8 @@ class App {
             'upload' => ['file', $logged_in_role],
             'poems' => ['poems', $logged_in_role],
             'search' => ['search', $logged_in_role],
-            'poem/:id' => ['poem', $logged_in_role]
+            'poem/:id' => ['poem', $logged_in_role],
+            'playlist/:id' => ['playlist', $logged_in_role]
         ]);
     }
 
