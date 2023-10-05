@@ -1,15 +1,12 @@
 <?php
+
 require_once 'models.php';
-require_once SRC_DIR . 'database/psql.php';
 
 class UsersModel extends Models{
-    public function create($username, $email, $hashed_password, $role="user", $image_path="/img/queencard.jpeg", $description="") {
-        $sql = 'INSERT INTO Users (username, email, hashed_password, role, image_path, description) VALUES (?, ?, ?, ?, ?, ?)';
-        try {
-            $this->db->query($sql, [$username, $email, $hashed_password, $role, $image_path, $description]);
-        } catch (PDOException $e) {
-            throw $e;
-        }
+    public function create($username, $email, $hashed_password, $role="user") {
+        $sql = 'INSERT INTO Users (username, email, hashed_password, role) VALUES (?, ?, ?, ?)';
+
+        $this->db->query($sql, [$username, $email, $hashed_password, $role]);
     }
 
     public function readAll() {
