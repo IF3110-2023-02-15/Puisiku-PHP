@@ -39,6 +39,7 @@
     gap: 10px;
     padding: 10px;
     border-radius: 8px;
+    cursor: pointer;
 
     @media (max-width: 768px) {
         justify-content: center;
@@ -106,4 +107,80 @@
 
 .sidebar-creator:hover {
     background-color: red;
+}
+
+
+/* Add Playlist Modal */
+.add-playlist-modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 50%;
+    top: 225px;
+    transform: translate(-50%, -50%);
+}
+
+.add-playlist-modal-content {
+    background-color: var(--light-purple);
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 450px;
+}
+
+.add-playlist-modal-content h1 {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--dark-blue);
+    font-weight: bold;
+}
+
+.add-playlist-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-playlist-form label {
+    margin-top: 20px;
+
+    display: block;
+    color : var(--dark-blue);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.add-playlist-form input {
+    margin-top: 5px;
+
+    border-radius: 10px;
+    padding: 10px;
+    background-color: var(--pink);
+    border: 3px solid var(--dark-blue);
+}
+
+.add-playlist-form input[type="submit"] {
+    margin-top: 25px;
+    background-color: var(--dark-blue);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-playlist-form input[type="submit"]:hover {
+    background-color: var(--dark-purple);
+}
+
+
+.close-playlist-modal-button {
+    color: white;
+    float: right;
+    padding-right: 15px;
+    padding-top: 5px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.close-playlist-modal-button:hover,
+.close-playlist-modal-button:focus {
+    filter: brightness(0.75);
 }
