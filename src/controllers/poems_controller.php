@@ -19,10 +19,9 @@ class Poems extends Controller {
 
     public function loadView() {
         $current_page = 'Poems';
-        $playlists = [];
-        $role = $_SESSION['role'];
         $display_search = true;
-        $profile_url = isset($_SESSION['profile_url']) ? $_SESSION['profile_url'] : '/img/queencard.jpeg';
+
+        list($role, $profile_url, $playlists) = $this->getSidebarNavbarInfo();
 
         $this->view('poems/index', ['current_page' => $current_page, 'playlists'=> $playlists, 'role' => $role, 'display_search' => $display_search, 'profile_url' => $profile_url]);
     }

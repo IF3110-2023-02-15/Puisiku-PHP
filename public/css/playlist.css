@@ -1,0 +1,9 @@
+table {
+    border: none;
+    border-spacing: 0;
+}
+
+.clickable-row:hover {
+    cursor: pointer;
+    background-color: var(--recom-pink);
+}

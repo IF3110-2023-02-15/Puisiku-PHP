@@ -98,20 +98,20 @@ class Router {
                 // Convert the route to a regular expression
                 $pattern = preg_replace('#:([\w]+)#', '(?P<$1>[\w-]+)', $routePath);
                 $pattern = '#^' . $pattern . '$#';
-    
+
                 // If the pattern matches, return the controller, method, and dynamic parameters
                 if (preg_match($pattern, $path, $matches)) {
                     $dynamicParameters = [];
-    
+
                     foreach ($matches as $key => $match) {
                         if (is_string($key)) {
                             $dynamicParameters[$key] = $match;
                         }
                     }
-    
+
                     $routeSegments = explode('/', $routePath);
-                    $method = isset($routeSegments[1]) ? $routeSegments[1] : 'index';
-    
+                    $method = isset($routeSegments[1]) && strpos($routeSegments[1], ':') === false ? $routeSegments[1] : 'index';
+
                     // Check if the necessary keys exist in $routeData before accessing them
                     if (isset($routeData['controller']) && isset($routeData['roles'])) {
                         if (empty($routeData['roles']) || in_array($role, $routeData['roles'])) {
@@ -124,20 +124,20 @@ class Router {
                             return [
                                 'controller' => 'errors',
                                 'method' => 'index',
-                                'params' => null,
+                                'params' => 401,
                             ];
                         }
                     } else {
                         return [
                             'controller' => 'errors',
                             'method' => 'index',
-                            'params' => null,
+                            'params' => 404,
                         ];
                     }
                 }
             }
         }
-    
+
         // Split the path into controller and method
         $parts = explode('/', $path);
         $controller = $parts[0];
@@ -155,7 +155,7 @@ class Router {
                 return [
                     'controller' => 'errors',
                     'method' => 'index',
-                    'params' => null,
+                    'params' => 401,
                 ];
             }
         }
@@ -163,7 +163,7 @@ class Router {
         return [
             'controller' => 'errors',
             'method' => 'index',
-            'params' => null,
+            'params' => 404,
         ];
     }
     

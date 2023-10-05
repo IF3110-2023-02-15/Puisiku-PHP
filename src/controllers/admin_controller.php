@@ -27,11 +27,10 @@ class Admin extends Controller {
     }
     
     public function loadView() {
-        $current_page = 'Home';
-        $playlists = [];
-        $role = $_SESSION['role'];
+        $current_page = 'Admin';
         $display_search = false;
-        $profile_url = isset($_SESSION['profile_url']) ? $_SESSION['profile_url'] : '/img/queencard.jpeg';
+
+        list($role, $profile_url, $playlists) = $this->getSidebarNavbarInfo();
 
         $this->view('admin/index', ['current_page' => $current_page, 'playlists'=> $playlists, 'role' => $role, 'display_search' => $display_search, 'profile_url' => $profile_url]);
     }

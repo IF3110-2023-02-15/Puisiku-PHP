@@ -1,5 +1,5 @@
 .sidebar {
-    background-color: #AA7C75;
+    background-color: var(--dark-pink);
     width: 200px;
     flex-shrink: 0;
 
@@ -18,11 +18,31 @@
 }
 
 .sidebar-pages {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: var(--dark-purple);
+}
 
+.active {
+    background-color: red;
 }
 
 .sidebar-playlist {
 
+}
+
+.sidebar-list {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: var(--dark-purple);
+}
+
+img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
 }
 
 .sidebar-creator {

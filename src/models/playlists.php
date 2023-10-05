@@ -1,12 +1,19 @@
 <?php
+
 require_once 'models.php';
-require_once SRC_DIR . 'database/psql.php';
 
-class PlaylistsModel {
-    private $db;
+class PlaylistsModel extends Models {
 
-    public function __construct() {
-        $this->db = new PSQL();
+    public function getUserPlaylists($userId) {
+        $sql = 'SELECT id, title, image_path FROM Playlists WHERE owner_id = ?';
+
+        return $this->db->query($sql, [$userId])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getPlaylistData($playlistId) {
+        $sql = 'SELECT id, title, image_path, DATE(updated_at) FROM Playlists WHERE id = ?';
+
+        return $this->db->query($sql, [$playlistId])->fetch(PDO::FETCH_ASSOC);
     }
 
     public function getAllPlaylistName(){

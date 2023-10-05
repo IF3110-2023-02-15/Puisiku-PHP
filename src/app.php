@@ -26,19 +26,19 @@ class App {
             'admin/addPlaylist' => ['admin', ['admin']],
             'admin/deleteUser/:id' => ['admin', ['admin']],
             'admin/deletePoem/:id' => ['admin', ['admin']],
-            'admin/deletePlaylist/:id' => ['admin', ['admin']], 
+            'admin/deletePlaylist/:id' => ['admin', ['admin']],
             'admin/updateUser/:id' => ['admin', ['admin']],
             'admin/updateUserwithRole/:id' => ['admin', ['admin']],
             'admin/updatePoem/:id' => ['admin', ['admin']],
             'admin/updatePlaylist/:id' => ['admin', ['admin']],
             'home' => ['home', $logged_in_role],
             'logout' => ['logout', $logged_in_role],
+            'profile' => ['profile', $logged_in_role],
             'upload' => ['file', $logged_in_role],
             'poems' => ['poems', $logged_in_role],
             'search' => ['search', $logged_in_role],
-//            'playlist/:id' => ['playlist', ['user', 'admin', 'creator']]
-            'profile' => ['profile', $logged_in_role],
-            'poem/:id' => ['poem', $logged_in_role]
+            'poem/:id' => ['poem', $logged_in_role],
+            'playlist/:id' => ['playlist', $logged_in_role]
         ]);
     }
 
@@ -66,7 +66,7 @@ class App {
             $controllerName = $routeData['controller'];
             $methodName = $routeData['method'];
             $params = $routeData['params'];
-            
+
             // Include the appropriate controller file
             require CONTROLLER_DIR . $controllerName . '_controller.php';
 
@@ -77,7 +77,7 @@ class App {
         } else {
             // Handle the case where no matching route is found
             require CONTROLLER_DIR . 'errors_controller.php';
-            $errorsController = new ErrorsController();
+            $errorsController = new Errors();
             $errorsController->index();
         }
 

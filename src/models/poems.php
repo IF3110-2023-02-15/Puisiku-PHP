@@ -1,7 +1,6 @@
 <?php
 
 require_once 'models.php';
-require_once SRC_DIR . 'database/psql.php';
 
 class PoemsModel extends Models {
     public function buildQuery($searchKey = null, $genre = null, $year_query = null) {
@@ -76,6 +75,14 @@ class PoemsModel extends Models {
         } catch (Exception $e) {
             throw new Exception("Error: ".$e->getMessage());
         }
+    }
+
+    public function findById($id) {
+        $sql = 'SELECT Poems.*, 
+            (SELECT Users.username FROM Users WHERE Users.id = Poems.creator_id) AS creator_name
+            FROM Poems 
+            WHERE Poems.id = ?';
+        return $this->db->query($sql, [$id])->fetch(PDO::FETCH_ASSOC);
     }
 
     public function getAllPoemName(){
