@@ -9,6 +9,17 @@ class PoemsService {
         $this->poemsModel = new PoemsModel();
     }
 
+    public function getAllPoemName(){
+        return $this->poemsModel->getAllPoemName();
+    }
+    public function getIDPoemName(){
+        return $this->poemsModel->getIDPoemName();
+    }
+
+    public function deletePoem($id){
+        return $this->poemsModel->deletePoem($id);
+    }
+
     public function search($searchKey = null, $genre = null, $year_query = null, $sort_by = 'Poems.created_at DESC', $page = 1, $poemsPerPage = 6) {
         $searchKey = $searchKey == '' ? null : $searchKey;
         $genre = $genre == '' ? null : $genre;
@@ -38,5 +49,26 @@ class PoemsService {
         }
 
         return $result;
+    }
+
+    public function update($poemId, $title, $genre, $content, $imagePath=null, $audioPath=null) {
+        $poemModel = new PoemsModel();
+
+        try {
+            $result = $poemModel->update($poemId, $title, $genre, $content, $imagePath, $audioPath);
+
+
+            if ($imagePath) {
+                $_SESSION['image_poem_url'] = $imagePath;
+            }
+
+            if ($audioPath) {
+                $_SESSION['audio_poem_url'] = $audioPath;
+            }
+
+            return $result;
+        } catch (Exception $e) {
+            throw new Exception('Error updating user: ' . $e->getMessage());
+        }
     }
 }

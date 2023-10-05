@@ -41,7 +41,7 @@
   border: none;
 }
 
-.filter-dropdown {
+.genre-dropdown {
   position: absolute;
   z-index: 10;
   background-color: var(--light-purple);
