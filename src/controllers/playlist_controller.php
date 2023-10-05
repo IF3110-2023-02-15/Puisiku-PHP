@@ -10,6 +10,9 @@ class Playlist extends Controller {
             case 'GET':
                 $this->loadView($params);
                 break;
+            case 'POST':
+                $this->add();
+                break;
             default:
                 $this->methodNotAllowed();
                 break;
@@ -38,6 +41,39 @@ class Playlist extends Controller {
             ]);
         } catch (Exception $e) {
             $this->notFound();
+        }
+    }
+
+    public function add() {
+        $userId = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+        $playlistTitle = isset($_POST['playlist-title']) ? $_POST['playlist-title'] : null;
+        $playlistImage = isset($_FILES['playlist-image']['tmp_name']) ? $_FILES['playlist-image']['tmp_name'] : null;
+
+        $imagePath = null;
+
+        // Try to upload file
+        if ($playlistImage != null) {
+            $fileService = new FileService();
+
+            try {
+                $imagePath = $fileService->upload($_FILES['playlist-image']);
+            } catch (Exception $e) {
+                echo json_encode(['error' => $e->getMessage()]);
+                return;
+            }
+        }
+
+        header('Content-Type: application/json');
+        $playlistService = new PlaylistsService();
+
+        try {
+            $result = $playlistService->addPlaylist($userId, $playlistTitle, $imagePath);
+            echo json_encode([
+                'success' => 'Successfully added new playlist!',
+                'result' => $result
+            ]);
+        } catch (Exception $e) {
+            echo json_encode(['error' => 'An error has occurred: ' . $e]);
         }
     }
 }
