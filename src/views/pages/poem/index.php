@@ -19,8 +19,11 @@
             <h1>
                 <?php echo $data['title']; ?>
             </h1>
+            <h2>
+                <?php echo $data['creator_name']; ?>
+            </h2>
             <h3>
-                by: <?php echo $data['creator_name']; ?>
+                <?php echo $data['genre']; ?> - <?php echo $data['year']; ?>
             </h3>
             <p>
                 <?php echo nl2br(htmlspecialchars($data['content'])); ?>

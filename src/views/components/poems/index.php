@@ -7,7 +7,7 @@ function poems($poems) {
         $id = htmlspecialchars($poem['id']);
         $img = htmlspecialchars($poem['image_path']);
         $title = htmlspecialchars($poem['title']);
-        $genre = htmlspecialchars($poem['genre']);
+        $creator = htmlspecialchars($poem['username']);
 
         // Start output buffering
         ob_start();

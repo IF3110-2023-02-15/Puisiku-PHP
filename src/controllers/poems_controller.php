@@ -28,32 +28,39 @@ class Poems extends Controller {
     }
 
     public function search() {
-        if ($_SERVER['REQUEST_METHOD'] != 'GET') {
-            $this->methodNotAllowed();
-            return;
+        try {
+            if ($_SERVER['REQUEST_METHOD'] != 'GET') {
+                $this->methodNotAllowed();
+                return;
+            }
+
+            header('Content-Type: application/json');
+
+            $searchKey = isset($_GET['search_query']) ? $_GET['search_query'] : null;
+            $genre = isset($_GET['genre']) ? json_decode($_GET['genre']) : null;
+            $page = isset($_GET['page']) ? $_GET['page'] : 1;
+            $year_query = isset($_GET['year_query']) ? json_decode($_GET['year_query']) : null;
+            $sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'Poems.created_at DESC';
+
+            $poemsService = new PoemsService();
+            $results = $poemsService->search($searchKey, $genre, $year_query, $sort_by, $page);
+            $totalPages = $results['total_pages'];
+
+            $poems = poems($results['poems']);
+            $pagination = pagination($totalPages > 0 ? $page : 0 , $totalPages);
+
+            // Put the poems and pagination into an associative array
+            $response = [
+                'poems' => $poems,
+                'pagination' => $pagination
+            ];
+
+            // Convert the array to a JSON string and echo it
+            echo json_encode($response);
+        } catch (Exception $e) {
+            // Handle the exception
+            echo json_encode(['error' => $e->getMessage()]);
         }
-
-        header('Content-Type: application/json');
-
-        $searchKey = isset($_GET['search_query']) ? $_GET['search_query'] : null;
-        $genre = isset($_GET['genre']) ? json_decode($_GET['genre']) : null;
-        $page = isset($_GET['page']) ? $_GET['page'] : 1;
-
-        $poemsService = new PoemsService();
-        $results = $poemsService->search($searchKey, $genre, $page);
-        $totalPages = $results['total_pages'];
-
-        $poems = poems($results['poems']);
-        $pagination = pagination($totalPages > 0 ? $page : 0 , $totalPages);
-
-        // Put the poems and pagination into an associative array
-        $response = [
-            'poems' => $poems,
-            'pagination' => $pagination
-        ];
-
-        // Convert the array to a JSON string and echo it
-        echo json_encode($response);
     }
 
     public function recommendation() {

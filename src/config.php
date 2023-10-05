@@ -18,3 +18,5 @@ define("USER_NOT_FOUND", "USER_NOT_FOUND");
 define("PASSWORD_INCORRECT", "PASSWORD_INCORRECT");
 
 define("POEM_NOT_FOUND", "POEM_NOT_FOUND");
+
+define ('GENRES', ['Romantic', 'Patriot', 'Eligi', 'Education', 'Nature', 'Teacher']);
