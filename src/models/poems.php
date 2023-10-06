@@ -90,6 +90,11 @@ class PoemsModel extends Models {
         return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getAllPoemByCreator($id){
+        $sql = 'SELECT * FROM Poems WHERE Poems.creator_id = ?';
+        return $this->db->query($sql, [$id])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getIDPoemName(){
         $sql = 'SELECT id, title FROM Poems';
         return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);

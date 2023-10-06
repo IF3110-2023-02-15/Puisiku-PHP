@@ -39,6 +39,9 @@ class App {
             'search' => ['search', $logged_in_role],
             'poem/:id' => ['poem', $logged_in_role],
             'creator' => ['creator', ['admin', 'creator']],
+            'creator/addPoem' => ['creator', ['admin', 'creator']],
+            'creator/deletePoem/:id' => ['creator', ['admin', 'creator']],
+            'creator/updatePoem/:id' => ['creator', ['admin', 'creator']],
             'playlist/:id' => ['playlist', $logged_in_role]
         ]);
     }

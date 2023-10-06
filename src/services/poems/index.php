@@ -12,6 +12,10 @@ class PoemsService {
     public function getAllPoemName(){
         return $this->poemsModel->getAllPoemName();
     }
+
+    public function getAllPoemByCreator($id){
+        return $this->poemsModel->getAllPoemByCreator($id);
+    }
     public function getIDPoemName(){
         return $this->poemsModel->getIDPoemName();
     }
