@@ -105,6 +105,17 @@ class PoemsModel extends Models {
         return $this->db->query($sql, [$id]);
     }
 
+    public function create($id, $title, $genre, $content, $imagePath, $audioPath, $year){
+        $sql = 'INSERT INTO Poems (creator_id, title, genre, content, image_path, audio_path, year) VALUES (?, ?, ?, ?, ?, ?, ?)';
+        $params = [$id, $title, $genre, $content, $imagePath, $audioPath, $year];
+
+        try {
+            $this->db->query($sql, $params);
+        } catch (Exception $e) {
+            throw new Exception("Error: ".$e->getMessage());
+        }
+    }
+
     public function update($poemId, $title, $genre, $content, $imagePath = null, $audioPath = null) {
         $sql = 'UPDATE Poems SET title = ?, genre = ?, content = ?';
         $params = [$title, $genre, $content];

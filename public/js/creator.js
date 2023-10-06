@@ -1,36 +1,55 @@
 document.addEventListener('DOMContentLoaded', function(){
-    let addPoemForm = document.getElementById("add-poem-form");
-    
-    const addPoemModal = document.getElementById("add-poem-modal");
-    const addUserButtonCreator = document.getElementById("add-poem-button-on-creator");
-    const closeButtonModal = document.getElementById("close-add-poem-modal");
+
+    function fetchDisplay(){
+        const addPoemModal = document.getElementById("add-poem-modal");
+        const addPoemButtonCreator = document.getElementById("add-poem-button-on-creator");
+        const closeButtonModal = document.getElementById("close-add-poem-modal");
+        const addPoemSubmit = document.getElementById("add-poem-submit");
 
 
-    addUserButtonCreator.addEventListener('click', function(){
-        console.log("mashook");
-        addPoemModal.style.display = "block";
-    
-    });
+        addPoemButtonCreator.addEventListener('click', function(){
+            console.log("mashook");
+            addPoemModal.style.display = "block";
+        
+        });
 
-    closeButtonModal.onclick = function() {
-        addPoemModal.style.display = "none";
+        addPoemSubmit.onclick = function() {
+            addPoem();
+            addPoemModal.style.display = "none";
+        }
+
+        closeButtonModal.onclick = function() {
+            addPoemModal.style.display = "none";
+        }
     }
+    
+    
 
-
-    function addModal() {
+    function addPoem() {
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', `/creator/getModal`, true);
-        xhr.onload = function(){
-            if(xhr.status === 200){
+        let addPoemForm = document.getElementById("add-poem-form");
+        let formData = new FormData(addPoemForm);
+
+        xhr.open('POST', `/creator`, true);
+
+        
+        xhr.onload = function() {
+            console.log("ini", xhr.status);
+            if (xhr.status === 200) {
+                console.log("masuk");
                 console.log(xhr.responseText);
             } else {
-                console.error('Error add modal:', xhr.statusText);
+                console.error('Error add poem:', xhr.statusText);
             }
-        }
-        xhr.onerror = function(){
-            console.error('Network error occured.');
-        }
-        xhr.send();
+        };
+
+        xhr.onerror = function() {
+            console.error('Network error occurred.');
+        };
+        xhr.send(formData);
+
     }
+
+    fetchDisplay();
 
 });

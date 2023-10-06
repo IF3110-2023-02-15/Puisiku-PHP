@@ -18,58 +18,31 @@ $genres = GENRES;
             <!-- Content of your modal goes here -->
             <div class="modal-body">
             <p>Add Your New Poem</p>
-                <form>
-                    <label>Title:</label>
+                <form id="add-poem-form" enctype="multipart/form-data">
+                    <label for="add-poem-title">Title:</label>
                     <input type="text" id="add-poem-title" name="add-poem-title" placeholder="John Doe" required><br>
 
-                    <label>Genre:</label>
+                    <label for="add-poem-genre">Genre:</label>
                     <select id="add-poem-genre" name="add-poem-genre" required>
                         <?php foreach($genres as $genre) { ?>
                             <option value="<?php echo $genre; ?>"><?php echo $genre; ?></option>
                         <?php } ?>
                     </select><br>
 
-                    <label>Content:</label>
+                    <label for="add-poem-content">Content:</label>
                     <input type="text" id="add-poem-content" name="add-poem-content" placeholder="The flowers are.." required><br>
 
-                    <label>Image:</label>
+                    <label for="add-poem-image">Image:</label>
                     <input id="add-poem-image" type="file" name="add-poem-image" accept=".jpg, .jpeg, .png"><br>
 
-                    <label>Audio:</label>
+                    <label for="add-poem-audio">Audio:</label>
                     <input id="add-poem-audio" type="file" name="add-poem-audio" accept=".mp3"><br>
 
-                    <label>Year:</label>
+                    <label for="add-poem-year">Year:</label>
                     <input type="number" id="add-poem-year" name="add-poem-year" placeholder="2021" required><br>
 
                     <button id="add-poem-submit">Submit</button>
                 </form>
-
-
-                <!-- <form id="add-poem-form" enctype="multipart/form-data">
-                    <label>Title:</label>
-                    <input type="text" id="add-poem-title" name="add-poem-title" placeholder="John Doe" required><br>
-                    
-                    <label>Genre:</label>
-                    <select id="add-poem-genre" name="add-poem-genre" required>
-                        <?php foreach($genres as $genre) { ?>
-                            <option value="<?php echo $genre; ?>"><?php echo $genre; ?></option>
-                        <?php } ?>
-                    </select><br>
-
-                    <label>Content:</label>
-                    <textarea type="text" id="add-poem-content" name="add-poem-content" placeholder="The flowers are blooming.." required><br>
-
-                    <label>Image:</label>
-                    <input id="add-poem-image" type="file" name="add-poem-image" accept=".jpg, .jpeg, .png"><br>
-
-                    <label>Audio:</label>
-                    <input id="add-poem-audio" type="file" name="add-poem-audio" accept=".mp3"><br>
-
-                    <label>Year:</label>
-                    <input type="number" id="add-poem-year" name="add-poem-year" placeholder="2021" required><br>
-
-                    <button id="add-poem-submit">Submit</button>
-                </form> -->
             </div>
         </div>
     </div>
