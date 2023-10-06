@@ -74,4 +74,10 @@ class PlaylistsModel extends Models {
             throw new Exception('Database error: ' . $e->getMessage());
         }
     }
+
+    public function createPlaylist($ownerId, $title, $imagePath) {
+        $sql = 'INSERT INTO Playlists (title, owner_id, image_path) VALUES (?,?,?) RETURNING *';
+
+        return $this->db->query($sql, [$title, $ownerId, $imagePath])->fetch(PDO::FETCH_ASSOC);
+    }
 }

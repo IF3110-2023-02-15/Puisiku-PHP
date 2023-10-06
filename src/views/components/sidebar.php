@@ -27,7 +27,7 @@ EOT;
 
     $sidebar .= "</ul> <div class='sidebar-add-playlist-container'>";
 
-    $sidebar .= sidebarButton('', '/assets/icons/add.svg', 'Add Playlist', 'add-playlist-button', 'sidebar-add-playlist-button');
+    $sidebar .= sidebarButton(null, '/assets/icons/add.svg', 'Add Playlist', 'add-playlist-button', 'sidebar-add-playlist-button');
 
     $sidebar .= '</div> <ul class="sidebar-playlist">';
 
@@ -62,10 +62,33 @@ EOT;
         $button_link = '/admin';
     }
 
-//    $sidebar .= "<button class='sidebar-creator'><a href='$button_link'>$button_text</a></button>";
     $sidebar .= sidebarButton($button_link, '/assets/icons/settings.png', $button_text, 'sidebar-settings-button', 'sidebar-settings-button');
 
     $sidebar .= '</div>';
+
+    $sidebar .= <<<EOT
+        
+        <div class="add-playlist-modal" id="add-playlist-modal">
+            <span id="close-playlist-modal-button" class="close-playlist-modal-button">&times;</span>
+            <div class="add-playlist-modal-content">
+                <h1>Add Playlist</h1>
+                <form action="/playlist" class="add-playlist-form" id="add-playlist-form">
+                    <label for="title">Title</label>
+                    <input type="text" name="playlist-title" required>
+                    
+                    <label for="playlist-image">Playlist Image</label>
+                    <input type="file" name="playlist-image" accept=".jpg, .jpeg, .png">
+                    
+                    <input type="submit" value="Add Playlist">
+                </form>
+            </div>
+        </div>
+        
+        <div id="notification" class="notification"></div>
+
+        <script defer src="/js/sidebar.js"></script>
+EOT;
+
 
     echo $sidebar;
 }

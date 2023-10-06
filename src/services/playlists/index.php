@@ -25,4 +25,14 @@ class PlaylistsService {
             'items' => $playlist_items
         ];
     }
+
+    public function addPlaylist($ownerId, $title, $image_path) {
+        $playlistsModel = new PlaylistsModel();
+
+        if ($image_path == null) {
+            $image_path = '/img/default_playlist.png';
+        }
+
+        return $playlistsModel->createPlaylist($ownerId, $title, $image_path);
+    }
 }
