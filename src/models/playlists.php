@@ -38,7 +38,7 @@ class PlaylistsModel extends Models {
 
     public function deletePlaylist($id) {
         $sql = 'DELETE FROM Playlists WHERE id = ?';
-        return $this->db->query($sql, [$id]);
+        return $this->db->query($sql, [$id])->fetch(PDO::FETCH_ASSOC);
     }
 
     public function updateStatus($playlistId, $status){
@@ -69,9 +69,15 @@ class PlaylistsModel extends Models {
         $params[] = $playlistId;
 
         try {
-            return $this->db->query($sql, $params);
+            return $this->db->query($sql, $params)->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             throw new Exception('Database error: ' . $e->getMessage());
         }
+    }
+
+    public function createPlaylist($ownerId, $title, $imagePath) {
+        $sql = 'INSERT INTO Playlists (title, owner_id, image_path) VALUES (?,?,?) RETURNING *';
+
+        return $this->db->query($sql, [$title, $ownerId, $imagePath])->fetch(PDO::FETCH_ASSOC);
     }
 }

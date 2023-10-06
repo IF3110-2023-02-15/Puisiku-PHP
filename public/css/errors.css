@@ -1,0 +1,47 @@
+@font-face {
+    font-family: StretchPro;
+    src: url('/fonts/stretchpro.woff');
+  
+    font-weight: normal;
+    font-style: normal;
+  }
+
+body {
+    background-color: var(--pink);
+    padding: 25px;
+}
+
+.error-container {
+    text-align: center;
+    margin-top: 15%;
+    color: var(--dark-purple);
+    font-family: StretchPro;
+}
+
+.error {
+    font-size: 30px;
+}
+
+.tag {
+    margin-bottom: 20px;
+}
+
+.button {
+    padding: 10px 20px; 
+    background-color: var(--dark-purple); /*not hovered color*/
+    color: white;
+    border: 3px solid black;
+    border-radius: 15px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+    width: 250px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    color : var(--pink);
+}
+
+.button:hover {
+    background-color: var(--dark-blue); /* hovered color */
+    color: white;
+}

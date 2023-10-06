@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/profile.css">
     <link rel="stylesheet" href="/css/back_button.css">
-    <link rel="stylesheet" href="/css/notification.css">
 <body>
     <div id="notification" class="notification"></div>
 
