@@ -40,7 +40,8 @@ class App {
             'poem/:id' => ['poem', $logged_in_role],
             'playlist' => ['playlist', $logged_in_role],
             'playlist/:id' => ['playlist', $logged_in_role],
-            'playlistItem' => ['playlistItem', $logged_in_role]
+            'playlistItem' => ['playlistItem', $logged_in_role],
+            'file' => ['file', $logged_in_role]
         ]);
     }
 

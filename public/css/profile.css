@@ -109,58 +109,6 @@ body {
     filter: brightness(0.75);
 }
 
-.confirmation-modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    left: 50%;
-    top: 100px;
-    transform: translate(-50%, -50%);
-}
 
-.modal-content {
-    background-color: var(--light-purple);
-    padding: 20px;
-    border: 1px solid black;
-    border-radius: 20px;
-    width: 450px;
-}
-
-.modal-content h2 {
-    margin-top: 20px;
-    text-align: center;
-    color: var(--dark-blue);
-    font-weight: bold;
-}
-
-.button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    gap: 20px;
-}
-
-.button-container button {
-    background-color: var(--dark-blue);
-    color: white;
-    font-weight: bold;
-    padding: 10px 20px;
-    border: 1px solid black;
-    border-radius: 15px;
-}
-
-.close-button {
-    color: white;
-    float: right;
-    padding-right: 15px;
-    padding-top: 5px;
-    font-size: 30px;
-    cursor: pointer;
-}
-
-.close-button:hover,
-.close-button:focus {
-    filter: brightness(0.75);
-}
 
 
