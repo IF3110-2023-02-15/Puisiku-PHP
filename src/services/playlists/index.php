@@ -35,4 +35,16 @@ class PlaylistsService {
 
         return $playlistsModel->createPlaylist($ownerId, $title, $image_path);
     }
+
+    public function addPlaylistItem($playlistId, $poemId) {
+        $playlistItemsModel = new PlaylistItemsModel();
+
+        $hasExist = $playlistItemsModel->getPair($playlistId, $poemId);
+
+        if ($hasExist) {
+            throw new Exception('This poem has already in the playlist.');
+        }
+
+        return $playlistItemsModel->addPlaylistPoem($playlistId, $poemId);
+    }
 }
