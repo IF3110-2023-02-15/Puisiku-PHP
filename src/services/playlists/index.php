@@ -47,4 +47,14 @@ class PlaylistsService {
 
         return $playlistItemsModel->addPlaylistPoem($playlistId, $poemId);
     }
+
+    public function update($playlistId, $title, $imagePath=null) {
+        $playlistModel = new PlaylistsModel();
+        return $playlistModel->update($playlistId, $title, $imagePath);
+    }
+
+    public function deletePlaylist($id){
+        $playlistModel = new PlaylistsModel();
+        return $playlistModel->deletePlaylist($id);
+    }
 }
