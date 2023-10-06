@@ -56,7 +56,7 @@ EOT;
         $button_link = '';
     } elseif ($role == 'creator'){
         $button_text = 'Lets make a new Poem!';
-        $button_link = '/creatorpage';
+        $button_link = '/creator';
     } elseif ($role == 'admin'){
         $button_text = 'Go to admin page';
         $button_link = '/admin';

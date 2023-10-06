@@ -41,7 +41,11 @@ class App {
             'playlist' => ['playlist', $logged_in_role],
             'playlist/:id' => ['playlist', $logged_in_role],
             'playlistItem' => ['playlistItem', $logged_in_role],
-            'file' => ['file', $logged_in_role]
+            'file' => ['file', $logged_in_role],
+            'creator' => ['creator', ['admin', 'creator']],
+            'creator/addPoem' => ['creator', ['admin', 'creator']],
+            'creator/deletePoem/:id' => ['creator', ['admin', 'creator']],
+            'creator/updatePoem/:id' => ['creator', ['admin', 'creator']],
         ]);
     }
 

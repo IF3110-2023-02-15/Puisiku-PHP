@@ -33,4 +33,8 @@ class Poem extends Controller {
             $this->view('poem/index', ['data' => $result, 'playlists' => $playlists]);
         }
     }
+
+    private function loadAddPoemView(){
+        $this->view('poem/poem_form');
+    }
 }

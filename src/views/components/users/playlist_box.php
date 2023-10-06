@@ -1,7 +1,7 @@
 <div >
     <p><?php echo $id; ?></p>
     <p><?php echo $title; ?></p>
-    <button class='update-playlist-button' data-playlist-id="<?php echo $id; ?>" data-playlist-title="<?php echo $title; ?>" data-playlist-status="<?php echo $status; ?>">
+    <button class='update-playlist-button' data-playlist-id="<?php echo $id; ?>" data-playlist-title="<?php echo $title; ?>" >
         Update
     </button>
     <button class="delete-playlist-button" data-playlist-id="<?php echo $id; ?>" data-playlist-title="<?php echo $title; ?>">

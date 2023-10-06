@@ -33,11 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     const userId = button.getAttribute('data-user-id');
 
                     button.addEventListener('click', function() {
-                        console.log('keklik say');
-                        console.log(userId);
                         const userName = button.getAttribute('data-username');
                         selectedUserId = userId;
-                        console.log(selectedUserId);
                         confirmationUserTextModal.textContent = `Are you sure to delete ${userName}?`;
                         confirmationUserModal.style.display = "block";
 
@@ -49,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                     
                     yesUserButton.onclick = function() {
-                        console.log("yes" + selectedUserId);
                         deleteUser(selectedUserId);
                         confirmationUserModal.style.display = "none";
 
@@ -103,7 +99,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function deleteUser(userId) {
-        console.log(userId);
         const xhr = new XMLHttpRequest();
         xhr.open('DELETE', `/admin/deleteUser/${userId}`, true);
         xhr.onload = function() {
@@ -130,11 +125,9 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log(pair[0] + ': ' + pair[1]);
         }
 
-        console.log('========')
         xhr.open('POST', `/admin/updateUser/${userId}`, true);
         xhr.onload = function() {
             if (xhr.status === 200) {
-                console.log(xhr.responseText);
                 fetchAndDisplayUsers();
                 fetchAndDisplayPoems();
                 fetchAndDisplayPlaylists();
@@ -182,7 +175,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         confirmationPoemModalText.textContent = `Are you sure to delete ${userName}?`;
                         confirmationPoemModal.style.display = "block";
-                        console.log("Ini poem id nya ",poemId);
                         selectedPoemId = poemId;
 
                         
@@ -195,7 +187,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
                     yesPoemButton.onclick = function() {
                         deletePoem(selectedPoemId);
-                        console.log("Ini poem id nya ",poemId);
                         confirmationPoemModal.style.display = "none";
                     }
             
@@ -206,7 +197,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
                 updatePoemButton.forEach(button => {
-                    console.log("update poem button");
                     const poemId = button.getAttribute('data-poem-id');
                     const userName = button.getAttribute('data-poem-title');
 
@@ -243,7 +233,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         xhr.onload = function() {
             if (xhr.status === 200) {
-                console.log(xhr.responseText);
                 fetchAndDisplayUsers();
                 fetchAndDisplayPoems();
                 fetchAndDisplayPlaylists();
@@ -269,7 +258,6 @@ document.addEventListener('DOMContentLoaded', function() {
         xhr.open('POST', `/admin/updatePoem/${poemId}`, true);
         xhr.onload = function() {
             if (xhr.status === 200) {
-                console.log(xhr.responseText);
                 fetchAndDisplayUsers();
                 fetchAndDisplayPoems();
                 fetchAndDisplayPlaylists();
@@ -290,7 +278,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const xhr = new XMLHttpRequest();
         xhr.open('GET', `/admin/getPlaylists/${id}`, true); 
-        
+
         xhr.onload = function() {
             if (xhr.status === 200) {
                 const playlists = JSON.parse(xhr.responseText);
@@ -346,25 +334,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         updatePlaylistModal.style.display = "block";
                         selectedPlaylistId = playlistId;
 
-                        const playlistStatus = button.getAttribute('data-playlist-status');
-                        const statusPublicButton = document.getElementById('status-public-update-playlist');
-                        const statusPrivateButton = document.getElementById('status-private-update-playlist');
-                        const statusPublicText = document.getElementById('update-radiobutton-text-public-playlist');
-                        const statusPrivateText = document.getElementById('update-radiobutton-text-private-playlist');
-
-                        console.log("ini status playlist :", playlistStatus);
-                        if (playlistStatus == 0) {
-                            statusPrivateButton.style.display = 'inline-block';
-                            statusPrivateText.style.display = 'inline block';
-                            statusPublicButton.style.display = 'none';
-                            statusPublicText.style.display = 'none';
-                        } else if (playlistStatus == 1) {
-                            statusPrivateButton.style.display = 'none';
-                            statusPrivateText.style.display = 'none';
-                            statusPublicButton.style.display = 'inline-block';
-                            statusPublicText.style.display = 'inline-block';
-                        } 
-
                     });
 
                     submitPlaylistButton.onclick = function(event) {
@@ -419,7 +388,6 @@ document.addEventListener('DOMContentLoaded', function() {
         xhr.open('POST', `/admin/updatePlaylist/${playlistId}`, true);
         xhr.onload = function() {
             if (xhr.status === 200) {
-                console.log(xhr.responseText);
                 fetchAndDisplayUsers();
                 fetchAndDisplayPoems();
                 fetchAndDisplayPlaylists();
