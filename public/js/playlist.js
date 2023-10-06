@@ -37,21 +37,11 @@ function parseFormDataObject(formData) {
     return object;
 }
 
+const playlistNotification = document.getElementById('playlist-notification');
+const information = document.getElementById('information');
+const playlistId = information.dataset.playlistId;
+
 document.addEventListener('DOMContentLoaded', function() {
-    const playlistNotification = document.getElementById('playlist-notification');
-    const information = document.getElementById('information');
-    const playlistId = information.dataset.playlistId;
-
-    // Clickable Row
-    const clickableRows = document.querySelectorAll('.clickable-row');
-
-    clickableRows.forEach(function(row) {
-        row.addEventListener('click', function() {
-            window.location.href = row.getAttribute('data-href');
-        });
-    });
-
-
     // Edit Playlist Modal
     const editPlaylistBtn = document.getElementById('edit-playlist');
     const editPlaylistModal = document.getElementById('edit-playlist-modal');
@@ -106,8 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     playlistNotification.classList.add("notification-error");
 
                     setTimeout(function() {
-                        notification.textContent = "";
-                        notification.classList.remove("notification-error");
+                        playlistNotification.textContent = "";
+                        playlistNotification.classList.remove("notification-error");
                     }, 2000);
 
                     return;
@@ -133,12 +123,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     if ('success' in response) {
                         location.reload();
                     } else {
-                        notification.textContent = "An error occurred when updating playlist.";
-                        notification.classList.add("notification-error");
+                        playlistNotification.textContent = "An error occurred when updating playlist.";
+                        playlistNotification.classList.add("notification-error");
 
                         setTimeout(function() {
-                            notification.textContent = "";
-                            notification.classList.remove( "notification-error");
+                            playlistNotification.textContent = "";
+                            playlistNotification.classList.remove( "notification-error");
                         }, 3000);
                     }
                 }
@@ -182,12 +172,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 if ('success' in response) {
                     window.location.href = '/';
                 } else {
-                    notification.textContent = "An error occurred when deleting playlist.";
-                    notification.classList.add("notification-error");
+                    playlistNotification.textContent = "An error occurred when deleting playlist.";
+                    playlistNotification.classList.add("notification-error");
 
                     setTimeout(function() {
-                        notification.textContent = "";
-                        notification.classList.remove( "notification-error");
+                        playlistNotification.textContent = "";
+                        playlistNotification.classList.remove( "notification-error");
                     }, 3000);
                 }
             }
@@ -200,3 +190,39 @@ document.addEventListener('DOMContentLoaded', function() {
         deletePlaylistConfirmationModal.style.display = 'none';
     })
 });
+
+// Delete Playlist Item
+const deletePlaylistItem = (poemId) => {
+    let jsonData = {
+        'playlistId': playlistId,
+        'poemId': poemId
+    }
+
+    let xhr = new XMLHttpRequest();
+    xhr.open('DELETE', '/playlistItem', true);
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.onload = function() {
+        let response = JSON.parse(xhr.responseText);
+
+        if ('success' in response) {
+            const playlistTableContainer = document.getElementById('playlist-table-container');
+
+            playlistTableContainer.innerHTML = response.table;
+
+            playlistNotification.textContent = 'Poem remove successfully!';
+            playlistNotification.classList.add('notification-success');
+        } else {
+            playlistNotification.textContent = 'An error occurred while removing poem';
+            playlistNotification.classList.add('notification-error');
+        }
+
+        setTimeout(function() {
+            playlistNotification.textContent = "";
+            playlistNotification.classList.remove( "notification-error");
+        }, 3000);
+    }
+
+    xhr.send(JSON.stringify(jsonData));
+}
