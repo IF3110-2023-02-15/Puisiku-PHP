@@ -14,6 +14,9 @@
     <?php
     require_once VIEWS_DIR . 'components/buttons/back_button.php';
     ?>
+
+    <div id="notification" class="notification"></div>
+
     <div class="poem-container">
         <div class="poem-text-container">
             <h1>
@@ -34,7 +37,32 @@
             <audio controls>
                 <source src="<?php echo $data['audio_path']; ?>" type="audio/mpeg">
             </audio>
+            <button class="poem-add-to-playlist" id="poem-add-to-playlist">
+                Add to Playlist
+            </button>
+        </div>
+
+        <div id="poem-modal-add-to-playlist" class="poem-modal-add-to-playlist" data-poem-id="<?php echo $data['id']; ?>">
+            <span id="playlist-modal-close-button" class="playlist-modal-close-button">&times;</span>
+
+            <div class="choose-able-playlist-container">
+                <h2>Add to Playlist</h2>
+
+                <label for="chosen-playlist">Select Playlist</label>
+                <select name="chosen-playlist">
+                    <option value="" selected>None</option>
+                    <?php foreach ($playlists as $playlist): ?>
+                        <option value="<?php echo $playlist['id']; ?>"><?php echo $playlist['title']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+
+                <button class="confirm-add-to-playlist" id="confirm-add-to-playlist">
+                    Confirm
+                </button>
+            </div>
         </div>
     </div>
+
+    <script src="/js/poem.js"></script>
 </body>
 </html>

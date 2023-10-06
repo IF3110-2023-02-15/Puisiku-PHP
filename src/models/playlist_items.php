@@ -17,4 +17,20 @@ class PlaylistItemsModel extends Models
 
         return $this->db->query($sql, [$playlistId])->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function addPlaylistPoem($playlistId, $poemId) {
+        $sql = '
+            INSERT INTO PlaylistItems VALUES (?,?)
+        ';
+
+        return $this->db->query($sql, [$playlistId, $poemId])->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getPair($playlistId, $poemId) {
+        $sql = '
+            SELECT * FROM PlaylistItems WHERE playlist_id = ? AND poem_id = ?
+        ';
+
+        return $this->db->query($sql, [$playlistId, $poemId])->fetch(PDO::FETCH_ASSOC);
+    }
 }
