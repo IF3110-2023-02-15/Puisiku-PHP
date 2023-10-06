@@ -2,6 +2,7 @@
 
 require_once 'controller.php';
 require_once SERVICES_DIR . 'playlists/index.php';
+require_once SERVICES_DIR . 'file/index.php';
 
 class Playlist extends Controller {
 
