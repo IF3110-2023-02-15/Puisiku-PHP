@@ -35,11 +35,11 @@
     </div>
 </div>
 
-<div class="playlist-table-container">
+<div id="playlist-table-container" class="playlist-table-container">
     <?php
         require_once VIEWS_DIR . 'components/table.php';
 
-        $headers = ['#', 'Title', 'Creator', 'Genre', 'Year'];
+        $headers = ['#', 'Title', 'Creator', 'Genre', 'Year', 'Delete'];
         echo createTable($headers, $items);
     ?>
 </div>

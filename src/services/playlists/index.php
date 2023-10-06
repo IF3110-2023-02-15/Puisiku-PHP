@@ -26,6 +26,11 @@ class PlaylistsService {
         ];
     }
 
+    public function getPlaylistItems($playlistId) {
+        $playlistItemsModel = new PlaylistItemsModel();
+        return $playlistItemsModel->getPlaylistPoems($playlistId);
+    }
+
     public function addPlaylist($ownerId, $title, $image_path) {
         $playlistsModel = new PlaylistsModel();
 
@@ -56,5 +61,10 @@ class PlaylistsService {
     public function deletePlaylist($id){
         $playlistModel = new PlaylistsModel();
         return $playlistModel->deletePlaylist($id);
+    }
+
+    public function deletePlaylistItem($playlistId, $poemId) {
+        $playlistItemsModel = new PlaylistItemsModel();
+        return $playlistItemsModel->delete($playlistId, $poemId);
     }
 }
