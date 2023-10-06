@@ -62,6 +62,7 @@ button {
   cursor: pointer;
 }
 
+/* Notification */
 .notification {
   position: fixed;
   top: 80px;
@@ -81,4 +82,126 @@ button {
 .notification-error {
   display: block;
   background-color: red;
+}
+
+/* Confirmation Modal */
+.confirmation-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 50%;
+  top: 100px;
+  transform: translate(-50%, -50%);
+}
+
+.modal-content {
+  background-color: var(--light-purple);
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 20px;
+  width: 450px;
+}
+
+.modal-content h2 {
+  margin-top: 20px;
+  text-align: center;
+  color: var(--dark-blue);
+  font-weight: bold;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.button-container button {
+  background-color: var(--dark-blue);
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+.close-button {
+  color: white;
+  float: right;
+  padding-right: 15px;
+  padding-top: 5px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+  filter: brightness(0.75);
+}
+
+/* Playlist Modal */
+.playlist-modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 50%;
+  top: 300px;
+  transform: translate(-50%, -50%);
+}
+
+.playlist-modal-content {
+  background-color: var(--light-purple);
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 20px;
+  width: 450px;
+}
+
+.playlist-modal-content img {
+  margin-top: 20px;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.playlist-modal-content h1 {
+  margin-top: 20px;
+  text-align: center;
+  color: var(--dark-blue);
+  font-weight: bold;
+}
+
+.playlist-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.playlist-form label {
+  margin-top: 20px;
+
+  display: block;
+  color : var(--dark-blue);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.playlist-form input {
+  margin-top: 5px;
+
+  border-radius: 10px;
+  padding: 10px;
+  background-color: var(--pink);
+  border: 3px solid var(--dark-blue);
+}
+
+.playlist-form input[type="submit"] {
+  margin-top: 25px;
+  background-color: var(--dark-blue);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.playlist-form input[type="submit"]:hover {
+  background-color: var(--dark-purple);
 }
