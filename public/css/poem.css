@@ -63,3 +63,78 @@ body {
 .poem-attr-container audio{
     margin-top: 20px;
 }
+
+.poem-add-to-playlist {
+    margin-top: 20px;
+    float: right;
+
+    border: none;
+    border-radius: 20px;
+
+    padding: 8px 15px;
+
+    cursor: pointer;
+}
+
+.poem-add-to-playlist:hover {
+    filter: brightness(0.75);
+}
+
+/* Add to playlist modal */
+.poem-modal-add-to-playlist {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 50%;
+    top: 100px;
+    transform: translate(-50%, -50%);
+}
+
+.choose-able-playlist-container {
+    background-color: var(--light-purple);
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 450px;
+}
+
+.choose-able-playlist-container h2 {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--dark-blue);
+    font-weight: bold;
+}
+
+.choose-able-playlist-container label {
+    margin-top: 14px;
+    color: var(--dark-blue);
+    font-weight: bold;
+}
+
+.choose-able-playlist-container select {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--dark-blue);
+    font-weight: bold;
+}
+
+.choose-able-playlist-container option {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--dark-blue);
+    font-weight: bold;
+}
+
+.playlist-modal-close-button {
+    color: white;
+    float: right;
+    padding-right: 15px;
+    padding-top: 5px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.playlist-modal-close-button:hover,
+.playlist-modal-close-button:focus {
+    filter: brightness(0.75);
+}
