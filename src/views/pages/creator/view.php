@@ -7,6 +7,7 @@ $poemService=new PoemsService();
 $datapoem = $poemService->getData($id);
 ?>
 <div>
+    <div id="notification" class="notification"></div>
    <div class="creator-data">
         <div class="creator-img-box">
             <img class="img-creator-page" src="<?php echo $data['image_path']; ?>" alt="Creator Image">
@@ -89,6 +90,17 @@ $datapoem = $poemService->getData($id);
 
                 <button id="submit-update-poem-list" class="button-container">Submit</button>
             </form>
+        </div>
+    </div>
+
+    <div id="confirmation-modal-poem-list" class="confirmation-modal">
+        <span id="close-button-poem-list" class="close-button">&times;</span>
+        <div class="modal-content">
+            <h2 id="confirmation-modal-text-poem-list">Apa</h2>
+            <div class="button-container">
+                <button id="confirm-delete-poem-list">Yes</button>
+                <button id="cancel-delete-poem-list">No</button>
+            </div>
         </div>
     </div>
 

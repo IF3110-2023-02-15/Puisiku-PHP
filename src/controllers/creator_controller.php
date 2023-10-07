@@ -47,6 +47,7 @@ class Creator extends Controller {
         'id' =>$id]);
     }
 
+
     public function getPoems() {
         if ($_SERVER['REQUEST_METHOD'] != 'GET') {
             $this->methodNotAllowed();
@@ -149,7 +150,7 @@ class Creator extends Controller {
                 // Return a success response with HTTP status 200
                 header('HTTP/1.1 200 OK');
                 header('Content-Type: application/json');
-                echo json_encode(['message' => $result]);
+                echo json_encode(['success' => $result]);
             } catch (Exception $e) {
                 // Handle any errors that may occur during deletion
                 header('HTTP/1.1 500 Internal Server Error');
