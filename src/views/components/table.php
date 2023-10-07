@@ -2,7 +2,7 @@
 
 
 function createTable($headers, $data) {
-    $table = "<table><thead><tr>";
+    $table = "<table class='table-size'><thead><tr>";
 
     // Add table headers
     foreach ($headers as $header) {
@@ -18,7 +18,7 @@ function createTable($headers, $data) {
             <tr class='clickable-row'>
                 <td>{$displayIndex}</td>
                 <td>
-                    <a href='/poem/{$item['id']}'>
+                    <a class='color-table' href='/poem/{$item['id']}'>
                         {$item['title']}
                     </a>
                 </td>
