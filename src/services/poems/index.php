@@ -24,8 +24,22 @@ class PoemsService {
         return $this->poemsModel->deletePoem($id);
     }
 
+    public function getData($id){
+        $poemModel = new PoemsModel();
+        $poem = $poemModel->findById($id);
+        return $poem;
+    }
+
 
     public function create($id, $title, $genre, $content, $imagePath, $audioPath, $year){
+        if ($imagePath == null) {
+            $imagePath = '/img/default_playlist.png';
+        }
+
+        if ($audioPath == null) {
+            $audioPath = '/audio/queencard.mp3';
+        }
+
         try {
             $this->poemsModel->create($id, $title, $genre, $content, $imagePath, $audioPath, $year);
         } catch (PDOException $e) {

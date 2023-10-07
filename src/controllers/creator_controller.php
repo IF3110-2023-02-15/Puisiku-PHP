@@ -32,9 +32,18 @@ class Creator extends Controller {
         $userService=new UserService();
         $data= $userService->getData($id);
 
+        $poemService=new PoemsService();
+        $datapoem = $poemService->getData($id);
+
         list($role, $profile_url, $playlists) = $this->getSidebarNavbarInfo();
 
-        $this->view('creator/index', ['current_page' => $current_page, 'playlists'=> $playlists, 'role' => $role, 'display_search' => $display_search, 'profile_url' => $profile_url, 'data' => $data]);
+        $this->view('creator/index', 
+        ['current_page' => $current_page, 
+        'playlists'=> $playlists, 'role' => $role, 
+        'display_search' => $display_search, 
+        'profile_url' => $profile_url, 
+        'data' => $data,
+        'datapoem' => $datapoem]);
     }
 
     public function getModal() {

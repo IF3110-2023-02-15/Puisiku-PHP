@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function(){
         const addPoemModal = document.getElementById("add-poem-modal");
         const addPoemButtonCreator = document.getElementById("add-poem-button-on-creator");
         const closeButtonModal = document.getElementById("close-add-poem-modal");
+        const closeListModal = document.getElementById("close-poem-list-modal");
         const addPoemSubmit = document.getElementById("add-poem-submit");
         const updatePoemListModal = document.getElementById("update-poem-list-modal");
         let selectedId = null;
@@ -27,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function(){
         const deletePoemList = document.querySelectorAll('.delete-poem-list-button');
         deletePoemList.forEach(function(button) {
             button.addEventListener('click', function() {
+                console.log("kepencet delete");
                 const poemId = this.getAttribute('data-id-delete-poem-list');
                 selectedId = poemId;
                 deletePoemCreator(selectedId);
@@ -48,6 +50,11 @@ document.addEventListener('DOMContentLoaded', function(){
                     updatePoemCreator(selectedId);
                     updatePoemListModal.style.display = "none";
                 }
+            }
+
+            closeListModal.onclick = function(event) {
+                event.preventDefault();
+                updatePoemListModal.style.display = "none";
             }
         });
     }
@@ -122,6 +129,10 @@ document.addEventListener('DOMContentLoaded', function(){
         };
 
         xhr.send(formData);
+    }
+
+    function fetchPoemList(){
+        
     }
 
     fetchDisplay();

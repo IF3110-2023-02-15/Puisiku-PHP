@@ -39,17 +39,16 @@ class PlaylistService {
     public function update($playlistId, $title, $imagePath=null) {
         $playlistModel = new PlaylistsModel();
 
+        if ($imagePath == null) {
+            $imagePath = '/img/default_playlist.png';
+        }
+
         try {
             $result = $playlistModel->update($playlistId, $title, $imagePath=null);
 
-
-            if ($imagePath) {
-                $_SESSION['image_poem_url'] = $imagePath;
-            }
-
             return $result;
         } catch (Exception $e) {
-            throw new Exception('Error updating user: ' . $e->getMessage());
+            throw new Exception('Error updating playlist: ' . $e->getMessage());
         }
     }
 }
