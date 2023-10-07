@@ -33,4 +33,12 @@ class PlaylistItemsModel extends Models
 
         return $this->db->query($sql, [$playlistId, $poemId])->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function delete($playlistId, $poemId) {
+        $sql = '
+            DELETE FROM PlaylistItems WHERE playlist_id = ? AND poem_id = ?
+        ';
+
+        return $this->db->query($sql, [$playlistId, $poemId])->fetch(PDO::FETCH_ASSOC);
+    }
 }

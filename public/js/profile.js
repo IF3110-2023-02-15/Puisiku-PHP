@@ -1,12 +1,51 @@
+function uploadFile(fileInputElement, url = '/file') {
+    return new Promise((resolve, reject) => {
+        // Create a new FormData instance
+        let formData = new FormData();
+
+        // Add the file to the FormData instance
+        formData.append('file', fileInputElement.files[0]);
+
+        // Create a new XMLHttpRequest
+        let xhr = new XMLHttpRequest();
+
+        // Set up the request
+        xhr.open('POST', url , true);
+
+        // Set up handlers for the request
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                let response = JSON.parse(xhr.responseText);
+
+                if (response.success) {
+                    resolve(response.success);
+                } else {
+                    reject('Error: ' + xhr.responseText);
+                }
+            } else {
+                reject('Request failed with status ' + xhr.status);
+            }
+        };
+
+        xhr.send(formData);
+    });
+}
+
+function parseFormDataObject(formData) {
+    let object = {};
+    formData.forEach((value, key) => object[key] = value);
+    return object;
+}
+
 document.addEventListener('DOMContentLoaded', function () {
-    let profileForm = document.getElementById('profile-form');
-    let imageInput = document.getElementById('profile-image-input');
-    let profileImage = document.getElementById('profile-image');
-    let notification = document.getElementById('notification');
-    let confirmationModal = document.getElementById("confirmation-modal");
-    let closeButton = document.getElementById("close-button");
-    let yesButton = document.getElementById("yes-button");
-    let noButton = document.getElementById("no-button");
+    const profileForm = document.getElementById('profile-form');
+    const imageInput = document.getElementById('profile-image-input');
+    const profileImage = document.getElementById('profile-image');
+    const notification = document.getElementById('notification');
+    const confirmationModal = document.getElementById("confirmation-modal");
+    const closeButton = document.getElementById("close-button");
+    const yesButton = document.getElementById("yes-button");
+    const noButton = document.getElementById("no-button");
 
     if (profileForm) {
         profileForm.addEventListener('submit', function (event) {
@@ -20,8 +59,8 @@ document.addEventListener('DOMContentLoaded', function () {
             confirmationModal.style.display = "none";
         }
 
-        yesButton.onclick = function() {
-            submitForm();
+        yesButton.onclick = async function() {
+            await submitForm();
             confirmationModal.style.display = "none";
         }
 
@@ -40,12 +79,37 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    function submitForm() {
+    async function submitForm() {
+        let image_path = '';
+
+        if (imageInput.files.length > 0) {
+            try {
+                image_path = await uploadFile(imageInput);
+            } catch (error) {
+                notification.textContent = "Failed to upload file!";
+                notification.classList.add("notification-error");
+
+                setTimeout(function() {
+                    notification.textContent = "";
+                    notification.classList.remove("notification-error");
+                }, 2000);
+
+                return;
+            }
+        }
+
         let formData = new FormData(profileForm);
+        let formDataObject = parseFormDataObject(formData);
+
+        formDataObject['profile-image-path'] = image_path;
+
+        let jsonFormData = JSON.stringify(formDataObject);
 
         let xhr = new XMLHttpRequest();
-        xhr.open('POST', '/profile', true);
+        xhr.open('PUT', '/profile', true);
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 // Check the content type
@@ -67,6 +131,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         };
-        xhr.send(formData);
+        xhr.send(jsonFormData);
     }
 });
