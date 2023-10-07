@@ -14,7 +14,7 @@ function sidebar($current_page, $playlists, $role) {
     $sidebar .= <<<EOT
         <div class="sidebar">
             <div class="upper-sidebar">
-                <h1><a href="/">Puisiku</a></h1>
+                <h1><a href="/">P<span>uisiku</span></a></h1>
                 <ul class="sidebar-pages">
 EOT;
 
