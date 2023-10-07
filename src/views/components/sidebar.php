@@ -1,14 +1,17 @@
 <?php
 
 require_once VIEWS_DIR . 'components/buttons/sidebar_button.php';
+require_once VIEWS_DIR . 'components/modals/confirmation_modal.php';
 require_once VIEWS_DIR . 'components/modals/playlist_modal.php';
 
 function sidebar($current_page, $playlists, $role) {
     $pages = array('Home', 'Poems', 'Genres', 'Creators');
     $pagesLogo = array('/assets/icons/home.png', '/assets/icons/home.png', '/assets/icons/home.png', '/assets/icons/home.png');
 
+    $sidebar = confirmationModal('upgrade-role', 'Are you sure to be a creator? This action is not reversible!');
+
     // Start building the sidebar
-    $sidebar = <<<EOT
+    $sidebar .= <<<EOT
         <div class="sidebar">
             <div class="upper-sidebar">
                 <h1><a href="/">Puisiku</a></h1>
@@ -54,7 +57,7 @@ EOT;
     // Close the sidebar divs
     if ($role == 'user'){
         $button_text = 'Be a creator!';
-        $button_link = '';
+        $button_link = null;
     } elseif ($role == 'creator'){
         $button_text = 'Lets make a new Poem!';
         $button_link = '/creator';
