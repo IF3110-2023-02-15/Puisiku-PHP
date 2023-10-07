@@ -205,3 +205,158 @@ button {
 .playlist-form input[type="submit"]:hover {
   background-color: var(--dark-purple);
 }
+
+/* Update Modal */
+.update-modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 50%;
+  top: 50vh;
+  transform: translate(-50%, -50%);
+}
+
+.update-modal-content {
+  background-color: var(--light-purple);
+  padding: 20px;
+  border: 5px solid black;
+  border-radius: 20px;
+  width: 450px;
+  height: 60vh;
+  overflow-y: scroll;
+}
+
+.update-modal-content select{
+  background-color: var(--pink);
+  border: 3px solid var(--dark-blue);
+  border-radius: 1.5vh;
+  height: 5vh;
+  width: 40%;
+}
+
+.update-modal-content h1 {
+  font-family: "StretchPro";
+  margin-top: 2vh;
+  text-align: center;
+  color: var(--dark-blue);
+  font-weight: bold;
+  font-size: 3vh;
+}
+
+.update-form label {
+  margin-top: 10px;
+
+  display: block;
+  color : var(--dark-blue);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.update-form input {
+  width: 90%;
+
+  border-radius: 10px;
+  padding: 10px;
+  background-color: var(--pink);
+  border: 3px solid var(--dark-blue);
+}
+
+.update-form textarea {
+  width: 90%;
+
+  border-radius: 10px;
+  padding: 10px;
+  background-color: var(--pink);
+  border: 3px solid var(--dark-blue);
+}
+
+.update-form button {
+  margin-top: 25px;
+  background-color: var(--dark-blue);
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  height: 3vh;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Add Modal */
+.add-modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 50%;
+  top: 50vh;
+  transform: translate(-50%, -50%);
+}
+
+.add-modal-content {
+  background-color: var(--light-purple);
+  padding: 4vh;
+  border: 1px solid black;
+  border-radius: 20px;
+  width: 40vw;
+  height: 75vh;
+  overflow-y: scroll;
+}
+
+.add-modal-content select{
+  background-color: var(--pink);
+  border: 3px solid var(--dark-blue);
+  border-radius: 1.5vh;
+  height: 5vh;
+  width: 40%;
+}
+
+.add-modal-content h1 {
+  font-family: "StretchPro";
+  margin-top: 2vh;
+  text-align: center;
+  color: var(--dark-blue);
+  font-weight: bold;
+  font-size: 3vh;
+}
+
+.add-form label {
+  margin-top: 10px;
+
+  display: block;
+  color : var(--dark-blue);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.add-form input {
+  width: 90%;
+
+  border-radius: 2vh;
+  padding: 10px;
+  background-color: var(--pink);
+  border: 3px solid var(--dark-blue);
+}
+
+.add-form textarea {
+  width: 90%;
+
+  border-radius: 2vh;
+  padding: 10px;
+  background-color: var(--pink);
+  border: 3px solid var(--dark-blue);
+}
+
+.add-form button {
+  margin-top: 25px;
+  background-color: var(--dark-blue);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.margin-submit {
+  margin: 10px 0 0 0;
+  display: flex;
+  justify-content: center;
+  font-family: "StretchPro";
+}

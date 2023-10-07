@@ -24,7 +24,11 @@ class PoemsService {
         return $this->poemsModel->deletePoem($id);
     }
 
-
+    public function getData($id){
+        $poemModel = new PoemsModel();
+        $poem = $poemModel->findById($id);
+        return $poem;
+    }
     public function create($id, $title, $genre, $content, $imagePath, $audioPath, $year){
         try {
             $this->poemsModel->create($id, $title, $genre, $content, $imagePath, $audioPath, $year);

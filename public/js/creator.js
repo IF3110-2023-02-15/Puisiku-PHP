@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 addPoemSubmit.onclick = function(event) {
                     event.preventDefault();
                     addPoem();
+                    fetchDisplay();
                     addPoemModal.style.display = "none";
                 }
 
@@ -97,7 +98,6 @@ document.addEventListener('DOMContentLoaded', function(){
                                 titleUpdatePoemListInput.value = response.success['title'];
                                 genreUpdatePoemListSelect.value = response.success['genre'];
                                 contentUpdatePoemListTextarea.value = response.success['content']
-                                console.log("yang mau dicek", xhr2.responseText);
                             } else {
                                 console.error('Error add poem:', xhr2.statusText);
                             }
@@ -106,13 +106,6 @@ document.addEventListener('DOMContentLoaded', function(){
                         xhr2.send();
                     });
 
-                    // submitUpdatePoemList.addEventListener = function(event) {
-                    //     event.preventDefault();
-                    //     if(selectedId){
-                    //         updatePoemCreator(selectedId);
-                    //         updatePoemListModal.style.display = "none";
-                    //     }
-                    // }
 
                     updatePoemListForm.addEventListener('submit', function(event) {
                         event.preventDefault();
