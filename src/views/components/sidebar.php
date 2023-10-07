@@ -2,6 +2,7 @@
 
 require_once VIEWS_DIR . 'components/buttons/sidebar_button.php';
 require_once VIEWS_DIR . 'components/modals/confirmation_modal.php';
+require_once VIEWS_DIR . 'components/modals/playlist_modal.php';
 
 function sidebar($current_page, $playlists, $role) {
     $pages = array('Home', 'Poems', 'Genres', 'Creators');
@@ -69,29 +70,12 @@ EOT;
 
     $sidebar .= '</div>';
 
-    $sidebar .= <<<EOT
-        
-        <div class="add-playlist-modal" id="add-playlist-modal">
-            <span id="close-playlist-modal-button" class="close-playlist-modal-button">&times;</span>
-            <div class="add-playlist-modal-content">
-                <h1>Add Playlist</h1>
-                <form action="/playlist" class="add-playlist-form" id="add-playlist-form">
-                    <label for="title">Title</label>
-                    <input type="text" name="playlist-title" required>
-                    
-                    <label for="playlist-image">Playlist Image</label>
-                    <input type="file" name="playlist-image" accept=".jpg, .jpeg, .png">
-                    
-                    <input type="submit" value="Add Playlist">
-                </form>
-            </div>
-        </div>
-        
-        <div id="notification" class="notification"></div>
+    $sidebar .= playlistModal('add', 'Add');
 
+    $sidebar .= <<<EOT
+        <div id="notification" class="notification"></div>
         <script defer src="/js/sidebar.js"></script>
 EOT;
-
 
     echo $sidebar;
 }

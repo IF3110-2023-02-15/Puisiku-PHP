@@ -1,8 +1,21 @@
 const addPlaylistForm = document.getElementById('add-playlist-form');
 const addPlaylistModal = document.getElementById("add-playlist-modal");
 const addPlaylistBtn = document.getElementById("add-playlist-button");
-const spanClosePlaylistModal = document.getElementById("close-playlist-modal-button");
+const spanClosePlaylistModal = document.getElementById("add-playlist-close-button");
+const addPlaylistImg = document.getElementById('add-playlist-img');
+const addPlaylistInputImg = document.getElementById('add-playlist-image-input');
+
 const notification = document.getElementById('notification');
+
+addPlaylistInputImg.addEventListener('change', function(e) {
+    let reader = new FileReader();
+
+    reader.onload = function(event) {
+        addPlaylistImg.src = event.target.result;
+    }
+
+    reader.readAsDataURL(e.target.files[0]);
+});
 
 addPlaylistBtn.addEventListener('click',  function() {
     addPlaylistModal.style.display = "block";
