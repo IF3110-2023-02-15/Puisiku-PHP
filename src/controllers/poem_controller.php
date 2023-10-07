@@ -18,19 +18,20 @@ class Poem extends Controller {
     }
 
     private function loadView($params) {
-        $userId = $_SESSION['id'];
         $id = $params['id'];
+
+        $current_page = 'Poems';
+        $display_search = false;
+
+        list($role, $profile_url, $playlists) = $this->getSidebarNavbarInfo();
 
         $poemsService = new PoemsService();
         $result = $poemsService->searchById($id);
 
-        $playlistsService = new PlaylistsService();
-        $playlists = $playlistsService->getUserPlaylists($userId);
-
         if ($result == 'POEM_NOT_FOUND') {
             $this->view('errors/index', ['code' => 404]);
         } else {
-            $this->view('poem/index', ['data' => $result, 'playlists' => $playlists]);
+            $this->view('poem/index', ['data' => $result, 'current_page' => $current_page, 'playlists'=> $playlists, 'role' => $role, 'display_search' => $display_search, 'profile_url' => $profile_url]);
         }
     }
 
