@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 let updateUserModal = document.getElementById("update-user-modal");
                 let submitUserButton = document.getElementById("update-submit");
+                let closeButtonUpdateUser = document.getElementById("update-close-button");
 
                 let confirmationUserModal = document.getElementById('confirmation-modal-user');
                 let confirmationUserTextModal = document.getElementById('confirmation-modal-text-user');
@@ -83,6 +84,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             updateUser(selectedUserId);
                             updateUserModal.style.display = "none";
                         }
+                    }
+
+                    closeButtonUpdateUser.onclick = function(event) {
+                        event.preventDefault();
+                        updateUserModal.style.display = "none";
                     }
 
                 });
@@ -161,6 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 let updatePoemModal = document.getElementById("update-poem-modal");
                 let submitPoemButton = document.getElementById("submit-update-poem");
+                let closePoemModal = document.getElementById("close-poem-modal");
 
                 const confirmationPoemModal = document.getElementById('confirmation-modal-poem');
                 const confirmationPoemModalText = document.getElementById('confirmation-modal-text-poem');
@@ -212,6 +219,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             updatePoem(selectedPoemId);
                             updatePoemModal.style.display = "none";
                         }
+                    }
+
+                    closePoemModal.onclick = function(event) {
+                        event.preventDefault();
+                        updatePoemModal.style.display = "none";
                     }
 
                 });
@@ -294,6 +306,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 //update button
                 const updatePlaylistModal = document.getElementById("update-playlist-modal");
                 const submitPlaylistButton = document.getElementById("submit-update-playlist");
+                const spanClosePlaylistModal = document.getElementById("close-playlist-modal");
 
                 //delete button
                 const confirmationPlaylistModal = document.getElementById('confirmation-modal-playlist');
@@ -337,12 +350,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     });
 
-                    submitPlaylistButton.onclick = function(event) {
+                    submitPlaylistButton.addEventListener('submit', function(event) {
                         event.preventDefault();
                         if(selectedPlaylistId){
                             updatePlaylist(selectedPlaylistId);
                             updatePlaylistModal.style.display = "none";
                         }
+                    })
+
+                    spanClosePlaylistModal.onclick = function(event) {
+                        event.preventDefault();
+                        updatePlaylistModal.style.display = "none";
                     }
 
                 });
