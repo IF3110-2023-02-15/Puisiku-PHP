@@ -85,6 +85,9 @@ class PoemsService {
         try {
             $result = $poemModel->update($poemId, $title, $genre, $content, $imagePath, $audioPath);
 
+            if ($poemId) {
+                $_SESSION['poemId'] = $poemId;
+            }
 
             if ($imagePath) {
                 $_SESSION['image_poem_url'] = $imagePath;

@@ -1,62 +1,79 @@
 document.addEventListener('DOMContentLoaded', function(){
 
     function fetchDisplay(){
-        const addPoemModal = document.getElementById("add-poem-modal");
-        const addPoemButtonCreator = document.getElementById("add-poem-button-on-creator");
-        const closeButtonModal = document.getElementById("close-add-poem-modal");
-        const closeListModal = document.getElementById("close-poem-list-modal");
-        const addPoemSubmit = document.getElementById("add-poem-submit");
-        const updatePoemListModal = document.getElementById("update-poem-list-modal");
-        let selectedId = null;
+        const poemListContainer = document.getElementById('poem-list-container');
 
-        addPoemButtonCreator.addEventListener('click', function(){
-            console.log("mashook");
-            addPoemModal.style.display = "block";
-        
-        });
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', '/creator/getPoems', true); 
 
-        addPoemSubmit.onclick = function(event) {
-            event.preventDefault();
-            addPoem();
-            addPoemModal.style.display = "none";
-        }
+        xhr.onload = function() {
+            if (xhr.status === 200){
+                const table = JSON.parse(xhr.responseText);
 
-        closeButtonModal.onclick = function() {
-            addPoemModal.style.display = "none";
-        }
+                poemListContainer.innerHTML = table;
+                const addPoemModal = document.getElementById("add-poem-modal");
+                const addPoemButtonCreator = document.getElementById("add-poem-button-on-creator");
+                const closeButtonModal = document.getElementById("close-add-poem-modal");
+                const closeListModal = document.getElementById("close-poem-list-modal");
+                const addPoemSubmit = document.getElementById("add-poem-submit");
+                const updatePoemListModal = document.getElementById("update-poem-list-modal");
+                let selectedId = null;
 
-        const deletePoemList = document.querySelectorAll('.delete-poem-list-button');
-        deletePoemList.forEach(function(button) {
-            button.addEventListener('click', function() {
-                console.log("kepencet delete");
-                const poemId = this.getAttribute('data-id-delete-poem-list');
-                selectedId = poemId;
-                deletePoemCreator(selectedId);
-            });
-        });
+                addPoemButtonCreator.addEventListener('click', function(){
+                    console.log("mashook");
+                    addPoemModal.style.display = "block";
+                
+                });
 
-        const updatePoemListButton = document.querySelectorAll('.update-poem-list-button');
-        const submitUpdatePoemList = document.getElementById('submit-update-poem-list');
-        updatePoemListButton.forEach(function(button) {
-            const poemId = button.getAttribute('data-id-update-poem-list');
-            button.addEventListener('click', function() {
-                selectedId = poemId
-                updatePoemListModal.style.display = "block";
-            });
-
-            submitUpdatePoemList.onclick = function(event) {
-                event.preventDefault();
-                if(selectedId){
-                    updatePoemCreator(selectedId);
-                    updatePoemListModal.style.display = "none";
+                addPoemSubmit.onclick = function(event) {
+                    event.preventDefault();
+                    addPoem();
+                    addPoemModal.style.display = "none";
                 }
-            }
 
-            closeListModal.onclick = function(event) {
-                event.preventDefault();
-                updatePoemListModal.style.display = "none";
+                closeButtonModal.onclick = function() {
+                    addPoemModal.style.display = "none";
+                }
+
+                const deletePoemList = document.querySelectorAll('.delete-poem-list-button');
+                deletePoemList.forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        console.log("kepencet delete");
+                        const poemId = this.getAttribute('data-id-delete-poem-list');
+                        selectedId = poemId;
+                        deletePoemCreator(selectedId);
+                    });
+                });
+
+                const updatePoemListButton = document.querySelectorAll('.update-poem-list-button');
+                const submitUpdatePoemList = document.getElementById('submit-update-poem-list');
+                updatePoemListButton.forEach(function(button) {
+                    const poemId = button.getAttribute('data-id-update-poem-list');
+                    button.addEventListener('click', function() {
+                        selectedId = poemId;
+                        updatePoemListModal.style.display = "block";
+                    });
+
+                    submitUpdatePoemList.onclick = function(event) {
+                        event.preventDefault();
+                        if(selectedId){
+                            updatePoemCreator(selectedId);
+                            updatePoemListModal.style.display = "none";
+                        }
+                    }
+
+                    closeListModal.onclick = function(event) {
+                        event.preventDefault();
+                        updatePoemListModal.style.display = "none";
+                    }
+                });
             }
-        });
+        }
+        xhr.onerror = function() {
+            console.error('Network error occurred.');
+        };
+        
+        xhr.send();
     }
     
 
@@ -70,9 +87,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
         
         xhr.onload = function() {
-            console.log("ini", xhr.status);
             if (xhr.status === 200) {
-                console.log("masuk");
+                fetchDisplay();
                 console.log(xhr.responseText);
             } else {
                 console.error('Error add poem:', xhr.statusText);
@@ -129,10 +145,6 @@ document.addEventListener('DOMContentLoaded', function(){
         };
 
         xhr.send(formData);
-    }
-
-    function fetchPoemList(){
-        
     }
 
     fetchDisplay();

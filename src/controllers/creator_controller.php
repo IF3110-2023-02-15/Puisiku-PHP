@@ -5,6 +5,7 @@ require_once SERVICES_DIR . 'poems/index.php';
 require_once SERVICES_DIR . 'user/index.php';
 require_once VIEWS_DIR . 'components/poems/index.php';
 require_once SERVICES_DIR . 'file/index.php';
+require_once VIEWS_DIR . 'components/table.php';
 
 class Creator extends Controller {
 
@@ -43,7 +44,26 @@ class Creator extends Controller {
         'display_search' => $display_search, 
         'profile_url' => $profile_url, 
         'data' => $data,
-        'datapoem' => $datapoem]);
+        'id' =>$id]);
+    }
+
+    public function getPoems() {
+        if ($_SERVER['REQUEST_METHOD'] != 'GET') {
+            $this->methodNotAllowed();
+            return;
+        }
+
+        $id=isset($_SESSION['id'])?($_SESSION['id']):null;
+
+        header('Content-Type: application/json');
+
+        $poemService = new PoemsService();
+
+        $result = $poemService->getAllPoemByCreator($id);
+        $poems = createTablePoem(['#', 'Title', 'Genre', 'Year', 'Delete', 'Update'], $result);
+
+
+        echo json_encode($poems);
     }
 
     public function getModal() {
@@ -76,8 +96,6 @@ class Creator extends Controller {
 
         $imagePath = null;
         $audioPath = null;
-
-        
 
 
         if ($image != null) {

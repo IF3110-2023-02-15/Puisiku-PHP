@@ -44,6 +44,7 @@ class App {
             'file' => ['file', $logged_in_role],
             'creator' => ['creator', ['admin', 'creator']],
             'creator/addPoem' => ['creator', ['admin', 'creator']],
+            'creator/getPoems' => ['creator', ['admin', 'creator']],
             'creator/deletePoem/:id' => ['creator', ['admin', 'creator']],
             'creator/updatePoem/:id' => ['creator', ['admin', 'creator']],
             'profile/upgrade' => ['profile', ['user']]
