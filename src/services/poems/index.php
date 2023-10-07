@@ -12,6 +12,10 @@ class PoemsService {
     public function getAllPoemName(){
         return $this->poemsModel->getAllPoemName();
     }
+
+    public function getAllPoemByCreator($id){
+        return $this->poemsModel->getAllPoemByCreator($id);
+    }
     public function getIDPoemName(){
         return $this->poemsModel->getIDPoemName();
     }
@@ -20,6 +24,16 @@ class PoemsService {
         return $this->poemsModel->deletePoem($id);
     }
 
+
+    public function create($id, $title, $genre, $content, $imagePath, $audioPath, $year){
+        try {
+            $this->poemsModel->create($id, $title, $genre, $content, $imagePath, $audioPath, $year);
+        } catch (PDOException $e) {
+            return $e;
+        }
+
+        return SUCCESS;
+    }
     public function search($searchKey = null, $genre = null, $year_query = null, $sort_by = 'Poems.created_at DESC', $page = 1, $poemsPerPage = 6) {
         $searchKey = $searchKey == '' ? null : $searchKey;
         $genre = $genre == '' ? null : $genre;

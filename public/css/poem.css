@@ -1,27 +1,20 @@
-body {
-    background-color: var(--pink);
-    height: 100vh;
-    padding: 20px;
-
-}
-
 .poem-container {
     display: flex;
     justify-content: center;
     gap: 50px;
     margin-top: 25px;
     padding: 10px;
-    flex-grow: 1;
+    max-height: 80%;
 }
 
 .poem-text-container {
-    height: 100%;
     width: 500px;
     padding: 20px;
     background-color: var(--light-purple);
     border: 3px solid var(--dark-purple);
     border-radius: 20px;
     margin-bottom: 20px;
+    overflow-y: auto;
 }
 
 .poem-text-container h1 {
@@ -62,4 +55,100 @@ body {
 
 .poem-attr-container audio{
     margin-top: 20px;
+}
+
+.poem-add-to-playlist {
+    margin-top: 20px;
+    float: right;
+
+    border: none;
+    border-radius: 20px;
+
+    padding: 8px 15px;
+
+    cursor: pointer;
+}
+
+.poem-add-to-playlist:hover {
+    filter: brightness(0.75);
+}
+
+/* Add to playlist modal */
+.poem-modal-add-to-playlist {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 50%;
+    top: 150px;
+    transform: translate(-50%, -50%);
+}
+
+.choose-able-playlist-container {
+    background-color: var(--light-purple);
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 450px;
+}
+
+.choose-able-playlist-container h1 {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--dark-blue);
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.choose-able-playlist-container label {
+    margin-top: 25px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.choose-able-playlist-container select {
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+    background-color: var(--light-purple);
+    border-radius: 20px;
+    border: 1px solid white;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.choose-able-playlist-container option {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--dark-blue);
+    font-weight: bold;
+    background-color: var(--light-purple);
+}
+
+.confirm-add-to-playlist {
+    margin-top: 25px;
+    background-color: var(--dark-blue);
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 20px;
+    border: 2px solid black;
+    padding: 10px;
+}
+
+.confirm-add-to-playlist:hover {
+    filter: brightness(0.75);
+}
+
+.playlist-modal-close-button {
+    color: white;
+    float: right;
+    padding-right: 15px;
+    padding-top: 5px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.playlist-modal-close-button:hover,
+.playlist-modal-close-button:focus {
+    filter: brightness(0.75);
 }

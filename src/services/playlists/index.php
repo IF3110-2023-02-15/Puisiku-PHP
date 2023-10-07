@@ -25,4 +25,46 @@ class PlaylistsService {
             'items' => $playlist_items
         ];
     }
+
+    public function getPlaylistItems($playlistId) {
+        $playlistItemsModel = new PlaylistItemsModel();
+        return $playlistItemsModel->getPlaylistPoems($playlistId);
+    }
+
+    public function addPlaylist($ownerId, $title, $image_path) {
+        $playlistsModel = new PlaylistsModel();
+
+        if ($image_path == null) {
+            $image_path = '/img/default_playlist.png';
+        }
+
+        return $playlistsModel->createPlaylist($ownerId, $title, $image_path);
+    }
+
+    public function addPlaylistItem($playlistId, $poemId) {
+        $playlistItemsModel = new PlaylistItemsModel();
+
+        $hasExist = $playlistItemsModel->getPair($playlistId, $poemId);
+
+        if ($hasExist) {
+            throw new Exception('This poem has already in the playlist.');
+        }
+
+        return $playlistItemsModel->addPlaylistPoem($playlistId, $poemId);
+    }
+
+    public function update($playlistId, $title, $imagePath=null) {
+        $playlistModel = new PlaylistsModel();
+        return $playlistModel->update($playlistId, $title, $imagePath);
+    }
+
+    public function deletePlaylist($id){
+        $playlistModel = new PlaylistsModel();
+        return $playlistModel->deletePlaylist($id);
+    }
+
+    public function deletePlaylistItem($playlistId, $poemId) {
+        $playlistItemsModel = new PlaylistItemsModel();
+        return $playlistItemsModel->delete($playlistId, $poemId);
+    }
 }

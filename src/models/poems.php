@@ -90,6 +90,11 @@ class PoemsModel extends Models {
         return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getAllPoemByCreator($id){
+        $sql = 'SELECT * FROM Poems WHERE Poems.creator_id = ?';
+        return $this->db->query($sql, [$id])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getIDPoemName(){
         $sql = 'SELECT id, title FROM Poems';
         return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
@@ -103,6 +108,17 @@ class PoemsModel extends Models {
     public function deletePoem($id) {
         $sql = 'DELETE FROM Poems WHERE id = ?';
         return $this->db->query($sql, [$id]);
+    }
+
+    public function create($id, $title, $genre, $content, $imagePath, $audioPath, $year){
+        $sql = 'INSERT INTO Poems (creator_id, title, genre, content, image_path, audio_path, year) VALUES (?, ?, ?, ?, ?, ?, ?)';
+        $params = [$id, $title, $genre, $content, $imagePath, $audioPath, $year];
+
+        try {
+            $this->db->query($sql, $params);
+        } catch (Exception $e) {
+            throw new Exception("Error: ".$e->getMessage());
+        }
     }
 
     public function update($poemId, $title, $genre, $content, $imagePath = null, $audioPath = null) {

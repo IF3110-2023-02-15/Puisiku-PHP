@@ -49,7 +49,15 @@ class App {
             'creator/deletePoem/:id' => ['creator', ['admin', 'creator']],
             'creator/updatePoem/:id' => ['creator', ['admin', 'creator']],
             'profile/upgrade' => ['profile', ['user']],
-            'playlist/:id' => ['playlist', $logged_in_role]
+            'playlist' => ['playlist', $logged_in_role],
+            'playlist/:id' => ['playlist', $logged_in_role],
+            'playlistItem' => ['playlistItem', $logged_in_role],
+            'file' => ['file', $logged_in_role],
+            'creator' => ['creator', ['admin', 'creator']],
+            'creator/addPoem' => ['creator', ['admin', 'creator']],
+            'creator/deletePoem/:id' => ['creator', ['admin', 'creator']],
+            'creator/updatePoem/:id' => ['creator', ['admin', 'creator']],
+            'profile/upgrade' => ['profile', ['user']]
         ]);
     }
 
@@ -60,16 +68,6 @@ class App {
         // Get the role of the current user
         $middleware = new Middleware();
         $role = $middleware->getRole();
-
-        // Direct the request to the appropriate controller and method
-        // list($controllerName, $methodName) = $this->router->direct($uri, $role);
-
-        // require CONTROLLER_DIR . $controllerName . '_controller.php';
-
-        // // Instantiate the controller class and call the appropriate method
-        // $controllerClass = ucfirst($controllerName);
-        // $controller = new $controllerClass();
-        // $controller->$methodName();
 
         $routeData = $this->router->direct($uri, $role);
 

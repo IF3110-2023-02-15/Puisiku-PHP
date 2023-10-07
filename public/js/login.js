@@ -2,8 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
     let loginForm = document.getElementById('login-form');
     let loginErrorMessage = document.getElementById('login-error-message');
 
-    
-
     if (loginForm) {
         loginForm.addEventListener('submit', function (event) {
             event.preventDefault(); // Prevent default form submission

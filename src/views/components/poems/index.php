@@ -20,3 +20,13 @@ function poems($poems) {
     }
     return $html;
 }
+
+function addPoemModal() {
+    $html = '';
+
+    ob_start();
+    include 'add_poem_modal.php';
+    $html .= ob_get_clean();
+
+    return $html;
+}
