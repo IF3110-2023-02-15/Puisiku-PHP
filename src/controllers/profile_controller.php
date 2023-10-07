@@ -48,4 +48,25 @@ class Profile extends Controller {
             echo json_encode(['error' => 'Error updating user: ' . $e->getMessage()]);
         }
     }
+
+    public function upgrade() {
+        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+            $this->methodNotAllowed();
+            return;
+        }
+
+        $id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+
+        $userService = new UserService();
+
+        try {
+            $result = $userService->updateRole($id);
+
+            $_SESSION['role'] = 'creator';
+
+            echo json_encode(['success' => $result]);
+        } catch (Exception $e) {
+            echo json_encode(['error' => $e]);
+        }
+    }
 }

@@ -46,6 +46,7 @@ class App {
             'creator/addPoem' => ['creator', ['admin', 'creator']],
             'creator/deletePoem/:id' => ['creator', ['admin', 'creator']],
             'creator/updatePoem/:id' => ['creator', ['admin', 'creator']],
+            'profile/upgrade' => ['profile', ['user']]
         ]);
     }
 

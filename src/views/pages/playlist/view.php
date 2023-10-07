@@ -8,7 +8,7 @@
     echo confirmationModal('update-playlist', 'Are you sure to update the playlist?');
     echo confirmationModal('delete-playlist', 'Are you sure to delete the playlist?');
 
-    echo playlistModal('edit', 'Edit', $info['title'], $info['image_path']);
+    echo playlistModal('edit', 'Edit', $info['title'], $info['image_path'], true);
 ?>
 
 <div id="playlist-notification" class="notification"></div>
