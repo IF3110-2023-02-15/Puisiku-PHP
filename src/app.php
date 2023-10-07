@@ -30,7 +30,7 @@ class App {
             'admin/updateUser/:id' => ['admin', ['admin']],
             'admin/updateUserwithRole/:id' => ['admin', ['admin']],
             'admin/updatePoem/:id' => ['admin', ['admin']],
-            'admin/updatePlaylist/:id' => ['admin', ['admin']],
+            'admin/updatePlaylists' => ['admin', ['admin']],
             'home' => ['home', $logged_in_role],
             'logout' => ['logout', $logged_in_role],
             'profile' => ['profile', $logged_in_role],
@@ -38,6 +38,17 @@ class App {
             'poems' => ['poems', $logged_in_role],
             'search' => ['search', $logged_in_role],
             'poem/:id' => ['poem', $logged_in_role],
+            'playlist' => ['playlist', $logged_in_role],
+            'playlist/:id' => ['playlist', $logged_in_role],
+            'playlistItem' => ['playlistItem', $logged_in_role],
+            'file' => ['file', $logged_in_role],
+            'creator' => ['creator', ['admin', 'creator']],
+            'creator/getPoemData/:id' => ['creator', ['admin', 'creator']],
+            'creator/addPoem' => ['creator', ['admin', 'creator']],
+            'creator/getPoems' => ['creator', ['admin', 'creator']],
+            'creator/deletePoem/:id' => ['creator', ['admin', 'creator']],
+            'creator/updatePoem/:id' => ['creator', ['admin', 'creator']],
+            'profile/upgrade' => ['profile', ['user']],
             'playlist/:id' => ['playlist', $logged_in_role]
         ]);
     }

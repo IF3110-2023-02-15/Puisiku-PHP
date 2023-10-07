@@ -239,7 +239,7 @@ class Admin extends Controller {
         header('Content-Type: application/json');
 
         $playlistService = new PlaylistService();
-        $result = $playlistService->getIDStatusPlaylistName();
+        $result = $playlistService->getIDPlaylistName();
         $playlist = adminBox3($result);
 
         echo json_encode($playlist);

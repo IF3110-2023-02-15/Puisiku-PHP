@@ -1,6 +1,18 @@
 .items {
     width: 30%;
     margin: 20px;
+
+    @media (max-width: 850px) {
+        width : 70%;
+    }
+    
+}
+
+.list-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 0 0 0;
 }
 
 .bg-clr {
@@ -14,6 +26,7 @@
     font-family: 'StretchPro';
     font-size: 8px;
     color: white;
+    
 }
 
 .space {
@@ -30,7 +43,13 @@ svg {
 .horizontal-list {
     display: flex;
     justify-content: space-between;
-    height: 90vh;
+    height: 97vh;
+
+    @media (max-width: 850px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .add-container {
@@ -46,7 +65,7 @@ svg {
 }
 
 .tes {
-    max-height: 90vh;
+    overflow: auto;
 }
 
 .create-size{
@@ -67,12 +86,57 @@ svg {
     border-radius: 5px;
 }
 
-.hover-button:hover {
+.update-playlist-button {
     cursor: pointer;
-    transition: fill 0.3s;
+    transition: fill 0.3s ease;
 }
 
-.hover-button:hover {
+.update-playlist-button:hover {
+    fill: white;
+}
+
+.delete-playlist-button svg{
+    cursor: pointer;
+    transition: fill 0.3s ease;
+}
+
+.delete-playlist-button:hover svg{
+    fill: white;
+}
+
+.update-poem-button {
+    cursor: pointer;
+    transition: fill 0.3s ease;
+}
+
+.update-poem-button:hover {
+    fill: white;
+}
+
+.delete-poem-button svg{
+    cursor: pointer;
+    transition: fill 0.3s ease;
+}
+
+.delete-poem-button:hover svg{
+    fill: white;
+}
+
+.update-user-button {
+    cursor: pointer;
+    transition: fill 0.3s ease;
+}
+
+.update-user-button:hover {
+    fill: white;
+}
+
+.delete-user-button svg{
+    cursor: pointer;
+    transition: fill 0.3s ease;
+}
+
+.delete-user-button:hover svg{
     fill: white;
 }
 
@@ -107,4 +171,14 @@ svg {
     left: 50%;
     top: 100px;
     transform: translate(-50%, -50%);
+}
+
+.style-text {
+    display: flex;
+    align-items: center;
+}
+
+p {
+    font-size: 9px;
+    text-align: left;
 }

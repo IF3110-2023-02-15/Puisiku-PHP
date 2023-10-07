@@ -31,9 +31,6 @@
                 <div>
                     Playlists
                 </div>
-                <button class="create-size">
-                    Add Playlist
-                </button>
             </div>
             <div id="playlists-container" class="bg-clr"></div>
         </div>

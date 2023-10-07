@@ -47,7 +47,6 @@ function adminBox3($users) {
     foreach ($users as $user) {
         $id = htmlspecialchars($user['id']);
         $title = htmlspecialchars($user['title']);
-        $status = htmlspecialchars($user['is_private']);
 
         // Start output buffering
         ob_start();

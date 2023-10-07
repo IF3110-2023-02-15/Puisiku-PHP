@@ -277,10 +277,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const playlistsContainer = document.getElementById('playlists-container');
         
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', `/admin/getPlaylists/${id}`, true); 
+        xhr.open('GET', `/admin/getPlaylists`, true); 
 
         xhr.onload = function() {
             if (xhr.status === 200) {
+                console.log(xhr.responseText);
                 const playlists = JSON.parse(xhr.responseText);
                 
                 playlistsContainer.innerHTML = playlists;
