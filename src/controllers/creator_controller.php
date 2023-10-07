@@ -5,6 +5,7 @@ require_once SERVICES_DIR . 'poems/index.php';
 require_once SERVICES_DIR . 'user/index.php';
 require_once VIEWS_DIR . 'components/poems/index.php';
 require_once SERVICES_DIR . 'file/index.php';
+require_once VIEWS_DIR . 'components/table.php';
 
 class Creator extends Controller {
 
@@ -32,9 +33,38 @@ class Creator extends Controller {
         $userService=new UserService();
         $data= $userService->getData($id);
 
+        $poemService=new PoemsService();
+        $datapoem = $poemService->getData($id);
+
         list($role, $profile_url, $playlists) = $this->getSidebarNavbarInfo();
 
-        $this->view('creator/index', ['current_page' => $current_page, 'playlists'=> $playlists, 'role' => $role, 'display_search' => $display_search, 'profile_url' => $profile_url, 'data' => $data]);
+        $this->view('creator/index', 
+        ['current_page' => $current_page, 
+        'playlists'=> $playlists, 'role' => $role, 
+        'display_search' => $display_search, 
+        'profile_url' => $profile_url, 
+        'data' => $data,
+        'id' =>$id]);
+    }
+
+
+    public function getPoems() {
+        if ($_SERVER['REQUEST_METHOD'] != 'GET') {
+            $this->methodNotAllowed();
+            return;
+        }
+
+        $id=isset($_SESSION['id'])?($_SESSION['id']):null;
+
+        header('Content-Type: application/json');
+
+        $poemService = new PoemsService();
+
+        $result = $poemService->getAllPoemByCreator($id);
+        $poems = createTablePoem(['#', 'Title', 'Genre', 'Year', 'Delete', 'Update'], $result);
+
+
+        echo json_encode($poems);
     }
 
     public function getModal() {
@@ -67,8 +97,6 @@ class Creator extends Controller {
 
         $imagePath = null;
         $audioPath = null;
-
-        
 
 
         if ($image != null) {
@@ -122,7 +150,7 @@ class Creator extends Controller {
                 // Return a success response with HTTP status 200
                 header('HTTP/1.1 200 OK');
                 header('Content-Type: application/json');
-                echo json_encode(['message' => $result]);
+                echo json_encode(['success' => $result]);
             } catch (Exception $e) {
                 // Handle any errors that may occur during deletion
                 header('HTTP/1.1 500 Internal Server Error');
