@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function(){
 
+    const notification = document.getElementById('notification');
+
     function fetchDisplay(){
         const poemListContainer = document.getElementById('poem-list-container');
 
@@ -17,6 +19,12 @@ document.addEventListener('DOMContentLoaded', function(){
                 const closeListModal = document.getElementById("close-poem-list-modal");
                 const addPoemSubmit = document.getElementById("add-poem-submit");
                 const updatePoemListModal = document.getElementById("update-poem-list-modal");
+                const confirmationDeletePoemModal = document.getElementById("confirmation-modal-poem-list");
+                const closeButtonDelete = document.getElementById("close-button-poem-list");
+                const confirmDeleteButton = document.getElementById("confirm-delete-poem-list");
+                const cancelDeleteButton = document.getElementById("cancel-delete-poem-list");
+                const confirmationModalTextDeletePoemList = document.getElementById("confirmation-modal-text-poem-list");
+
                 let selectedId = null;
 
                 addPoemButtonCreator.addEventListener('click', function(){
@@ -37,13 +45,37 @@ document.addEventListener('DOMContentLoaded', function(){
 
                 const deletePoemList = document.querySelectorAll('.delete-poem-list-button');
                 deletePoemList.forEach(function(button) {
-                    button.addEventListener('click', function() {
-                        console.log("kepencet delete");
+                    button.addEventListener('click', function(event) {
+                        event.preventDefault();
                         const poemId = this.getAttribute('data-id-delete-poem-list');
+                        const titlePoem = this.getAttribute('data-title-delete-poem-list');
+                        confirmationModalTextDeletePoemList.textContent = `Are you sure to delete ${titlePoem}?`;
+                        confirmationDeletePoemModal.style.display = "block";
                         selectedId = poemId;
-                        deletePoemCreator(selectedId);
+                        
                     });
+
+                    closeButtonDelete.onclick = function() {
+                        confirmationDeletePoemModal.style.display = "none";
+                    }
+
+                    confirmDeleteButton.onclick = function(event) {
+                        event.preventDefault();
+                        if(selectedId){
+                            deletePoemCreator(selectedId);
+                            confirmationDeletePoemModal.style.display = "none";
+                        }
+                    }
+
+                    cancelDeleteButton.onclick = function() {
+                        confirmationDeletePoemModal.style.display = "none";
+                    }
                 });
+
+
+                const titleUpdatePoemListInput = document.getElementById('title-update-poem-list');
+                const genreUpdatePoemListSelect = document.getElementById('genre-update-poem-list');
+                const contentUpdatePoemListTextarea = document.getElementById('content-update-poem-list');
 
                 const updatePoemListButton = document.querySelectorAll('.update-poem-list-button');
                 const submitUpdatePoemList = document.getElementById('submit-update-poem-list');
@@ -66,6 +98,12 @@ document.addEventListener('DOMContentLoaded', function(){
                         event.preventDefault();
                         updatePoemListModal.style.display = "none";
                     }
+
+                    window.addEventListener('click', function(event) {
+                        if (event.target === updatePoemListModal) {
+                            updatePoemListModal.style.display = "none";
+                        }
+                    });
                 });
             }
         }
@@ -76,7 +114,9 @@ document.addEventListener('DOMContentLoaded', function(){
         xhr.send();
     }
     
-
+    function getData($poemId) {
+        
+    }
 
     function addPoem() {
         const xhr = new XMLHttpRequest();
@@ -92,6 +132,28 @@ document.addEventListener('DOMContentLoaded', function(){
                 console.log(xhr.responseText);
             } else {
                 console.error('Error add poem:', xhr.statusText);
+            }
+        };
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Check the content type
+                const contentType = xhr.getResponseHeader('Content-Type');
+                if (contentType.includes('application/json')) {
+                    let response = JSON.parse(xhr.responseText);
+                    if ('success' in response) {
+                        notification.textContent = "Successfully add poem information!";
+                        notification.classList.add("notification-success");
+                    } else {
+                        notification.textContent = "An error occurred when add poem information.";
+                        notification.classList.add("notification-error");
+                    }
+                    // Show the notification for 3 seconds
+                    setTimeout(function() {
+                        notification.textContent = "";
+                        notification.classList.remove("notification-success", "notification-error");
+                    }, 2000);
+                }
             }
         };
 
@@ -112,6 +174,28 @@ document.addEventListener('DOMContentLoaded', function(){
                 fetchDisplay();
             } else {
                 console.error('Error deleting Poem:', xhr.statusText);
+            }
+        };
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Check the content type
+                const contentType = xhr.getResponseHeader('Content-Type');
+                if (contentType.includes('application/json')) {
+                    let response = JSON.parse(xhr.responseText);
+                    if ('success' in response) {
+                        notification.textContent = "Successfully delete poem information!";
+                        notification.classList.add("notification-success");
+                    } else {
+                        notification.textContent = "An error occurred when deleting poem information.";
+                        notification.classList.add("notification-error");
+                    }
+                    // Show the notification for 3 seconds
+                    setTimeout(function() {
+                        notification.textContent = "";
+                        notification.classList.remove("notification-success", "notification-error");
+                    }, 2000);
+                }
             }
         };
 
@@ -137,6 +221,28 @@ document.addEventListener('DOMContentLoaded', function(){
                 fetchDisplay();
             } else {
                 console.error('Error updating poem:', xhr.statusText);
+            }
+        };
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Check the content type
+                const contentType = xhr.getResponseHeader('Content-Type');
+                if (contentType.includes('application/json')) {
+                    let response = JSON.parse(xhr.responseText);
+                    if ('success' in response) {
+                        notification.textContent = "Successfully update poem information!";
+                        notification.classList.add("notification-success");
+                    } else {
+                        notification.textContent = "An error occurred when updating poem information.";
+                        notification.classList.add("notification-error");
+                    }
+                    // Show the notification for 3 seconds
+                    setTimeout(function() {
+                        notification.textContent = "";
+                        notification.classList.remove("notification-success", "notification-error");
+                    }, 2000);
+                }
             }
         };
 
