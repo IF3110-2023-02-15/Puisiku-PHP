@@ -94,5 +94,39 @@ PSQL_PASSWORD=puisiku
 
 ## Task Division
 ### Server Side
+| 10023334                       | 13521046                                                 | 13521103                                          |
+|--------------------------------|----------------------------------------------------------|---------------------------------------------------|
+| Profile Controller (Load View) | Project structure and architecture (docker and database) | Admin Controller and related service and model    |
+| Get Data service               | App and Router                                           | creator controller and related service and model  |
+| User find by id model          | Middleware                                               |                                                   |
+| Database seeding               | Login controller and related service and model           |                                                   |
+|                                | Register controller and related service and model        |                                                   |
+|                                | Landing controller and related service and model         |                                                   |
+|                                | File controller and service                              |                                                   |
+|                                | Errors controller                                        |                                                   |
+|                                | Landing controller                                       |                                                   |
+|                                | Logout controller and service                            |                                                   |
+|                                | Poems controller and related service and model           |                                                   |
+|                                | Poem controller and related service and model            |                                                   |
+|                                | Profile controller and related service and model         |                                                   |
+|                                | Playlist controller and related service and model        |                                                   |
+|                                | Playlist Item controller and related service and model   |                                                   |
+
 
 ### Client Side
+| Feature           | PIC                 |
+|-------------------|---------------------|
+| Landing           | 10023334            |
+| Login             | 13521046, 13521103  |
+| Register          | 13521046, 13521103  |
+| Poems             | 13521046            |
+| Poem              | 13521046            |
+| Playlist          | 13521046            |
+| Profile           | 10023334, 13521046  |
+| Error             | 10023334            |
+| Navbar            | 13521046            |
+| Sidebar           | 13521046            |
+| Search and Filter | 13521046            |
+| Creator           | 13521103            |
+| Admin             | 13521103            |
+| Layout            | 13521046            |
