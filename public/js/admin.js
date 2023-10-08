@@ -467,6 +467,13 @@ document.addEventListener('DOMContentLoaded', function() {
         xhr.send(jsonFormData);
     }
 
+    const updatePlaylistModal = document.getElementById("update-playlist-modal");
+    updatePlaylistForm.addEventListener('submit', function() {
+        updatePlaylist(idUpdatePlaylistForm.value);
+
+        updatePlaylistModal.style.display = "none";
+    })
+
     function fetchAndDisplayPlaylists() {
         const playlistsContainer = document.getElementById('playlists-container');
         
@@ -485,7 +492,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const updatePlaylistButton = document.querySelectorAll('.update-playlist-button');
 
                 //update button
-                const updatePlaylistModal = document.getElementById("update-playlist-modal");
+                
                 let submitPlaylistButton = document.getElementById("submit-playlist-poem");
                 const spanClosePlaylistModal = document.getElementById("close-playlist-modal");
 
@@ -549,11 +556,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         xhr2.send();
                     });
 
-                    updatePlaylistForm.addEventListener('submit', function() {
-                        updatePlaylist(idUpdatePlaylistForm);
-                        updatePlaylistModal.style.display = "none";
-                        
-                    })
+                    
 
                     spanClosePlaylistModal.onclick = function(event) {
                         event.preventDefault();
