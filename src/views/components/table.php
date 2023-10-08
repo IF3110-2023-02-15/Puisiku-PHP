@@ -2,7 +2,7 @@
 
 
 function createTable($headers, $data) {
-    $table = "<table class='table-size'><thead><tr>";
+    $table = "<table><thead><tr>";
 
     // Add table headers
     foreach ($headers as $header) {

@@ -16,6 +16,10 @@
     border-radius: 20px;
 }
 
+.playlist-info-container h1 {
+    text-overflow: ellipsis;
+}
+
 .playlist-info-container h3 {
     font-weight: 600;
     font-style: italic;
@@ -47,24 +51,39 @@
     background-color: var(--dark-purple);
     color: white;
 
-    border-radius: 4vh;
+    border-radius: 20px;
     border: 3px solid black;
-    height: 50vh;
+    /*height: 50vh;*/
     overflow-y: scroll;
     padding: 20px;
 
-    width: 80%;
+    width: 800px;
 
-    overflow-x: auto;
+    overflow-x: scroll;
+
+    transition: width 0.3s ease;
+
+    @media (max-width: 1280px) {
+        width: 700px;
+    }
+
+    @media (max-width: 1024px) {
+        width: 600px;
+    }
+
+    @media (max-width: 920px) {
+        width: 450px;
+    }
 
     @media (max-width: 640px) {
-        /*overflow-x: scroll;*/
+        width: 225px;
     }
 }
 
 .playlist-table-container table{
-    width: max-content;
-    overflow-x: auto;
+    /*display: none;*/
+    width: 100%;
+    overflow-x: scroll;
     white-space: nowrap;
     border-spacing: 0;
 }
@@ -96,9 +115,6 @@
     padding: 8px 18px;
 }
 
-.table-size {
-    width: 100%;
-}
 
 .clickable-row:hover {
     cursor: pointer;
