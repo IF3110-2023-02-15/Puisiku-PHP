@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         let response = JSON.parse(xhr.responseText);
 
                         if (response.status === 'SUCCESS') {
-                            window.location.href = '/home';
+                            window.location.href = '/poems';
                         } else {
                             // Set the innerHTML of the error message div
                             registerErrorMessage.textContent = response.message;

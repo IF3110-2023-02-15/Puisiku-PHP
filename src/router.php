@@ -18,9 +18,9 @@ class Router {
         $path = trim($parsedUrl['path'], '/');
     
         // If the user is logged in and tries to access the home, user, or register routes, redirect them to the dashboard
-        if ($role !== null && in_array($path, ['', 'login', 'register'])) {
-            header('Location: /home');
-            exit();
+        if ($role !== null && in_array($path, ['', 'login', 'register']) && !($role === 'admin' && $path === 'register')) {
+                header('Location: /poems');
+                exit();
         }
     
         foreach ($this->routes as $routePath => $routeData) {

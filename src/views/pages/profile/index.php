@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Profile">
     <title>Profile</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/profile.css">
@@ -35,7 +36,7 @@
             </div>
 
             <div class="profile-form-component">
-                <label for="profile-image">Profile Image</label>
+                <label for="profile-image-input">Profile Image</label>
                 <input id="profile-image-input" class="profile-input" type="file" name="profile-image-path" accept=".jpg, .jpeg, .png">
             </div>
 

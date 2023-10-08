@@ -5,8 +5,8 @@ require_once VIEWS_DIR . 'components/modals/confirmation_modal.php';
 require_once VIEWS_DIR . 'components/modals/playlist_modal.php';
 
 function sidebar($current_page, $playlists, $role) {
-    $pages = array('Home', 'Poems', 'Genres', 'Creators');
-    $pagesLogo = array('/assets/icons/home.png', '/assets/icons/home.png', '/assets/icons/home.png', '/assets/icons/home.png');
+    $pages = array('Poems');
+    $pagesLogo = array('/assets/icons/home.png');
 
     $sidebar = confirmationModal('upgrade-role', 'Are you sure to be a creator? This action is not reversible!');
 

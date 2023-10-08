@@ -35,13 +35,22 @@
     -webkit-text-stroke: 1px black;
     margin-top: 10px;
     margin-bottom: 20px;
+
+    @media (max-width: 640px) {
+        font-size: 40px
+    }
 }
 
 .container {
     background-color: var(--dark-purple);
-    padding: 20px 45px 30px 45px;
+    padding: 30px 30px;
     border-radius: 25px;
     border: 5px solid black;
+
+    @media (max-width: 640px) {
+        width: 100%;
+        margin: 0 20px;
+    }
 }
 
 .center-submit {

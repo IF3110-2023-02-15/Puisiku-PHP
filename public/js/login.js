@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
             event.preventDefault(); // Prevent default form submission
 
             let formData = new FormData(loginForm);
-            console.log(formData);
 
             let xhr = new XMLHttpRequest();
             xhr.open('POST', '/login', true);
@@ -15,16 +14,13 @@ document.addEventListener('DOMContentLoaded', function () {
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
-                        console.log('masuk');
-                        // Check the content type
                         const contentType = xhr.getResponseHeader('Content-Type');
-                        console.log(contentType);
                         if (contentType.includes('application/json')) {
                             console.log(xhr.responseText);
                             let response = JSON.parse(xhr.responseText);
 
                             if (response.status === 'SUCCESS') {
-                                window.location.href = '/home';
+                                window.location.href = '/poems';
                             } else {
                                 loginErrorMessage.textContent = 'Login failed. Please check your email and password.';
                             }
