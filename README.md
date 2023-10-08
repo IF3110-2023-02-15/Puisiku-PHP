@@ -131,3 +131,12 @@ PSQL_PASSWORD=puisiku
 | Creator           | 13521103            |
 | Admin             | 13521103            |
 | Layout            | 13521046            |
+
+
+## Author
+| NIM      | Nama                    |
+|----------|-------------------------|
+| 10023334 | Tubagus Rahardi         |
+| 13521046 | Jeffrey Chow            |
+| 13521103 | Aulia Mey Diva Annandya |
+
