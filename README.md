@@ -29,6 +29,7 @@ PSQL_PASSWORD=puisiku
 2. Ensure `Docker Daemon` is running
 3. On root directory, run `make run-build` or `docker compose up -d --build` on terminal
 4. Access the web application by navigating to `localhost:5001` in the web browser
+5. Run `docker compose down` to stop the app.
 
 ## User Interface Screenshots
 ### Landing Page
