@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creator">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/layout.css">
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/sidebar.css">
     <link rel="stylesheet" href="/css/creator.css">
+    <title>Creator Page</title>
 </head>
 <body class="scrollable-creator">
     <?php
