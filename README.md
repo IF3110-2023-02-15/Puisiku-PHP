@@ -1,6 +1,6 @@
 # Puisiku: A Personal Library of Poems
 
-Puisiku is a monolithic application built with PHP, HTML, CSS, and JS. It serves as a personal library for storing and retrieving poems. The application uses a PostgreSQL database for data persistence and runs in a Docker container for easy setup and deployment.
+Puisiku is a unique digital platform designed for both creators and readers of poetry. Built with PHP, HTML, CSS, and JS, it provides a user-friendly interface where creators can effortlessly publish their poems. Readers, on the other hand, can enjoy a vast collection of poems at their fingertips. The application utilizes a PostgreSQL database for reliable data persistence, ensuring that every piece of poetry is safely stored and readily retrievable. Moreover, Puisiku runs in a Docker container, which simplifies setup and deployment, making it easily accessible across various systems. Experience the joy of poetry like never before with Puisiku - your personal poetry library!
 
 ## Prerequisites
 
@@ -24,37 +24,43 @@ PSQL_USER=puisiku
 PSQL_PASSWORD=puisiku
 ```
 
-## Project Structure
+## Running the Program
+1. Clone this repository
+2. Ensure `Docker Daemon` is running
+3. On root directory, run `make run-build` or `docker compose up -d --build` on terminal
+4. Access the web application by navigating to `localhost:5001` in the web browser
 
-```bash
-├───migrations : Contains script for PostgreSQL database migrations
-├───public : The publicly accessible directory, contains the `index.php` file as entrypoint
-│   ├───audio
-│   ├───css
-│   ├───fonts
-│   ├───img
-│   └───js
-└───src : The main source directory, not publicly accessible, contains the application’s PHP classes
-    ├───controllers : Contains the page controllers which handle the logic for different pages of the application.
-    ├───database : Contains the PSQL class for database transactions.
-    ├───middlewares : Contains middleware functions such as authentication checks
-    ├───models : Contains classes that handle query logic and interact with the database.
-    ├───services : Contains business logic for the application.
-    │   ├───login
-    │   └───register
-    └───views : Contains PHP files for rendering views.
-        ├───components
-        ├───layouts
-        └───pages
-            ├───dashboard
-            ├───errors
-            ├───home
-            ├───login
-            └───register
-```
+## User Interface Screenshots
+### Landing Page
 
-## Steps to Access the Database in DBeaver
+### Login Page
 
-1. Set the host to `localhost`.
-2. Specify the port number as `5433`.
-3. Enter the database name, username, and password as provided in environment variables (env).
+### Register Page
+
+### Poems Page
+
+### Poem Page
+
+### Playlist Page
+
+### Profile Page
+
+## Lighthouse Analysis
+### Landing Page
+
+### Login Page
+
+### Register Page
+
+### Poems Page
+
+### Poem Page
+
+### Playlist Page
+
+### Profile Page
+
+## Task Division
+### Server Side
+
+### Client Side
