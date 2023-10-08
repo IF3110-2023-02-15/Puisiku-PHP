@@ -6,7 +6,7 @@ require_once MODELS_DIR . 'playlists.php';
 require_once MODELS_DIR . 'poems.php';
 require_once SERVICES_DIR . 'user/index.php';
 require_once SERVICES_DIR . 'poems/index.php';
-require_once SERVICES_DIR . 'playlist/index.php';
+require_once SERVICES_DIR . 'playlists/index.php';
 require_once SERVICES_DIR . 'file/index.php';
 require_once VIEWS_DIR . 'components/users/index.php';
 
@@ -62,7 +62,7 @@ class Admin extends Controller {
 
         $id = $params['id'];
 
-        $playlistService = new PlaylistService();
+        $playlistService = new PlaylistsService();
         
 
         try {
@@ -276,7 +276,7 @@ class Admin extends Controller {
 
         header('Content-Type: application/json');
 
-        $playlistService = new PlaylistService();
+        $playlistService = new PlaylistsService();
         $result = $playlistService->getIDPlaylistName();
         $playlist = adminBox3($result);
 
@@ -292,7 +292,7 @@ class Admin extends Controller {
         $playlistId = $params['id'];
 
         if ($playlistId) {
-            $playlistService = new PlaylistService();
+            $playlistService = new PlaylistsService();
 
             try {
                 $result = $playlistService->deletePlaylist($playlistId);
@@ -329,7 +329,7 @@ class Admin extends Controller {
 
         $imagePath = null;
 
-        $playlistService = new PlaylistService();
+        $playlistService = new PlaylistsService();
 
        
         // Try to upload file

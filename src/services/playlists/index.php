@@ -53,10 +53,7 @@ class PlaylistsService {
         return $playlistItemsModel->addPlaylistPoem($playlistId, $poemId);
     }
 
-    public function update($playlistId, $title, $imagePath=null) {
-        $playlistModel = new PlaylistsModel();
-        return $playlistModel->update($playlistId, $title, $imagePath);
-    }
+    
 
     public function deletePlaylist($id){
         $playlistModel = new PlaylistsModel();
@@ -67,4 +64,56 @@ class PlaylistsService {
         $playlistItemsModel = new PlaylistItemsModel();
         return $playlistItemsModel->delete($playlistId, $poemId);
     }
+
+    public function getAllPlaylistName(){
+        $playlistModel = new PlaylistsModel();
+        return $playlistModel->getAllPlaylistName();
+    }
+
+    public function getIDPlaylistName(){
+        $playlistModel = new PlaylistsModel();
+        return $playlistModel->getIDPlaylistName();
+    }
+    public function getIDStatusPlaylistName(){
+        $playlistModel = new PlaylistsModel();
+        return $playlistModel->getIDStatusPlaylistName();
+    }
+
+    public function getTitle($id){
+        $playlistModel = new PlaylistsModel();
+        return $playlistModel->getTitlePlaylist($id);
+    }
+
+    public function updateStatus($playlistId, $status) {
+        $playlistModel = new PlaylistsModel();
+
+        try {
+            $result = $playlistModel->updateStatus($playlistId, $status);
+
+            return $result;
+        } catch (Exception $e) {
+            throw new Exception('Error updating user: ' . $e->getMessage());
+        }
+    }
+
+    public function update($playlistId, $title, $imagePath=null) {
+        $playlistModel = new PlaylistsModel();
+
+        if ($imagePath == null) {
+            $imagePath = '/img/default_playlist.png';
+        }
+
+        try {
+            $result = $playlistModel->update($playlistId, $title, $imagePath);
+
+            return $result;
+        } catch (Exception $e) {
+            throw new Exception('Error updating playlist: ' . $e->getMessage());
+        }
+    }
+
+    // public function update($playlistId, $title, $imagePath=null) {
+    //     $playlistModel = new PlaylistsModel();
+    //     return $playlistModel->update($playlistId, $title, $imagePath);
+    // }
 }
