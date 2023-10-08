@@ -84,7 +84,7 @@
 
 th{
     font-family: 'StretchPro';
-    font-size: 1.5vh;
+    font-size: 2vh;
     color: white;
     height: 10vh;
 
@@ -94,7 +94,7 @@ th{
 }
 
 td{
-    font-size: 1.5vh;
+    font-size: 2vh;
     color: white;
     margin-top: 2vh;
     text-align: center;
