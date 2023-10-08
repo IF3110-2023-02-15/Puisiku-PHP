@@ -6,7 +6,7 @@ function createTable($headers, $data) {
 
     // Add table headers
     foreach ($headers as $header) {
-        $table .= "<td>{$header}</td>";
+        $table .= "<th>{$header}</th>";
     }
 
     $table .= "</tr></thead><tbody>";
