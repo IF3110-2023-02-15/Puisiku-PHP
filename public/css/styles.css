@@ -145,8 +145,12 @@ button {
   position: fixed;
   z-index: 999;
   left: 50%;
-  top: 300px;
+  top: 340px;
   transform: translate(-50%, -50%);
+
+  @media (max-width: 560px) {
+    left: 55%;
+  }
 }
 
 .playlist-modal-content {
@@ -155,6 +159,14 @@ button {
   border: 1px solid black;
   border-radius: 20px;
   width: 450px;
+
+  @media (max-width: 640px) {
+    width: 350px;
+  }
+
+  @media (max-width: 560px) {
+    width: 250px;
+  }
 }
 
 .playlist-modal-content img {

@@ -36,6 +36,10 @@ body {
     color : var(--dark-blue);
     font-weight: bold;
     margin-bottom: 20px;
+    
+    @media (max-width: 640px) {
+        margin-top: 30px;
+    }
 }
 
 .profile-image {
@@ -54,6 +58,10 @@ body {
     align-items: center;
     justify-content: center;
     gap: 15px;
+
+    @media (max-width: 640px) {
+        width: 300px;
+    }
 }
 
 .profile-form-component {
@@ -68,7 +76,7 @@ body {
 }
 
 .profile-input {
-    width: 100%;
+    width: 90%;
     border-radius: 10px;
     margin-top: 10px;
     padding: 10px;
