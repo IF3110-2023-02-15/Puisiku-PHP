@@ -31,9 +31,6 @@
                 <div>
                     Playlists
                 </div>
-                <button class="create-size">
-                    Add Playlist
-                </button>
             </div>
             <div id="playlists-container" class="bg-clr"></div>
         </div>
@@ -73,10 +70,10 @@
     </div>
 
     <div id="update-user-modal" class="update-modal">
-    <span id="update-close-button" class="close-button">&times;</span>
-        <div class="modal-content">
-            <div class="button-container">
-                <form id="user-update-form" enctype="multipart/form-data">
+        <div class="update-modal-content">
+        <h1>Update User</h1>
+        <span id="update-close-button" class="close-button">&times;</span>
+                <form id="user-update-form" class="update-form" enctype="multipart/form-data">
                     <label for="update-username">Username:</label><br>
                     <input type="text" id="update-username" name="update-username" required><br>
 
@@ -89,61 +86,64 @@
                     <label for="profile-image">Profile Image</label><br>
                     <input id="update-image" class="profile-input" type="file" name="update-image" accept=".jpg, .jpeg, .png"><br>
 
-                    <button id="update-submit">Submit</button>
+                    <input type="submit" class="margin-submit" id="update-submit" value="Submit">
                 </form>
             </div>
-        </div>
     </div>
 
     <div id="update-poem-modal" class="update-modal">
-        <div class="modal-content">
+        <div class="update-modal-content">
             <span id="close-poem-modal" class="close-button">&times;</span>
-            <form id="poem-update-form" enctype="multipart/form-data">
-                <label for="title-update-poem">Title:</label><br>
-                <input type="text" id="title-update-poem" name="title-update-poem" required><br>
+            <h1>Update Poem</h1>
+            <form id="poem-update-form" class="update-form" enctype="multipart/form-data">
+                <label for="title-update-poem">Title:</label>
+                <input type="text" id="title-update-poem" name="title-update-poem" placeholder="John Doe" required><br>
 
-                <label for="genre-update-poem">Genre:</label><br>
+                <label for="genre-update-poem">Genre:</label>
                 <select id="genre-update-poem" name="genre-update-poem" required>
                     <?php foreach($genres as $genre) { ?>
                         <option value="<?php echo $genre; ?>"><?php echo $genre; ?></option>
                     <?php } ?>
                 </select><br>
 
-                <label for="content-update-poem">Content:</label><br>
-                <textarea id="content-update-poem" name="content-update-poem" required></textarea><br>
+                <label for="content-update-poem">Content:</label>
+                <textarea id="content-update-poem" name="content-update-poem" placeholder="John Doe" required></textarea><br>
 
-                <label for="image-update-poem">Image:</label><br>
+                <label for="image-update-poem">Image:</label>
                 <input id="image-update-poem" type="file" name="image-update-poem" accept=".jpg, .jpeg, .png"><br>
 
-                <label for="audio-update-poem">Audio:</label><br>
+                <label for="audio-update-poem">Audio:</label>
                 <input id="audio-update-poem" type="file" name="audio-update-poem" accept=".mp3"><br>
 
-                <button id="submit-update-poem">Submit</button>
+                <div class="margin-submit">
+                <input type="submit" class="margin-submit" id="submit-update-poem" class="button-container" value="Submit">
+                    </div>
+
             </form>
+
         </div>
     </div>
 
     <div id="update-playlist-modal" class="update-modal">
-        <div class="modal-content">
+        <div class="update-modal-content">
             <span id="close-playlist-modal" class="close-button">&times;</span>
-            <form id="playlist-update-form" enctype="multipart/form-data">
-                <label for="title-update-playlist">Title:</label><br>
-                <input type="text" id="title-update-playlist" name="title-update-playlist" required><br>
+            <h1>Update Playlist</h1>
+            <form id="playlist-update-form" class="update-form" enctype="multipart/form-data">
+                <label for="title-update-playlist">Title:</label>
+                <input type="text" id="title-update-playlist" name="title-update-playlist" placeholder="John Doe" required><br>
 
-                <label for="image-update-playlist">Image:</label><br>
+                <label for="image-update-playlist">Image:</label>
                 <input id="image-update-playlist" type="file" name="image-update-playlist" accept=".jpg, .jpeg, .png"><br>
 
-                <!-- <input type="radio" id="status-public-update-playlist" name="status-public-playlist" value="public">
-                <label for="status-public-update-playlist" id="update-radiobutton-text-public-playlist">Public playlist</label><br>
 
-                <input type="radio" id="status-private-update-playlist" name="status-private-playlist" value="private">
-                <label for="status-private-update-playlist" id="update-radiobutton-text-private-playlist">Private playlist</label><br> -->
+                <div class="margin-submit">
+                <input type="submit" class="margin-submit" id="submit-playlist-poem" class="button-container" value="submit">
+                    </div>
 
-                <button id="submit-update-playlist">Submit</button>
             </form>
+
         </div>
     </div>
-
 
 </div>
 

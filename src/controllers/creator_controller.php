@@ -6,6 +6,7 @@ require_once SERVICES_DIR . 'user/index.php';
 require_once VIEWS_DIR . 'components/poems/index.php';
 require_once SERVICES_DIR . 'file/index.php';
 require_once VIEWS_DIR . 'components/table.php';
+require_once VIEWS_DIR . 'components/table.php';
 
 class Creator extends Controller {
 
@@ -29,12 +30,9 @@ class Creator extends Controller {
 
         $id=isset($_SESSION['id'])?($_SESSION['id']):null;
 
-
-        $userService=new UserService();
-        $data= $userService->getData($id);
-
-        $poemService=new PoemsService();
-        $datapoem = $poemService->getData($id);
+        $userService = new UserService();
+        $data = $userService->getData($id);
+        
 
         list($role, $profile_url, $playlists) = $this->getSidebarNavbarInfo();
 
@@ -45,6 +43,26 @@ class Creator extends Controller {
         'profile_url' => $profile_url, 
         'data' => $data,
         'id' =>$id]);
+    }
+
+    public function getPoemData($params) {
+        if ($_SERVER['REQUEST_METHOD'] != 'GET') {
+            $this->methodNotAllowed();
+            return;
+        }
+
+        $poemId = $params['id'];
+
+        $poemsService = new PoemsService();
+        
+
+        try {
+            $result = $poemsService->searchById($poemId);
+            echo json_encode(['success' => $result]);
+        } catch  (Exception $e){
+            echo json_encode(['error' => 'Error updating: ' . $e->getMessage()]);
+        }
+
     }
 
 
@@ -216,7 +234,5 @@ class Creator extends Controller {
         } catch (Exception $e) {
             echo json_encode(['error' => 'Error updating user: ' . $e->getMessage()]);
         }
-
-        echo json_encode($poemId);
     }
 }

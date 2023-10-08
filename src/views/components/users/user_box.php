@@ -1,12 +1,9 @@
-<div >
-    <p><?php echo $id; ?></p>
-    <p><?php echo $title; ?></p>
-    <button class='update-user-button' data-user-id="<?php echo $id; ?>" data-username="<?php echo $title; ?>" data-user-role="<?php echo $role; ?>">
-        Update
-    </button>
-    <button class="delete-user-button" data-user-id="<?php echo $id; ?>" data-username="<?php echo $title; ?>">
-        <svg class="hover-button" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6M14 10V17M10 10V17" stroke="#D49B92" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </g>
-        </svg>
-    </button>
+<div class="list-box">
+    <div class="style-text">
+        <p><?php echo $title; ?></p>
+    </div>
+    <div class="style-buttons">
+        <svg class='update-user-button' data-user-id="<?php echo $id; ?>" data-username="<?php echo $title; ?>" width='24px' height='24px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'> <path d='M16 3.98999H8C6.93913 3.98999 5.92178 4.41135 5.17163 5.1615C4.42149 5.91164 4 6.92912 4 7.98999V17.99C4 19.0509 4.42149 20.0682 5.17163 20.8184C5.92178 21.5685 6.93913 21.99 8 21.99H16C17.0609 21.99 18.0783 21.5685 18.8284 20.8184C19.5786 20.0682 20 19.0509 20 17.99V7.98999C20 6.92912 19.5786 5.91164 18.8284 5.1615C18.0783 4.41135 17.0609 3.98999 16 3.98999Z' stroke='#AA7c75' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'></path> <path d='M9 2V7' stroke='#AA7c75' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'></path> <path d='M15 2V7' stroke='#AA7c75' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'></path> <path d='M8 16H14' stroke='#AA7c75' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'></path> <path d='M8 12H16' stroke='#AA7c75' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'></path> </g></svg>
+        <svg class='delete-user-button' data-user-id="<?php echo $id; ?>" data-username="<?php echo $title; ?>"width='24px' height='24px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'> <path d='M12 10V17M8 10V17M19 9H22M19 14H22M19 19H21M16 6V16.2C16 17.8802 16 18.7202 15.673 19.362C15.3854 19.9265 14.9265 20.3854 14.362 20.673C13.7202 21 12.8802 21 11.2 21H8.8C7.11984 21 6.27976 21 5.63803 20.673C5.07354 20.3854 4.6146 19.9265 4.32698 19.362C4 18.7202 4 17.8802 4 16.2V6M2 6H18M14 6L13.7294 5.18807C13.4671 4.40125 13.3359 4.00784 13.0927 3.71698C12.8779 3.46013 12.6021 3.26132 12.2905 3.13878C11.9376 3 11.523 3 10.6936 3H9.30643C8.47705 3 8.06236 3 7.70951 3.13878C7.39792 3.26132 7.12208 3.46013 6.90729 3.71698C6.66405 4.00784 6.53292 4.40125 6.27064 5.18807L6 6' stroke='#AA7c75' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'></path> </g></svg>
+    </div>
 </div>
