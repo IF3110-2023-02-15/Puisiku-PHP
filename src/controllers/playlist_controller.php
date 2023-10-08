@@ -38,6 +38,11 @@ class Playlist extends Controller {
 
         try {
             $data = $playlistsService->getPlaylist($playlistId);
+
+            if (!$data['info']) {
+                throw new Exception('Page not Found');
+            }
+
             $this->view('playlist/index', [
                 'current_page' => $current_page,
                 'playlists'=> $playlists,
