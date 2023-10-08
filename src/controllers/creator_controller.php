@@ -6,6 +6,7 @@ require_once SERVICES_DIR . 'user/index.php';
 require_once VIEWS_DIR . 'components/poems/index.php';
 require_once SERVICES_DIR . 'file/index.php';
 require_once VIEWS_DIR . 'components/table.php';
+require_once VIEWS_DIR . 'components/table.php';
 
 class Creator extends Controller {
 

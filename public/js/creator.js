@@ -106,11 +106,24 @@ document.addEventListener('DOMContentLoaded', function(){
                         xhr2.send();
                     });
 
-
+        
                     updatePoemListForm.addEventListener('submit', function(event) {
                         event.preventDefault();
                         console.log("kesubmit");
                     })
+
+                    closeListModal.onclick = function(event) {
+                                event.preventDefault();
+                                updatePoemListModal.style.display = "none";
+                    }
+
+                    window.addEventListener('click', function(event) {
+                                if (event.target === updatePoemListModal) {
+                                    updatePoemListModal.style.display = "none";
+                                }
+                            });
+                });
+            }
 
                     closeListModal.onclick = function(event) {
                         event.preventDefault();
@@ -122,7 +135,12 @@ document.addEventListener('DOMContentLoaded', function(){
                             updatePoemListModal.style.display = "none";
                         }
                     });
-                });
+                }
+        xhr.onerror = function() {
+            console.error('Network error occurred.');
+        };
+        
+        xhr.send();
             }
         }
         xhr.onerror = function() {
@@ -229,24 +247,22 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
         xhr.open('POST', `/creator/updatePoem/${poemId}`, true);
-        // xhr.onload = function() {
-        //     if (xhr.status === 200) {
-        //         console.log(xhr.responseText);
-        //         fetchDisplay();
-        //     } else {
-        //         console.error('Error updating poem:', xhr.statusText);
-        //     }
-        // };
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                console.log(xhr.responseText);
+                fetchDisplay();
+            } else {
+                console.error('Error updating poem:', xhr.statusText);
+            }
+        };
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 // Check the content type
                 const contentType = xhr.getResponseHeader('Content-Type');
                 if (contentType.includes('application/json')) {
-                    console.log(xhr.responseText);
                     let response = JSON.parse(xhr.responseText);
                     if ('success' in response) {
-                        fetchDisplay();
                         notification.textContent = "Successfully update poem information!";
                         notification.classList.add("notification-success");
                     } else {
