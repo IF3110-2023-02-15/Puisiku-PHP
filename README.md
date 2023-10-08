@@ -80,6 +80,19 @@ PSQL_PASSWORD=puisiku
 ### Error Page
 ![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/743dfc16-4bbf-43cb-a3e3-d6591477b865)
 
+### Admin Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/89340189/4e3d3e4c-ecca-4c3b-9c73-f0e068753880)
+
+### Creator Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/89340189/818868fe-1847-48e0-951e-00f646bd1e0f)
+
+### Admin Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/89340189/0dddeabc-d25d-4cc0-812b-a088720de8e1)
+
+### Creator Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/89340189/a046e199-c160-4f17-91d5-56551c55919f)
+
+
 ## Task Division
 ### Server Side
 
