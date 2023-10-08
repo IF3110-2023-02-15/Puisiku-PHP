@@ -3,6 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     let updatePoemForm = document.getElementById("poem-update-form");
     let updatePlaylistForm = document.getElementById("playlist-update-form");
 
+    let updateImageUser = document.getElementById("update-image");
+    let updateImagePoem = document.getElementById("image-update-poem");
+    let updateAudioPoem = document.getElementById("audio-update-poem");
+    let updateImagePlaylist = document.getElementById("image-update-playlist");
+
     function fetchAndDisplayUsers() {
         const userContainer = document.getElementById('users-container');
         
@@ -144,14 +149,36 @@ document.addEventListener('DOMContentLoaded', function() {
         xhr.send();
     }
 
-    function updateUser(userId) {
-        const xhr = new XMLHttpRequest();
-        let formData = new FormData(updateUserForm);
-        for (const pair of formData.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
+    async function updateUser(userId) {
+        let image_path_user = '';
+
+        if (updateImageUser.files.length > 0) {
+            try {
+                image_path_user = await uploadFile(updateImageUser);
+            } catch (error) {
+                notification.textContent = "Failed to upload file!";
+                notification.classList.add("notification-error");
+
+                setTimeout(function() {
+                    notification.textContent = "";
+                    notification.classList.remove("notification-error");
+                }, 2000);
+
+                return;
+            }
         }
 
-        xhr.open('POST', `/admin/updateUser/${userId}`, true);
+
+        const xhr = new XMLHttpRequest();
+        let formData = new FormData(updateUserForm);
+
+        let formDataObject = parseFormDataObject(formData);
+
+        formDataObject['update-user-image-path'] = image_path_user;
+
+        let jsonFormData = JSON.stringify(formDataObject);
+
+        xhr.open('PUT', `/admin/updateUser/${userId}`, true);
         xhr.onload = function() {
             if (xhr.status === 200) {
                 fetchAndDisplayUsers();
@@ -166,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Network error occurred.');
         };
 
-        xhr.send(formData);
+        xhr.send(jsonFormData);
     }
     
     function fetchAndDisplayPoems(id) {
@@ -301,14 +328,54 @@ document.addEventListener('DOMContentLoaded', function() {
         xhr.send();
     }
 
-    function updatePoem(poemId) {
-        const xhr = new XMLHttpRequest();
-        let formData = new FormData(updatePoemForm);
-        for (const pair of formData.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
+    async function updatePoem(poemId) {
+        let image_path_poem = '';
+        let audio_path_poem = '';
+
+        if (updateImagePoem.files.length > 0) {
+            try {
+                image_path_poem = await uploadFile(updateImagePoem);
+            } catch (error) {
+                notification.textContent = "Failed to upload file!";
+                notification.classList.add("notification-error");
+
+                setTimeout(function() {
+                    notification.textContent = "";
+                    notification.classList.remove("notification-error");
+                }, 2000);
+
+                return;
+            }
         }
 
-        xhr.open('POST', `/admin/updatePoem/${poemId}`, true);
+        if (updateAudioPoem.files.length > 0) {
+            try {
+                audio_path_poem = await uploadFile(updateAudioPoem);
+            } catch (error) {
+                notification.textContent = "Failed to upload file!";
+                notification.classList.add("notification-error");
+
+                setTimeout(function() {
+                    notification.textContent = "";
+                    notification.classList.remove("notification-error");
+                }, 2000);
+
+                return;
+            }
+        }
+
+        const xhr = new XMLHttpRequest();
+        let formData = new FormData(updatePoemForm);
+
+        let formDataObject = parseFormDataObject(formData);
+
+        formDataObject['update-poem-admin-image-path'] = image_path_poem;
+        formDataObject['update-poem-admin-audio-path'] = audio_path_poem;
+
+        let jsonFormData = JSON.stringify(formDataObject);
+        
+
+        xhr.open('PUT', `/admin/updatePoem/${poemId}`, true);
         xhr.onload = function() {
             if (xhr.status === 200) {
                 fetchAndDisplayUsers();
@@ -323,7 +390,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Network error occurred.');
         };
 
-        xhr.send(formData);
+        xhr.send(jsonFormData);
     }
 
     function fetchAndDisplayPlaylists(id) {
@@ -442,15 +509,35 @@ document.addEventListener('DOMContentLoaded', function() {
         xhr.send();
     }
 
-    function updatePlaylist(playlistId) {
-        const xhr = new XMLHttpRequest();
-        let formData = new FormData(updatePlaylistForm);
-        for (const pair of formData.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
+    async function updatePlaylist(playlistId) {
+        let image_path_playlist = '';
+
+        if (updateImagePlaylist.files.length > 0) {
+            try {
+                image_path_playlist = await uploadFile(updateImagePlaylist);
+            } catch (error) {
+                notification.textContent = "Failed to upload file!";
+                notification.classList.add("notification-error");
+
+                setTimeout(function() {
+                    notification.textContent = "";
+                    notification.classList.remove("notification-error");
+                }, 2000);
+
+                return;
+            }
         }
 
-        xhr.open('POST', `/admin/updatePlaylist/${playlistId}`, true);
-        console.log("ini lho", playlistId);
+        const xhr = new XMLHttpRequest();
+        let formData = new FormData(updatePlaylistForm);
+
+        let formDataObject = parseFormDataObject(formData);
+
+        formDataObject['update-playlist-image-path'] = image_path_playlist;
+
+        let jsonFormData = JSON.stringify(formDataObject);
+
+        xhr.open('PUT', `/admin/updatePlaylist/${playlistId}`, true);
         xhr.onload = function() {
             if (xhr.status === 200) {
                 console.log(xhr.responseText);
@@ -466,7 +553,46 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Network error occurred.');
         };
 
-        xhr.send(formData);
+        xhr.send(jsonFormData);
+    }
+
+    function uploadFile(fileInputElement, url = '/file') {
+        return new Promise((resolve, reject) => {
+            // Create a new FormData instance
+            let formData = new FormData();
+    
+            // Add the file to the FormData instance
+            formData.append('file', fileInputElement.files[0]);
+    
+            // Create a new XMLHttpRequest
+            let xhr = new XMLHttpRequest();
+    
+            // Set up the request
+            xhr.open('POST', url , true);
+    
+            // Set up handlers for the request
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    let response = JSON.parse(xhr.responseText);
+    
+                    if (response.success) {
+                        resolve(response.success);
+                    } else {
+                        reject('Error: ' + xhr.responseText);
+                    }
+                } else {
+                    reject('Request failed with status ' + xhr.status);
+                }
+            };
+    
+            xhr.send(formData);
+        });
+    }
+    
+    function parseFormDataObject(formData) {
+        let object = {};
+        formData.forEach((value, key) => object[key] = value);
+        return object;
     }
 
     fetchAndDisplayUsers();
