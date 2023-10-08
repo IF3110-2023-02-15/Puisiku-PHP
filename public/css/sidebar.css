@@ -94,8 +94,12 @@
 
 .sidebar-playlist {
     width: 100%;
-    overflow-y: auto;
+    height: 55vh;
+    overflow-y: scroll;
     flex-grow: 1;
+    @media (max-width: 1500px) {
+        height: 50vh;
+    }
 }
 
 .sidebar-playlist img {
@@ -108,7 +112,7 @@
 }
 
 .sidebar-list {
-
+    
 }
 
 .sidebar-creator {
