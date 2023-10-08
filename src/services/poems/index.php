@@ -29,8 +29,6 @@ class PoemsService {
         $poem = $poemModel->findById($id);
         return $poem;
     }
-
-
     public function create($id, $title, $genre, $content, $imagePath, $audioPath, $year){
         if ($imagePath == null) {
             $imagePath = '/img/default_playlist.png';

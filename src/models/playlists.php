@@ -31,6 +31,11 @@ class PlaylistsModel extends Models {
         return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getTitlePlaylist($id){
+        $sql = 'SELECT title FROM Playlists WHERE id = ?';
+        return $this->db->query($sql, [$id])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function readAllPlaylist(){
         $sql = 'SELECT * FROM Playlists';
         return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);

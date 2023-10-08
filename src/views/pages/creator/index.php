@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/sidebar.css">
     <link rel="stylesheet" href="/css/creator.css">
 </head>
-<body>
+<body class="scrollable-creator">
     <?php
     require_once VIEWS_DIR . 'layouts/layout.php';
 

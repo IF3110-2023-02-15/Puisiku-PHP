@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function(){
 
     const notification = document.getElementById('notification');
+    let updatePoemListForm = document.getElementById("poem-update-list-form");
 
     function fetchDisplay(){
         const poemListContainer = document.getElementById('poem-list-container');
@@ -36,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 addPoemSubmit.onclick = function(event) {
                     event.preventDefault();
                     addPoem();
+                    fetchDisplay();
                     addPoemModal.style.display = "none";
                 }
 
@@ -84,29 +86,47 @@ document.addEventListener('DOMContentLoaded', function(){
                     button.addEventListener('click', function() {
                         selectedId = poemId;
                         updatePoemListModal.style.display = "block";
+
+                        const xhr2 = new XMLHttpRequest();
+
+                        xhr2.open('GET', `/creator/getPoemData/${poemId}`, true);
+                        
+                        xhr2.onload = function() {
+                            if (xhr2.status === 200) {
+                                let response = JSON.parse(xhr2.responseText);
+                                console.log(response);
+                                titleUpdatePoemListInput.value = response.success['title'];
+                                genreUpdatePoemListSelect.value = response.success['genre'];
+                                contentUpdatePoemListTextarea.value = response.success['content']
+                            } else {
+                                console.error('Error add poem:', xhr2.statusText);
+                            }
+                        };
+
+                        xhr2.send();
                     });
 
-                    submitUpdatePoemList.onclick = function(event) {
+        
+                    updatePoemListForm.addEventListener('submit', function(event) {
                         event.preventDefault();
-                        if(selectedId){
-                            updatePoemCreator(selectedId);
-                            updatePoemListModal.style.display = "none";
-                        }
-                    }
+                        updatePoemCreator(selectedId)
+                        updatePoemListModal.style.display = "none";
+                    })
 
                     closeListModal.onclick = function(event) {
                         event.preventDefault();
                         updatePoemListModal.style.display = "none";
                     }
 
+
                     window.addEventListener('click', function(event) {
-                        if (event.target === updatePoemListModal) {
-                            updatePoemListModal.style.display = "none";
-                        }
+                                if (event.target === updatePoemListModal) {
+                                    updatePoemListModal.style.display = "none";
+                                }
+                            });
                     });
-                });
+                }
             }
-        }
         xhr.onerror = function() {
             console.error('Network error occurred.');
         };
@@ -114,9 +134,7 @@ document.addEventListener('DOMContentLoaded', function(){
         xhr.send();
     }
     
-    function getData($poemId) {
-        
-    }
+    
 
     function addPoem() {
         const xhr = new XMLHttpRequest();
@@ -124,7 +142,6 @@ document.addEventListener('DOMContentLoaded', function(){
         let formData = new FormData(addPoemForm);
 
         xhr.open('POST', '/creator/addPoem', true);
-
         
         xhr.onload = function() {
             if (xhr.status === 200) {
@@ -208,7 +225,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
     function updatePoemCreator(poemId) {
         const xhr = new XMLHttpRequest();
-        let updatePoemListForm = document.getElementById("poem-update-list-form");
         let formData = new FormData(updatePoemListForm);
         for (const pair of formData.entries()) {
             console.log(pair[0] + ': ' + pair[1]);
