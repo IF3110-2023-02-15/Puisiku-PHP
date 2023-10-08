@@ -69,7 +69,6 @@ $datapoem = $poemService->getData($id);
 
     <div id="update-poem-list-modal" class="update-modal">
         <div class="update-modal-content">
-        <div class="update-modal-content">
             <span id="close-poem-list-modal" class="close-button">&times;</span>
             <h1>Update Poem</h1>
             <form id="poem-update-list-form" class="update-form" enctype="multipart/form-data">

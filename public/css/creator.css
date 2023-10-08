@@ -17,7 +17,7 @@
 .creator-img-box {
    margin-right: 3vh;
    @media (max-width: 800px) {
-    margin-right: 0;
+        margin-right: 0;
 
     }
 }
@@ -56,11 +56,11 @@
 .creator-name {
     font-family: 'StretchPro';
     color: var(--dark-blue);
-    font-size: 7vh;
+    font-size: 5vh;
     -webkit-text-stroke: 2px black;
 
     @media (max-width: 700px) {
-        font-size: 3vh;
+        font-size: 2vh;
         -webkit-text-stroke: 0px black;
     }
 }
@@ -70,6 +70,11 @@
     font-size: 2vh;
     padding-left: 1vh;
     -webkit-text-stroke: 0.5px black;
+
+    @media (max-width: 700px) {
+        font-size: 1vh;
+        -webkit-text-stroke: 0px black;
+    }
 }
 
 th{
@@ -77,6 +82,10 @@ th{
     font-size: 2vh;
     color: white;
     height: 10vh;
+
+    @media (max-width: 700px) {
+        font-size: 1vh;
+    }
 }
 
 td{
@@ -85,6 +94,9 @@ td{
     margin-top: 2vh;
     text-align: center;
     height: 5vh;
+    @media (max-width: 700px) {
+        font-size: 1vh;
+    }
 }
 
 tr {
@@ -94,6 +106,9 @@ tr {
 thead {
     font-family: "StretchPro";
     font-size: 1vh;
+    @media (max-width: 700px) {
+        font-size: 0.5vh;
+    }
 }
 
 tbody tr:hover {
@@ -181,7 +196,7 @@ tbody tr:hover {
 }
 
 .table-size {
-    width: 85%;
+    width: 100%;
 }
 
 .add-poem-btn {

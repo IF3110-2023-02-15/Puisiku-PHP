@@ -109,40 +109,24 @@ document.addEventListener('DOMContentLoaded', function(){
         
                     updatePoemListForm.addEventListener('submit', function(event) {
                         event.preventDefault();
-                        console.log("kesubmit");
+                        updatePoemCreator(selectedId)
+                        updatePoemListModal.style.display = "none";
                     })
-
-                    closeListModal.onclick = function(event) {
-                                event.preventDefault();
-                                updatePoemListModal.style.display = "none";
-                    }
-
-                    window.addEventListener('click', function(event) {
-                                if (event.target === updatePoemListModal) {
-                                    updatePoemListModal.style.display = "none";
-                                }
-                            });
-                });
-            }
 
                     closeListModal.onclick = function(event) {
                         event.preventDefault();
                         updatePoemListModal.style.display = "none";
                     }
 
+
                     window.addEventListener('click', function(event) {
-                        if (event.target === updatePoemListModal) {
-                            updatePoemListModal.style.display = "none";
-                        }
+                                if (event.target === updatePoemListModal) {
+                                    updatePoemListModal.style.display = "none";
+                                }
+                            });
                     });
                 }
-        xhr.onerror = function() {
-            console.error('Network error occurred.');
-        };
-        
-        xhr.send();
             }
-        }
         xhr.onerror = function() {
             console.error('Network error occurred.');
         };
