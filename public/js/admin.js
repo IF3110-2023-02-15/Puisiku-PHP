@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     updateUserForm.addEventListener('submit', function(event) {
         event.preventDefault();
-        console.log("masuk");
         updateUser(idUpdateUserForm.value);
         updateUserModal.style.display = "none";
     })
@@ -205,7 +204,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 // Check the content type
                 const contentType = xhr.getResponseHeader('Content-Type');
-                console.log(xhr.responseText)
                 if (contentType.includes('application/json')) {
                     
                     let response = JSON.parse(xhr.responseText);
@@ -540,10 +538,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                         xhr2.onload = function() {
                             if (xhr2.status === 200) {
-                                console.log(xhr2.responseText);
                                 let response = JSON.parse(xhr2.responseText);
                                 idUpdatePlaylistForm.value = selectedPlaylistId;
-                                console.log(idUpdatePlaylistForm.value);
                                 titleUpdatePlaylist.value = response.success['title'];
                             } else {
                                 console.error('Error add poem:', xhr2.statusText);
