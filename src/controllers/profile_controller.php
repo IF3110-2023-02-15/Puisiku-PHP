@@ -32,9 +32,9 @@ class Profile extends Controller {
         $data = $this->getData();
 
         $id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
-        $username = isset($data['username']) ? $data['username'] : null;
-        $description = isset($data['description']) ? $data['description'] : null;
-        $imagePath = isset($data['profile-image-path']) ? $data['profile-image-path'] : null;
+        $username = isset($data['username']) ? filter_var($data['username'], FILTER_SANITIZE_STRING) : null;
+        $description = isset($data['description']) ? filter_var($data['description'], FILTER_SANITIZE_STRING) : null;
+        $imagePath = isset($data['profile-image-path']) ? filter_var($data['profile-image-path'], FILTER_SANITIZE_URL) : null;
 
         if ($id == null) {
             echo json_encode(['error' => 'Unauthorized']);

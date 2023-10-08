@@ -53,7 +53,7 @@ class Playlist extends Controller {
 
     private function add() {
         $userId = isset($_SESSION['id']) ? $_SESSION['id'] : null;
-        $playlistTitle = isset($_POST['playlist-title']) ? $_POST['playlist-title'] : null;
+        $playlistTitle = isset($_POST['playlist-title']) ? filter_var($_POST['playlist-title'], FILTER_SANITIZE_STRING) : null;
         $playlistImage = isset($_FILES['playlist-image']['tmp_name']) ? $_FILES['playlist-image']['tmp_name'] : null;
 
         $imagePath = null;

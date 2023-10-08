@@ -1,60 +1,104 @@
 .information {
+    display: flex;
+    gap: 25px;
 
+    margin-left: 30px;
+    
+    @media (max-width: 640px) {
+        flex-direction: column;
+    }
 }
 
-.playlist-image-container {
-
+.playlist-image-container img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
 }
 
-th{
-    font-family: 'StretchPro';
-    font-size: 2vh;
+.playlist-info-container h3 {
+    font-weight: 600;
+    font-style: italic;
+}
+
+.playlist-update-delete {
+    margin-top: 20px;
+
+    display: flex;
+    gap: 15px;
+}
+
+.playlist-update-delete button {
+    background-color: var(--dark-blue);
     color: white;
-    height: 10vh;
+    font-weight: bold;
+    border: 0;
+    border-radius: 20px;
+    padding: 8px 18px;
 }
 
-.color-table {
-    color: white;
-}
-
-td{
-    font-size: 2vh;
-    color: white;
-    margin-top: 2vh;
-    text-align: center;
-    height: 5vh;
-}
-
-tr {
-    margin: 10vh;
-}
-
-thead {
-    font-family: "StretchPro";
-    font-size: 1vh;
+.playlist-update-delete button:hover {
+    filter: brightness(0.75);
 }
 
 .playlist-table-container {
+    margin: 30px;
+
     background-color: var(--dark-purple);
+    color: white;
+
     border-radius: 4vh;
-    border: 5px solid black;
-    height: 42vh;
+    border: 3px solid black;
+    height: 50vh;
     overflow-y: scroll;
-    width: 85%;
-    display: flex;
-    flex-direction: center;
+    padding: 20px;
+
+    width: 80%;
+
+    overflow-x: auto;
+
+    @media (max-width: 640px) {
+        /*overflow-x: scroll;*/
+    }
+}
+
+.playlist-table-container table{
+    width: max-content;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-spacing: 0;
+}
+
+.playlist-table-container .center{
+    text-align: center;
+}
+
+.playlist-table-container a{
+    color: white;
+}
+
+.playlist-table-container tbody tr {
+    margin-top: 5px;
+    background-color: red;
+}
+
+.playlist-table-container thead tr td{
+    font-weight: bold;
+    text-align: center;
+}
+
+.playlist-table-container button {
+    background-color: darkred;
+    color: white;
+    font-weight: bold;
+    border: 0;
+    border-radius: 20px;
+    padding: 8px 18px;
 }
 
 .table-size {
     width: 100%;
 }
-
-.playlist-image-container img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-}
-
 
 .clickable-row:hover {
     cursor: pointer;

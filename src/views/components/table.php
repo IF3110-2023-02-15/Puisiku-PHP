@@ -16,16 +16,16 @@ function createTable($headers, $data) {
         $displayIndex = $index + 1;
         $table .= "
             <tr class='clickable-row'>
-                <td>{$displayIndex}</td>
+                <td class='center'>{$displayIndex}</td>
                 <td>
                     <a class='color-table' href='/poem/{$item['id']}'>
                         {$item['title']}
                     </a>
                 </td>
                 <td>{$item['creator_name']}</td>
-                <td>{$item['genre']}</td>
-                <td>{$item['year']}</td>
-                <td>
+                <td class='center'>{$item['genre']}</td>
+                <td class='center'>{$item['year']}</td>
+                <td class='center'>
                     <button onclick='deletePlaylistItem({$item['id']})'>
                         Delete
                     </button>

@@ -61,15 +61,4 @@ class Poems extends Controller {
             echo json_encode(['error' => $e->getMessage()]);
         }
     }
-
-    public function recommendation() {
-        if ($_SERVER['REQUEST_METHOD'] != 'GET') {
-            $this->methodNotAllowed();
-            return;
-        }
-
-
-    }
-
-    
 }
