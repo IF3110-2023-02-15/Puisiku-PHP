@@ -61,26 +61,32 @@ class App {
         $middleware = new Middleware();
         $role = $middleware->getRole();
 
-        $routeData = $this->router->direct($uri, $role);
+        try {
+            $routeData = $this->router->direct($uri, $role);
 
-        if ($routeData) {
-            $controllerName = $routeData['controller'];
-            $methodName = $routeData['method'];
-            $params = $routeData['params'];
+            if ($routeData) {
+                $controllerName = $routeData['controller'];
+                $methodName = $routeData['method'];
+                $params = $routeData['params'];
 
-            // Include the appropriate controller file
-            require CONTROLLER_DIR . $controllerName . '_controller.php';
+                // Include the appropriate controller file
+                require CONTROLLER_DIR . $controllerName . '_controller.php';
 
-            // Instantiate the controller class and call the appropriate method
-            $controllerClass = ucfirst($controllerName);
-            $controller = new $controllerClass();
-            $controller->$methodName($params); // Pass the params to the method
-        } else {
-            // Handle the case where no matching route is found
+                // Instantiate the controller class and call the appropriate method
+                $controllerClass = ucfirst($controllerName);
+                $controller = new $controllerClass();
+                $controller->$methodName($params); // Pass the params to the method
+
+            } else {
+                // Handle the case where no matching route is found
+                require CONTROLLER_DIR . 'errors_controller.php';
+                $errorsController = new Errors();
+                $errorsController->index();
+            }
+        } catch (Exception $e){
             require CONTROLLER_DIR . 'errors_controller.php';
             $errorsController = new Errors();
             $errorsController->index();
         }
-
     }
 }
