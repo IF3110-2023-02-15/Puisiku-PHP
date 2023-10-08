@@ -55,6 +55,12 @@ PSQL_PASSWORD=puisiku
 ### Error Page
 ![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/bc840d08-4394-4301-9e67-84bf5dac25e3)
 
+### Admin Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/89340189/0dddeabc-d25d-4cc0-812b-a088720de8e1)
+
+### Creator Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/89340189/a046e199-c160-4f17-91d5-56551c55919f)
+
 ## Lighthouse Analysis
 ### Landing Page
 ![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/69ed9c6b-a4fd-4af3-90b0-ba229c061f97)
@@ -85,13 +91,6 @@ PSQL_PASSWORD=puisiku
 
 ### Creator Page
 ![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/89340189/818868fe-1847-48e0-951e-00f646bd1e0f)
-
-### Admin Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/89340189/0dddeabc-d25d-4cc0-812b-a088720de8e1)
-
-### Creator Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/89340189/a046e199-c160-4f17-91d5-56551c55919f)
-
 
 ## Task Division
 ### Server Side
