@@ -23,7 +23,7 @@ $datapoem = $poemService->getData($id);
 
         <div class="center-list-poem">
             <div class="add-poem-btn">
-                <button class="creator-add-poem" id="add-poem-button-on-creator">Add Poem</button>
+                <button class="creator-add-poem" id="add-poem-button-on-creator" aria-label="Add Poem">Add Poem</button>
             </div >
         </div>
         <div class="center-list-poem">

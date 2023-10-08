@@ -66,7 +66,7 @@ class Admin extends Controller {
         
 
         try {
-            $result = $playlistService->getTitle($id);
+            $result = $playlistService->getPlaylistData($id);
             echo json_encode(['success' => $result]);
         } catch  (Exception $e){
             echo json_encode(['error' => 'Error updating: ' . $e->getMessage()]);
