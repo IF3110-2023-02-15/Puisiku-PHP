@@ -84,6 +84,11 @@ class PlaylistsService {
         return $playlistModel->getTitlePlaylist($id);
     }
 
+    public function getPlaylistData($id){
+        $playlistModel = new PlaylistsModel();
+        return $playlistModel->getPlaylistData($id);
+    }
+
     public function updateStatus($playlistId, $status) {
         $playlistModel = new PlaylistsModel();
 

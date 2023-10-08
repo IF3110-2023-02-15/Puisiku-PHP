@@ -469,7 +469,7 @@ document.addEventListener('DOMContentLoaded', function() {
         xhr.send(jsonFormData);
     }
 
-    function fetchAndDisplayPlaylists(id) {
+    function fetchAndDisplayPlaylists() {
         const playlistsContainer = document.getElementById('playlists-container');
         
         const xhr = new XMLHttpRequest();
@@ -529,15 +529,34 @@ document.addEventListener('DOMContentLoaded', function() {
                     const userName = button.getAttribute('data-playlist-title');
 
                     button.addEventListener('click', function() {
-                        updatePlaylistModal.style.display = "block";
+                        
                         selectedPlaylistId = playlistId;
+                        
+                        updatePlaylistModal.style.display = "block";
+
+                        const xhr2 = new XMLHttpRequest();
+
+                        xhr2.open('GET', `/admin/getPlaylistData/${playlistId}`, true);
+                        
+                        xhr2.onload = function() {
+                            if (xhr2.status === 200) {
+                                console.log(xhr2.responseText);
+                                let response = JSON.parse(xhr2.responseText);
+                                idUpdatePlaylistForm.value = selectedPlaylistId;
+                                console.log(idUpdatePlaylistForm.value);
+                                titleUpdatePlaylist.value = response.success['title'];
+                            } else {
+                                console.error('Error add poem:', xhr2.statusText);
+                            }
+                        }
+
+                        xhr2.send();
                     });
 
                     updatePlaylistForm.addEventListener('submit', function() {
-                        if(selectedPlaylistId){
-                            updatePlaylist(selectedPlaylistId);
-                            updatePlaylistModal.style.display = "none";
-                        }
+                        updatePlaylist(idUpdatePlaylistForm);
+                        updatePlaylistModal.style.display = "none";
+                        
                     })
 
                     spanClosePlaylistModal.onclick = function(event) {
