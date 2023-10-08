@@ -32,33 +32,53 @@ PSQL_PASSWORD=puisiku
 
 ## User Interface Screenshots
 ### Landing Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/e3bc2505-b818-40ea-967e-cf0e8478395c)
 
 ### Login Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/e7fb1912-d193-4ab9-b4c9-7e69d3e96c2f)
 
 ### Register Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/3fd6c290-c7eb-45e8-990e-fae384b16538)
 
 ### Poems Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/03d350e9-f19b-490e-bd6d-7c06d5217c6c)
 
 ### Poem Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/2b032c44-b7f2-45a0-b437-c1afc48b5a89)
 
 ### Playlist Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/8c6ad702-5652-4902-ae36-8048ba6a795b)
 
 ### Profile Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/49ea9050-11f1-4f72-a577-832d6932739e)
+
+### Error Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/bc840d08-4394-4301-9e67-84bf5dac25e3)
 
 ## Lighthouse Analysis
 ### Landing Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/69ed9c6b-a4fd-4af3-90b0-ba229c061f97)
 
 ### Login Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/b0b74d5d-b63f-45fb-965c-8f82ff1e959d)
 
 ### Register Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/812d5af2-803f-41a4-8bde-bf36c9a976c6)
 
 ### Poems Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/111142b1-fe18-4c69-9e00-96b525eea2f1)
 
 ### Poem Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/232f91c3-ba0a-4576-a1c3-78c2de94247a)
 
 ### Playlist Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/a604448b-8671-4701-9407-0444b91e4a78)
 
 ### Profile Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/fddef367-3da8-4535-b741-2d70f50084d6)
+
+### Error Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/743dfc16-4bbf-43cb-a3e3-d6591477b865)
 
 ## Task Division
 ### Server Side
