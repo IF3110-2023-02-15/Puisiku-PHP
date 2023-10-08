@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function(){
     const idUpdateListPoemForm = document.getElementById("id-update-list-poem-form");
 
     addPoemButtonCreator.addEventListener('click', function(){
-        console.log("mashook");
         addPoemModal.style.display = "block";
     
     });
@@ -40,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
     updatePoemListForm.addEventListener('submit', function(event) {
         event.preventDefault();
-        console.log("ini id: ", idUpdateListPoemForm.value);
 
         updatePoemCreator(idUpdateListPoemForm.value);
         updatePoemListModal.style.display = "none";
@@ -98,7 +96,6 @@ document.addEventListener('DOMContentLoaded', function(){
                 const submitUpdatePoemList = document.getElementById('submit-update-poem-list');
                 updatePoemListButton.forEach(function(button) {
                     const poemId = button.getAttribute('data-id-update-poem-list');
-                    console.log(poemId);
                     button.addEventListener('click', function() {
                         selectedId = poemId;
                         updatePoemListModal.style.display = "block";
@@ -109,9 +106,7 @@ document.addEventListener('DOMContentLoaded', function(){
                         
                         xhr2.onload = function() {
                             if (xhr2.status === 200) {
-                                console.log(poemId);
                                 let response = JSON.parse(xhr2.responseText);
-                                console.log(response);
                                 titleUpdatePoemListInput.value = response.success['title'];
                                 genreUpdatePoemListSelect.value = response.success['genre'];
                                 contentUpdatePoemListTextarea.value = response.success['content'];

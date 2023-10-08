@@ -104,7 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         xhr2.onload = function() {
                             if (xhr2.status === 200) {
                                 let response = JSON.parse(xhr2.responseText);
-                                console.log(response);
                                 updateUserName.value = response.success['username'];
                                 updateDescription.value = response.success['description'];
                                 idUpdateUserForm.value = selectedUserId;
@@ -284,7 +283,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         xhr2.onload = function() {
                             if (xhr2.status === 200) {
                                 let response = JSON.parse(xhr2.responseText);
-                                console.log(response);
                                 titleUpdatePoem.value = response.success['title'];
                                 genreUpdatePoem.value = response.success['genre'];
                                 contentUpdatePoem.value = response.success['content'];
@@ -466,16 +464,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     button.addEventListener('click', function() {
                         updatePlaylistModal.style.display = "block";
                         selectedPlaylistId = playlistId;
-                        console.log(playlistId);
-                        console.log(selectedPlaylistId);
                     });
 
-                    console.log("aejnje")
-
                     updatePlaylistForm.addEventListener('submit', function() {
-                        console.log("masuk")
                         if(selectedPlaylistId){
-                            console.log("mashoook")
                             updatePlaylist(selectedPlaylistId);
                             updatePlaylistModal.style.display = "none";
                         }
@@ -551,7 +543,6 @@ document.addEventListener('DOMContentLoaded', function() {
         xhr.open('PUT', `/admin/updatePlaylist/${playlistId}`, true);
         xhr.onload = function() {
             if (xhr.status === 200) {
-                console.log(xhr.responseText);
                 fetchAndDisplayUsers();
                 fetchAndDisplayPoems();
                 fetchAndDisplayPlaylists();

@@ -147,15 +147,20 @@ svg {
 .style-text {
     display: flex;
     align-items: center;
-    width: 100px;
+    width: 190px;
 
-    @media (max-width: 1060px) {
-        width: 200px;
+    @media (max-width: 1400px) {
+        width: 100px;
     }
 
     @media (max-width: 545px) {
         width: 100px;
     }
+
+    @media (max-width: 1060px) {
+        width: 200px;
+    }
+
 }
 
 p {
