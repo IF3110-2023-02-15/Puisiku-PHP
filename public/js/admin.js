@@ -58,6 +58,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 });
 
+                const updateUserName = document.getElementById("update-username");
+                const updateDescription = document.getElementById("update-description");
+    
                 updateUserButton.forEach(button => {
                     const userId = button.getAttribute('data-user-id');
                     const userRole = button.getAttribute('data-user-role');
@@ -75,6 +78,23 @@ document.addEventListener('DOMContentLoaded', function() {
                             upgradeToCreatorRadio.style.display = 'none';
                             updateRadiobuttonText.style.display = 'none';
                         }
+
+                        const xhr2 = new XMLHttpRequest();
+
+                        xhr2.open('GET', `/admin/getUserData/${selectedUserId}`, true);
+                        
+                        xhr2.onload = function() {
+                            if (xhr2.status === 200) {
+                                let response = JSON.parse(xhr2.responseText);
+                                console.log(response);
+                                updateUserName.value = response.success['username'];
+                                updateDescription.value = response.success['description'];
+                            } else {
+                                console.error('Error add poem:', xhr2.statusText);
+                            }
+                        };
+
+                        xhr2.send();
 
                     });
 
@@ -202,7 +222,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
 
                 });
-
+                
+                const titleUpdatePoem = document.getElementById("title-update-poem");
+                const genreUpdatePoem = document.getElementById("genre-update-poem");
+                const contentUpdatePoem = document.getElementById("content-update-poem");
                 updatePoemButton.forEach(button => {
                     const poemId = button.getAttribute('data-poem-id');
                     const userName = button.getAttribute('data-poem-title');
@@ -210,6 +233,24 @@ document.addEventListener('DOMContentLoaded', function() {
                     button.addEventListener('click', function() {
                         updatePoemModal.style.display = "block";
                         selectedPoemId = poemId;
+
+                        const xhr2 = new XMLHttpRequest();
+
+                        xhr2.open('GET', `/creator/getPoemData/${poemId}`, true);
+                        
+                        xhr2.onload = function() {
+                            if (xhr2.status === 200) {
+                                let response = JSON.parse(xhr2.responseText);
+                                console.log(response);
+                                titleUpdatePoem.value = response.success['title'];
+                                genreUpdatePoem.value = response.success['genre'];
+                                contentUpdatePoem.value = response.success['content']
+                            } else {
+                                console.error('Error add poem:', xhr2.statusText);
+                            }
+                        };
+
+                        xhr2.send();
 
                     });
 
@@ -293,7 +334,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         xhr.onload = function() {
             if (xhr.status === 200) {
-                console.log(xhr.responseText);
                 const playlists = JSON.parse(xhr.responseText);
                 
                 playlistsContainer.innerHTML = playlists;
@@ -305,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 //update button
                 const updatePlaylistModal = document.getElementById("update-playlist-modal");
-                const submitPlaylistButton = document.getElementById("submit-update-playlist");
+                let submitPlaylistButton = document.getElementById("submit-playlist-poem");
                 const spanClosePlaylistModal = document.getElementById("close-playlist-modal");
 
                 //delete button
@@ -340,6 +380,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
 
+                const titleUpdatePlaylist = document.getElementById("title-update-playlist")
                 updatePlaylistButton.forEach(button => {
                     const playlistId = button.getAttribute('data-playlist-id');
                     const userName = button.getAttribute('data-playlist-title');
@@ -347,12 +388,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     button.addEventListener('click', function() {
                         updatePlaylistModal.style.display = "block";
                         selectedPlaylistId = playlistId;
-
+                        console.log(playlistId);
+                        console.log(selectedPlaylistId);
                     });
 
-                    submitPlaylistButton.addEventListener('submit', function(event) {
-                        event.preventDefault();
+                    console.log("aejnje")
+
+                    updatePlaylistForm.addEventListener('submit', function() {
+                        console.log("masuk")
                         if(selectedPlaylistId){
+                            console.log("mashoook")
                             updatePlaylist(selectedPlaylistId);
                             updatePlaylistModal.style.display = "none";
                         }
@@ -405,8 +450,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         xhr.open('POST', `/admin/updatePlaylist/${playlistId}`, true);
+        console.log("ini lho", playlistId);
         xhr.onload = function() {
             if (xhr.status === 200) {
+                console.log(xhr.responseText);
                 fetchAndDisplayUsers();
                 fetchAndDisplayPoems();
                 fetchAndDisplayPlaylists();

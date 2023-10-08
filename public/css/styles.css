@@ -92,6 +92,7 @@ button {
   left: 50%;
   top: 100px;
   transform: translate(-50%, -50%);
+
 }
 
 .modal-content {
@@ -100,6 +101,11 @@ button {
   border: 1px solid black;
   border-radius: 20px;
   width: 450px;
+  @media (max-width: 600px) {
+    width: 280px;
+    padding: 8px;
+    border-radius: 8px;
+  }
 }
 
 .modal-content h2 {
@@ -155,6 +161,10 @@ button {
   border: 1px solid black;
   border-radius: 20px;
   width: 450px;
+  @media (max-width: 700px) {
+    width: 200px;
+    border-radius: 8px;
+  }
 }
 
 .playlist-modal-content img {
@@ -219,11 +229,17 @@ button {
 .update-modal-content {
   background-color: var(--light-purple);
   padding: 20px;
-  border: 5px solid black;
+  border: 3px solid black;
   border-radius: 20px;
   width: 450px;
   height: 60vh;
   overflow-y: scroll;
+  @media (max-width: 600px) {
+    width: 280px;
+    padding: 8px;
+    border-radius: 8px;
+    height: 50vh;
+  }
 }
 
 .update-modal-content select{
@@ -241,6 +257,9 @@ button {
   color: var(--dark-blue);
   font-weight: bold;
   font-size: 3vh;
+  @media (max-width: 700px) {
+    font-size: 2vh;
+  }
 }
 
 .update-form label {
@@ -250,6 +269,11 @@ button {
   color : var(--dark-blue);
   font-weight: bold;
   font-size: 20px;
+
+  @media (max-width: 700px) {
+    font-size: 10px;
+    margin-top: 5px;
+  }
 }
 
 .update-form input {
@@ -259,6 +283,10 @@ button {
   padding: 10px;
   background-color: var(--pink);
   border: 3px solid var(--dark-blue);
+  @media (max-width: 700px) {
+    padding: 6px;
+    border-radius: 6px;
+  }
 }
 
 .update-form textarea {
@@ -268,6 +296,11 @@ button {
   padding: 10px;
   background-color: var(--pink);
   border: 3px solid var(--dark-blue);
+  @media (max-width: 700px) {
+    width: 80%;
+    padding: 6px;
+    border-radius: 6px;
+  }
 }
 
 .update-form button {
@@ -295,11 +328,17 @@ button {
 .add-modal-content {
   background-color: var(--light-purple);
   padding: 4vh;
-  border: 1px solid black;
+  border: 3px solid black;
   border-radius: 20px;
   width: 40vw;
   height: 75vh;
   overflow-y: scroll;
+  @media (max-width: 600px) {
+    width: 280px;
+    padding: 8px;
+    border-radius: 8px;
+    height: 50vh;
+  }
 }
 
 .add-modal-content select{
@@ -317,6 +356,9 @@ button {
   color: var(--dark-blue);
   font-weight: bold;
   font-size: 3vh;
+  @media (max-width: 700px) {
+    font-size: 2vh;
+  }
 }
 
 .add-form label {
@@ -326,6 +368,10 @@ button {
   color : var(--dark-blue);
   font-weight: bold;
   font-size: 20px;
+  @media (max-width: 700px) {
+    font-size: 10px;
+    margin-top: 5px;
+  }
 }
 
 .add-form input {
@@ -360,3 +406,4 @@ button {
   justify-content: center;
   font-family: "StretchPro";
 }
+

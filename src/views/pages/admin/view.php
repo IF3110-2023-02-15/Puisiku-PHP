@@ -137,7 +137,7 @@
 
 
                 <div class="margin-submit">
-                <input type="submit" class="margin-submit" id="submit-update-playlist" class="button-container" value="Submit">
+                <input type="submit" class="margin-submit" id="submit-playlist-poem" class="button-container" value="submit">
                     </div>
 
             </form>

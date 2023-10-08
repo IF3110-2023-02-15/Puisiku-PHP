@@ -35,6 +35,44 @@ class Admin extends Controller {
         $this->view('admin/index', ['current_page' => $current_page, 'playlists'=> $playlists, 'role' => $role, 'display_search' => $display_search, 'profile_url' => $profile_url]);
     }
 
+    public function getUserData($params) {
+        if ($_SERVER['REQUEST_METHOD'] != 'GET') {
+            $this->methodNotAllowed();
+            return;
+        }
+
+        $id = $params['id'];
+
+        $userService = new UserService();
+        
+
+        try {
+            $result = $userService->getData($id);
+            echo json_encode(['success' => $result]);
+        } catch  (Exception $e){
+            echo json_encode(['error' => 'Error updating: ' . $e->getMessage()]);
+        }
+    }
+
+    public function getPlaylistData($params) {
+        if ($_SERVER['REQUEST_METHOD'] != 'GET') {
+            $this->methodNotAllowed();
+            return;
+        }
+
+        $id = $params['id'];
+
+        $playlistService = new PlaylistService();
+        
+
+        try {
+            $result = $playlistService->getTitle($id);
+            echo json_encode(['success' => $result]);
+        } catch  (Exception $e){
+            echo json_encode(['error' => 'Error updating: ' . $e->getMessage()]);
+        }
+    }
+
     public function getUsers() {
         if ($_SERVER['REQUEST_METHOD'] != 'GET') {
             $this->methodNotAllowed();
@@ -285,6 +323,7 @@ class Admin extends Controller {
 
         $playlistId = $params['id'];
 
+
         $title = isset($_POST['title-update-playlist']) ? $_POST['title-update-playlist'] : null;
         $image = isset($_FILES['image-update-playlist']['tmp_name']) ? $_FILES['image-update-playlist']['tmp_name'] : null;
 
@@ -306,13 +345,11 @@ class Admin extends Controller {
         }
         
         try {
-            $result = $playlistService->update($playlistId, $title, $imagePath);
+            $result = $playlistService->update($playlistId, $title, $imagePath=null);
             echo json_encode(['success' => 'User updated successfully', 'result' => $result]);
         } catch (Exception $e) {
             echo json_encode(['error' => 'Error updating user: ' . $e->getMessage()]);
         }
-
-        echo json_encode($playlistId);
     }
 
     

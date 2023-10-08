@@ -20,6 +20,10 @@ class PlaylistService {
         return $this->playlistModel->getIDStatusPlaylistName();
     }
 
+    public function getTitle($id){
+        return $this->playlistModel->getTitlePlaylist($id);
+    }
+
     public function deletePlaylist($id){
         return $this->playlistModel->deletePlaylist($id);
     }

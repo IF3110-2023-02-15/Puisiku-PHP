@@ -164,7 +164,6 @@ tbody tr:hover {
     display: flex;
     flex-direction: center;
     @media (max-width: 1000px) {
-        height: 200vh;
         width: 65%;
         
     }
