@@ -8,6 +8,10 @@
     color : var(--dark-blue);
     font-weight: bold;
     font-family: 'StretchPro';
+
+    @media (max-width: 640px) {
+        font-size: 50px;
+    }
 }
 
 .text-style {

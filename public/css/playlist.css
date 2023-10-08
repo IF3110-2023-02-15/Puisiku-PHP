@@ -98,10 +98,9 @@
 
 .playlist-table-container tbody tr {
     margin-top: 5px;
-    background-color: red;
 }
 
-.playlist-table-container thead tr td{
+.playlist-table-container thead tr th{
     font-weight: bold;
     text-align: center;
 }
