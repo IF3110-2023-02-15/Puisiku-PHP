@@ -13,10 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const idUpdatePlaylistForm = document.getElementById("id-update-playlist-form");
 
     let updateUserModal = document.getElementById("update-user-modal");
+    const notification = document.getElementById('notification');
 
     updateUserForm.addEventListener('submit', function(event) {
         event.preventDefault();
-
+        console.log("masuk");
         updateUser(idUpdateUserForm.value);
         updateUserModal.style.display = "none";
     })
@@ -62,17 +63,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     closeUserButton.onclick = function() {
                         confirmationUserModal.style.display = "none";
-                    }
+                    };
                     
                     yesUserButton.onclick = function() {
                         deleteUser(selectedUserId);
                         confirmationUserModal.style.display = "none";
 
-                    }
+                    };
             
                     noUserButton.onclick = function() {
                         confirmationUserModal.style.display = "none";
-                    }
+                    };
 
                 });
 
@@ -95,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         } else {
                             upgradeToCreatorRadio.style.display = 'none';
                             updateRadiobuttonText.style.display = 'none';
-                        }
+                        };
 
                         const xhr2 = new XMLHttpRequest();
 
@@ -109,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 idUpdateUserForm.value = selectedUserId;
                             } else {
                                 console.error('Error add poem:', xhr2.statusText);
-                            }
+                            };
                         };
 
                         xhr2.send();
@@ -119,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     closeButtonUpdateUser.onclick = function(event) {
                         event.preventDefault();
                         updateUserModal.style.display = "none";
-                    }
+                    };
 
                 });
             } else {
@@ -137,15 +138,31 @@ document.addEventListener('DOMContentLoaded', function() {
     function deleteUser(userId) {
         const xhr = new XMLHttpRequest();
         xhr.open('DELETE', `/admin/deleteUser/${userId}`, true);
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                fetchAndDisplayUsers();
-                fetchAndDisplayPoems();
-                fetchAndDisplayPlaylists();
-            } else {
-                console.error('Error deleting user:', xhr.statusText);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const contentType = xhr.getResponseHeader('Content-Type');
+                if (contentType.includes('application/json')) {
+                    let response = JSON.parse(xhr.responseText);
+                    if ('success' in response) {
+                        notification.textContent = "Successfully deleting user!";
+                        notification.classList.add("notification-success");
+                    } else {
+                        notification.textContent = "An error occurred when delete user information.";
+                        notification.classList.add("notification-error");
+                    }
+                    setTimeout(function() {
+                        notification.textContent = "";
+                        notification.classList.remove("notification-success", "notification-error");
+                    }, 2000);
+                }
             }
         };
+
+        fetchAndDisplayUsers();
+        fetchAndDisplayPoems();
+        fetchAndDisplayPlaylists();
+
 
         xhr.onerror = function() {
             console.error('Network error occurred.');
@@ -184,15 +201,35 @@ document.addEventListener('DOMContentLoaded', function() {
         let jsonFormData = JSON.stringify(formDataObject);
 
         xhr.open('PUT', `/admin/updateUser/${userId}`, true);
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                fetchAndDisplayUsers();
-                fetchAndDisplayPoems();
-                fetchAndDisplayPlaylists();
-            } else {
-                console.error('Error deleting user:', xhr.statusText);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Check the content type
+                const contentType = xhr.getResponseHeader('Content-Type');
+                console.log(xhr.responseText)
+                if (contentType.includes('application/json')) {
+                    
+                    let response = JSON.parse(xhr.responseText);
+                    
+                    if ('success' in response) {
+                        notification.textContent = "Successfully updating user!";
+                        notification.classList.add("notification-success");
+                    } else {
+                        notification.textContent = "An error occurred when update user information.";
+                        notification.classList.add("notification-error");
+                    }
+                    
+
+                    setTimeout(function() {
+                        notification.textContent = "";
+                        notification.classList.remove("notification-success", "notification-error");
+                    }, 2000);
+                }
             }
         };
+
+        fetchAndDisplayUsers();
+        fetchAndDisplayPoems();
+        fetchAndDisplayPlaylists();
 
         xhr.onerror = function() {
             console.error('Network error occurred.');
@@ -320,13 +357,28 @@ document.addEventListener('DOMContentLoaded', function() {
         const xhr = new XMLHttpRequest();
         xhr.open('DELETE', `/admin/deletePoem/${poemId}`, true);
 
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                fetchAndDisplayUsers();
-                fetchAndDisplayPoems();
-                fetchAndDisplayPlaylists();
-            } else {
-                console.error('Error deleting Poem:', xhr.statusText);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Check the content type
+                const contentType = xhr.getResponseHeader('Content-Type');
+                if (contentType.includes('application/json')) {
+                    let response = JSON.parse(xhr.responseText);
+                    if ('success' in response) {
+                        notification.textContent = "Successfully deleting poem!";
+                        notification.classList.add("notification-success");
+                    } else {
+                        notification.textContent = "An error occurred when delete poem information.";
+                        notification.classList.add("notification-error");
+                    }
+                    fetchAndDisplayUsers();
+                    fetchAndDisplayPoems();
+                    fetchAndDisplayPlaylists();
+
+                    setTimeout(function() {
+                        notification.textContent = "";
+                        notification.classList.remove("notification-success", "notification-error");
+                    }, 2000);
+                }
             }
         };
 
@@ -385,13 +437,28 @@ document.addEventListener('DOMContentLoaded', function() {
         
 
         xhr.open('PUT', `/admin/updatePoem/${poemId}`, true);
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                fetchAndDisplayUsers();
-                fetchAndDisplayPoems();
-                fetchAndDisplayPlaylists();
-            } else {
-                console.error('Error updating poem:', xhr.statusText);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Check the content type
+                const contentType = xhr.getResponseHeader('Content-Type');
+                if (contentType.includes('application/json')) {
+                    let response = JSON.parse(xhr.responseText);
+                    if ('success' in response) {
+                        notification.textContent = "Successfully updating poem!";
+                        notification.classList.add("notification-success");
+                    } else {
+                        notification.textContent = "An error occurred when update poem information.";
+                        notification.classList.add("notification-error");
+                    }
+                    fetchAndDisplayUsers();
+                    fetchAndDisplayPoems();
+                    fetchAndDisplayPlaylists();
+
+                    setTimeout(function() {
+                        notification.textContent = "";
+                        notification.classList.remove("notification-success", "notification-error");
+                    }, 2000);
+                }
             }
         };
 
@@ -495,13 +562,28 @@ document.addEventListener('DOMContentLoaded', function() {
         const xhr = new XMLHttpRequest();
         xhr.open('DELETE', `/admin/deletePlaylist/${playlistId}`, true);
 
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                fetchAndDisplayUsers();
-                fetchAndDisplayPoems();
-                fetchAndDisplayPlaylists();
-            } else {
-                console.error('Error deleting playlist:', xhr.statusText);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Check the content type
+                const contentType = xhr.getResponseHeader('Content-Type');
+                if (contentType.includes('application/json')) {
+                    let response = JSON.parse(xhr.responseText);
+                    if ('success' in response) {
+                        notification.textContent = "Successfully deleting playlist!";
+                        notification.classList.add("notification-success");
+                    } else {
+                        notification.textContent = "An error occurred when delete playlist information.";
+                        notification.classList.add("notification-error");
+                    }
+                    fetchAndDisplayUsers();
+                    fetchAndDisplayPoems();
+                    fetchAndDisplayPlaylists();
+
+                    setTimeout(function() {
+                        notification.textContent = "";
+                        notification.classList.remove("notification-success", "notification-error");
+                    }, 2000);
+                }
             }
         };
 
@@ -541,13 +623,28 @@ document.addEventListener('DOMContentLoaded', function() {
         let jsonFormData = JSON.stringify(formDataObject);
 
         xhr.open('PUT', `/admin/updatePlaylist/${playlistId}`, true);
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                fetchAndDisplayUsers();
-                fetchAndDisplayPoems();
-                fetchAndDisplayPlaylists();
-            } else {
-                console.error('Error updating poem:', xhr.statusText);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Check the content type
+                const contentType = xhr.getResponseHeader('Content-Type');
+                if (contentType.includes('application/json')) {
+                    let response = JSON.parse(xhr.responseText);
+                    if ('success' in response) {
+                        notification.textContent = "Successfully updating playlist!";
+                        notification.classList.add("notification-success");
+                    } else {
+                        notification.textContent = "An error occurred when update playlist information.";
+                        notification.classList.add("notification-error");
+                    }
+                    fetchAndDisplayUsers();
+                    fetchAndDisplayPoems();
+                    fetchAndDisplayPlaylists();
+
+                    setTimeout(function() {
+                        notification.textContent = "";
+                        notification.classList.remove("notification-success", "notification-error");
+                    }, 2000);
+                }
             }
         };
 

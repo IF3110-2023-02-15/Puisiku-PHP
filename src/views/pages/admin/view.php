@@ -1,7 +1,7 @@
 <?php $genres = GENRES;
 ?>
 <div class="tes">
-    <!-- Only for testing, should not get username here, do it in controller -->
+<div id="notification" class="notification"></div>
     <div class="horizontal-list">
         <div class="items">
             <div class="horizontal-align">

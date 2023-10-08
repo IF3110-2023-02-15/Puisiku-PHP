@@ -7,7 +7,7 @@ $poemService=new PoemsService();
 $datapoem = $poemService->getData($id);
 ?>
 <div class="scrollable-creator">
-        <div id="notification" class="notification"></div>
+    <div id="notification" class="notification"></div>
         <div class="creator-data">
             <div class="creator-img-box">
                 <img class="img-creator-page" src="<?php echo $data['image_path']; ?>" alt="Creator Image">

@@ -106,7 +106,7 @@ class Admin extends Controller {
 
                 header('HTTP/1.1 200 OK');
                 header('Content-Type: application/json');
-                echo json_encode(['message' => $result]);
+                echo json_encode(['success' => $result]);
             } catch (Exception $e) {
                 // Handle any errors that may occur during deletion
                 header('HTTP/1.1 500 Internal Server Error');
@@ -145,8 +145,6 @@ class Admin extends Controller {
         } catch (Exception $e) {
             echo json_encode(['error' => 'Error updating user: ' . $e->getMessage()]);
         }
-
-        echo json_encode($userId);
     }
 
     public function getPoems($params) {
@@ -181,7 +179,7 @@ class Admin extends Controller {
                 // Return a success response with HTTP status 200
                 header('HTTP/1.1 200 OK');
                 header('Content-Type: application/json');
-                echo json_encode(['message' => $result]);
+                echo json_encode(['success' => $result]);
             } catch (Exception $e) {
                 // Handle any errors that may occur during deletion
                 header('HTTP/1.1 500 Internal Server Error');
@@ -222,7 +220,6 @@ class Admin extends Controller {
             echo json_encode(['error' => 'Error updating user: ' . $e->getMessage()]);
         }
 
-        echo json_encode($poemId);
     }
 
     public function getPlaylists() {
@@ -256,7 +253,7 @@ class Admin extends Controller {
                 // Return a success response with HTTP status 200
                 header('HTTP/1.1 200 OK');
                 header('Content-Type: application/json');
-                echo json_encode(['message' => $result]);
+                echo json_encode(['success' => $result]);
             } catch (Exception $e) {
                 // Handle any errors that may occur during deletion
                 header('HTTP/1.1 500 Internal Server Error');
