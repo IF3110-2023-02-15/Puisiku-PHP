@@ -1,4 +1,8 @@
+
 document.addEventListener('DOMContentLoaded', function(){
+
+    const imageInputPoem = document.getElementById("image-update-poem-list");
+                const audioInputPoem = document.getElementById("audio-update-poem-list");
 
     const notification = document.getElementById('notification');
     let updatePoemListForm = document.getElementById("poem-update-list-form");
@@ -25,6 +29,9 @@ document.addEventListener('DOMContentLoaded', function(){
                 const confirmDeleteButton = document.getElementById("confirm-delete-poem-list");
                 const cancelDeleteButton = document.getElementById("cancel-delete-poem-list");
                 const confirmationModalTextDeletePoemList = document.getElementById("confirmation-modal-text-poem-list");
+
+                const imageInputPoem = document.getElementById("image-update-poem-list");
+                const audioInputPoem = document.getElementById("audio-update-poem-list");
 
                 let selectedId = null;
 
@@ -223,14 +230,54 @@ document.addEventListener('DOMContentLoaded', function(){
         xhr.send();
     }
 
-    function updatePoemCreator(poemId) {
-        const xhr = new XMLHttpRequest();
-        let formData = new FormData(updatePoemListForm);
-        for (const pair of formData.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
+    async function updatePoemCreator(poemId) {
+        let image_path = '';
+        let audio_path = '';
+
+        if (imageInputPoem.files.length > 0) {
+            try {
+                image_path = await uploadFile(imageInputPoem);
+            } catch (error) {
+                notification.textContent = "Failed to upload file!";
+                notification.classList.add("notification-error");
+
+                setTimeout(function() {
+                    notification.textContent = "";
+                    notification.classList.remove("notification-error");
+                }, 2000);
+
+                return;
+            }
         }
 
-        xhr.open('POST', `/creator/updatePoem/${poemId}`, true);
+        if (audioInputPoem.files.length > 0) {
+            try {
+                audio_path = await uploadFile(audioInputPoem);
+            } catch (error) {
+                notification.textContent = "Failed to upload file!";
+                notification.classList.add("notification-error");
+
+                setTimeout(function() {
+                    notification.textContent = "";
+                    notification.classList.remove("notification-error");
+                }, 2000);
+
+                return;
+            }
+        }
+
+        const xhr = new XMLHttpRequest();
+        let formData = new FormData(updatePoemListForm);
+
+
+        let formDataObject = parseFormDataObject(formData);
+
+        formDataObject['update-poem-image-path'] = image_path;
+        formDataObject['update-poem-audio-path'] = audio_path;
+
+        let jsonFormData = JSON.stringify(formDataObject);
+
+        xhr.open('PUT', `/creator/updatePoem/${poemId}`, true);
         xhr.onload = function() {
             if (xhr.status === 200) {
                 console.log(xhr.responseText);
@@ -266,8 +313,51 @@ document.addEventListener('DOMContentLoaded', function(){
             console.error('Network error occurred.');
         };
 
-        xhr.send(formData);
+        xhr.send(jsonFormData);
     }
+    
+
+    function parseFormDataObject(formData) {
+        let object = {};
+        formData.forEach((value, key) => object[key] = value);
+        return object;
+    }
+
+    function uploadFile(fileInputElement, url = '/file') {
+        return new Promise((resolve, reject) => {
+            // Create a new FormData instance
+            let formData = new FormData();
+    
+            // Add the file to the FormData instance
+            formData.append('file', fileInputElement.files[0]);
+    
+            // Create a new XMLHttpRequest
+            let xhr = new XMLHttpRequest();
+    
+            // Set up the request
+            xhr.open('POST', url , true);
+    
+            // Set up handlers for the request
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    let response = JSON.parse(xhr.responseText);
+    
+                    if (response.success) {
+                        resolve(response.success);
+                    } else {
+                        reject('Error: ' + xhr.responseText);
+                    }
+                } else {
+                    reject('Request failed with status ' + xhr.status);
+                }
+            };
+    
+            xhr.send(formData);
+        });
+    }
+    
+    
+    
 
     fetchDisplay();
 

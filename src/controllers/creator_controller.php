@@ -183,7 +183,7 @@ class Creator extends Controller {
     }
 
     public function updatePoem($params){
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] != 'PUT') {
             $this->methodNotAllowed();
             return;
         }
@@ -192,40 +192,14 @@ class Creator extends Controller {
 
         $poemId = $params['id'];
 
-        $title = isset($_POST['title-update-poem-list']) ? $_POST['title-update-poem-list'] : null;
-        $genre = isset($_POST['genre-update-poem-list']) ? $_POST['genre-update-poem-list'] : null;
-        $content = isset($_POST['content-update-poem-list']) ? $_POST['content-update-poem-list'] : null;
-        $image = isset($_FILES['image-update-poem-list']['tmp_name']) ? $_FILES['image-update-poem-list']['tmp_name'] : null;
-        $audio = isset($_FILES['audio-update-poem-list']['tmp_name']) ? $_FILES['audio-update-poem-list']['tmp_name'] : null;
-
-
-        $imagePath = null;
-        $audioPath = null;
+        $data = $this->getData();
+        $title = isset($data['title-update-poem-list']) ? $data['title-update-poem-list'] : null;
+        $genre = isset($data['genre-update-poem-list']) ? $data['genre-update-poem-list'] : null;
+        $content = isset($data['content-update-poem-list']) ? $data['content-update-poem-list'] : null;
+        $imagePath = isset($data['update-poem-image-path']) ? $data['update-poem-image-path'] : null;
+        $audioPath = isset($data['update-poem-audio-path']) ? $data['update-poem-audio-path'] : null;
 
         $poemService = new PoemsService();
-
-        // Try to upload file
-        if ($image != null) {
-            $fileService = new FileService();
-
-            try {
-                $imagePath = $fileService->upload($_FILES['image-update-poem-list']);
-            } catch (Exception $e) {
-                echo json_encode(['error' => $e->getMessage()]);
-                return;
-            }
-        }
-
-        if ($audio != null) {
-            $fileService = new FileService();
-
-            try {
-                $audioPath = $fileService->upload($_FILES['audio-update-poem-list']);
-            } catch (Exception $e) {
-                echo json_encode(['error' => $e->getMessage()]);
-                return;
-            }
-        }
 
         
         try {
