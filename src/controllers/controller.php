@@ -3,6 +3,12 @@
 require_once SERVICES_DIR . 'playlists/index.php';
 
 class Controller {
+    public function __call($name, $arguments) {
+        if (!method_exists($this, $name)) {
+            throw new BadMethodCallException("Method $name does not exist");
+        }
+    }
+
     protected function view($view, $data = []) {
         // Extract the data array to variables for use in the view
         extract($data);

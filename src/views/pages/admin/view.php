@@ -1,7 +1,7 @@
 <?php $genres = GENRES;
 ?>
 <div class="tes">
-    <!-- Only for testing, should not get username here, do it in controller -->
+<div id="notification" class="notification"></div>
     <div class="horizontal-list">
         <div class="items">
             <div class="horizontal-align">
@@ -87,6 +87,8 @@
                     <input id="update-image" class="profile-input" type="file" name="update-image" accept=".jpg, .jpeg, .png"><br>
 
                     <input type="submit" class="margin-submit" id="update-submit" value="Submit">
+
+                    <input type="hidden" id="id-update-user-form">
                 </form>
             </div>
     </div>
@@ -119,6 +121,8 @@
                 <input type="submit" class="margin-submit" id="submit-update-poem" class="button-container" value="Submit">
                     </div>
 
+                    <input type="hidden" id="id-update-poem-form">
+
             </form>
 
         </div>
@@ -139,6 +143,8 @@
                 <div class="margin-submit">
                 <input type="submit" class="margin-submit" id="submit-playlist-poem" class="button-container" value="submit">
                     </div>
+
+                    <input type="hidden" id="id-update-playlist-form">
 
             </form>
 

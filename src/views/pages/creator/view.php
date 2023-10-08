@@ -7,7 +7,7 @@ $poemService=new PoemsService();
 $datapoem = $poemService->getData($id);
 ?>
 <div class="scrollable-creator">
-        <div id="notification" class="notification"></div>
+    <div id="notification" class="notification"></div>
         <div class="creator-data">
             <div class="creator-img-box">
                 <img class="img-creator-page" src="<?php echo $data['image_path']; ?>" alt="Creator Image">
@@ -93,7 +93,9 @@ $datapoem = $poemService->getData($id);
 
                 <div class="margin-submit">
                 <input type="submit" class="margin-submit" id="submit-update-poem-list" class="button-container" value="Submit">
-                    </div>
+                </div>
+
+                <input type="hidden" id="id-update-list-poem-form">
 
             </form>
 

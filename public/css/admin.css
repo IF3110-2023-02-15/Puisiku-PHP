@@ -2,7 +2,7 @@
     width: 30%;
     margin: 20px;
 
-    @media (max-width: 850px) {
+    @media (max-width: 1060px) {
         width : 70%;
     }
     
@@ -16,7 +16,7 @@
 }
 
 .style-buttons {
-    width: 20%;
+    width: 70px;
 }
 
 .bg-clr {
@@ -49,7 +49,7 @@ svg {
     justify-content: space-between;
     height: 97vh;
 
-    @media (max-width: 850px) {
+    @media (max-width: 1060px) {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -147,6 +147,20 @@ svg {
 .style-text {
     display: flex;
     align-items: center;
+    width: 190px;
+
+    @media (max-width: 1400px) {
+        width: 100px;
+    }
+
+    @media (max-width: 545px) {
+        width: 100px;
+    }
+
+    @media (max-width: 1060px) {
+        width: 200px;
+    }
+
 }
 
 p {

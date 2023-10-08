@@ -77,7 +77,7 @@ class PoemsService {
         return $result;
     }
 
-    public function update($poemId, $title, $genre, $content, $imagePath=null, $audioPath=null) {
+    public function update($poemId, $title, $genre, $content, $imagePath, $audioPath) {
         $poemModel = new PoemsModel();
 
         try {
