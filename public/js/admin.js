@@ -8,6 +8,19 @@ document.addEventListener('DOMContentLoaded', function() {
     let updateAudioPoem = document.getElementById("audio-update-poem");
     let updateImagePlaylist = document.getElementById("image-update-playlist");
 
+    const idUpdateUserForm = document.getElementById("id-update-user-form");
+    const idUpdatePoemForm = document.getElementById("id-update-poem-form");
+    const idUpdatePlaylistForm = document.getElementById("id-update-playlist-form");
+
+    let updateUserModal = document.getElementById("update-user-modal");
+
+    updateUserForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        updateUser(idUpdateUserForm.value);
+        updateUserModal.style.display = "none";
+    })
+
     function fetchAndDisplayUsers() {
         const userContainer = document.getElementById('users-container');
         
@@ -24,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 let deleteUserButton = document.querySelectorAll('.delete-user-button');
                 let updateUserButton = document.querySelectorAll('.update-user-button');
 
-                let updateUserModal = document.getElementById("update-user-modal");
+                
                 let submitUserButton = document.getElementById("update-submit");
                 let closeButtonUpdateUser = document.getElementById("update-close-button");
 
@@ -94,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 console.log(response);
                                 updateUserName.value = response.success['username'];
                                 updateDescription.value = response.success['description'];
+                                idUpdateUserForm.value = selectedUserId;
                             } else {
                                 console.error('Error add poem:', xhr2.statusText);
                             }
@@ -102,14 +116,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         xhr2.send();
 
                     });
-
-                    submitUserButton.onclick = function(event) {
-                        event.preventDefault();
-                        if(selectedUserId){
-                            updateUser(selectedUserId);
-                            updateUserModal.style.display = "none";
-                        }
-                    }
 
                     closeButtonUpdateUser.onclick = function(event) {
                         event.preventDefault();
@@ -195,6 +201,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         xhr.send(jsonFormData);
     }
+
+    let updatePoemModal = document.getElementById("update-poem-modal");
+
+    updatePoemForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+            updatePoem(idUpdatePoemForm.value);
+            updatePoemModal.style.display = "none";
+
+    })
     
     function fetchAndDisplayPoems(id) {
         const poemsContainer = document.getElementById('poems-container');
@@ -212,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const deletePoemButton = document.querySelectorAll('.delete-poem-button');
                 const updatePoemButton = document.querySelectorAll('.update-poem-button');
 
-                let updatePoemModal = document.getElementById("update-poem-modal");
+                
                 let submitPoemButton = document.getElementById("submit-update-poem");
                 let closePoemModal = document.getElementById("close-poem-modal");
 
@@ -271,7 +287,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                 console.log(response);
                                 titleUpdatePoem.value = response.success['title'];
                                 genreUpdatePoem.value = response.success['genre'];
-                                contentUpdatePoem.value = response.success['content']
+                                contentUpdatePoem.value = response.success['content'];
+                                idUpdatePoemForm.value = response.success['id'];
                             } else {
                                 console.error('Error add poem:', xhr2.statusText);
                             }
@@ -281,13 +298,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     });
 
-                    submitPoemButton.onclick = function(event) {
-                        event.preventDefault();
-                        if(selectedPoemId){
-                            updatePoem(selectedPoemId);
-                            updatePoemModal.style.display = "none";
-                        }
-                    }
+                    
 
                     closePoemModal.onclick = function(event) {
                         event.preventDefault();

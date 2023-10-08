@@ -93,7 +93,9 @@ $datapoem = $poemService->getData($id);
 
                 <div class="margin-submit">
                 <input type="submit" class="margin-submit" id="submit-update-poem-list" class="button-container" value="Submit">
-                    </div>
+                </div>
+
+                <input type="hidden" id="id-update-list-poem-form">
 
             </form>
 
