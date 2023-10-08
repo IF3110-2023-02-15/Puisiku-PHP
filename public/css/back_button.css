@@ -5,6 +5,7 @@
     border: 2px solid black;
     border-radius: 15px;
     color: white;
+    font-weight: bold;
 }
 
 .back-button:hover {

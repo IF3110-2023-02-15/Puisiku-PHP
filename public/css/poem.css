@@ -5,6 +5,19 @@
     margin-top: 25px;
     padding: 10px;
     max-height: 80%;
+
+    @media (max-width: 1280px) {
+        gap: 20px;
+    }
+
+    @media (max-width: 1024px) {
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: unset;
+
+        overflow-y: scroll;
+        height: fit-content;
+    }
 }
 
 .poem-text-container {
@@ -15,6 +28,15 @@
     border-radius: 20px;
     margin-bottom: 20px;
     overflow-y: auto;
+
+    @media (max-width: 1280px) {
+        width: 450px;
+    }
+
+    @media (max-width: 1024px) {
+        width: 80%;
+        overflow-y: unset;
+    }
 }
 
 .poem-text-container h1 {
@@ -45,6 +67,10 @@
     background-color: var(--light-purple);
     border: 3px solid var(--dark-purple);
     border-radius: 20px;
+
+    @media (max-width: 1280px) {
+        width: 250px;
+    }
 }
 
 .poem-attr-container img{
@@ -55,6 +81,7 @@
 
 .poem-attr-container audio{
     margin-top: 20px;
+    width: 100%;
 }
 
 .poem-add-to-playlist {
@@ -81,6 +108,11 @@
     left: 50%;
     top: 150px;
     transform: translate(-50%, -50%);
+
+    @media (max-width: 560px) {
+        left: 55%;
+        top: 200px;
+    }
 }
 
 .choose-able-playlist-container {
@@ -89,6 +121,14 @@
     border: 1px solid black;
     border-radius: 20px;
     width: 450px;
+
+    @media (max-width: 640px) {
+        width: 300px;
+    }
+
+    @media (max-width: 560px) {
+        width: 250px;
+    }
 }
 
 .choose-able-playlist-container h1 {
