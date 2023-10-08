@@ -16,7 +16,7 @@
 }
 
 .style-buttons {
-    width: 20%;
+    width: 70px;
 }
 
 .bg-clr {
@@ -147,6 +147,11 @@ svg {
 .style-text {
     display: flex;
     align-items: center;
+    width: 200px;
+
+    @media (max-width: 545px) {
+        width: 100px;
+    }
 }
 
 p {
