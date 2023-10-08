@@ -1,6 +1,6 @@
 # Puisiku: A Personal Library of Poems
 
-Puisiku is a monolithic application built with PHP, HTML, CSS, and JS. It serves as a personal library for storing and retrieving poems. The application uses a PostgreSQL database for data persistence and runs in a Docker container for easy setup and deployment.
+Puisiku is a unique digital platform designed for both creators and readers of poetry. Built with PHP, HTML, CSS, and JS, it provides a user-friendly interface where creators can effortlessly publish their poems. Readers, on the other hand, can enjoy a vast collection of poems at their fingertips. The application utilizes a PostgreSQL database for reliable data persistence, ensuring that every piece of poetry is safely stored and readily retrievable. Moreover, Puisiku runs in a Docker container, which simplifies setup and deployment, making it easily accessible across various systems. Experience the joy of poetry like never before with Puisiku - your personal poetry library!
 
 ## Prerequisites
 
@@ -24,37 +24,63 @@ PSQL_USER=puisiku
 PSQL_PASSWORD=puisiku
 ```
 
-## Project Structure
+## Running the Program
+1. Clone this repository
+2. Ensure `Docker Daemon` is running
+3. On root directory, run `make run-build` or `docker compose up -d --build` on terminal
+4. Access the web application by navigating to `localhost:5001` in the web browser
 
-```bash
-├───migrations : Contains script for PostgreSQL database migrations
-├───public : The publicly accessible directory, contains the `index.php` file as entrypoint
-│   ├───audio
-│   ├───css
-│   ├───fonts
-│   ├───img
-│   └───js
-└───src : The main source directory, not publicly accessible, contains the application’s PHP classes
-    ├───controllers : Contains the page controllers which handle the logic for different pages of the application.
-    ├───database : Contains the PSQL class for database transactions.
-    ├───middlewares : Contains middleware functions such as authentication checks
-    ├───models : Contains classes that handle query logic and interact with the database.
-    ├───services : Contains business logic for the application.
-    │   ├───login
-    │   └───register
-    └───views : Contains PHP files for rendering views.
-        ├───components
-        ├───layouts
-        └───pages
-            ├───dashboard
-            ├───errors
-            ├───home
-            ├───login
-            └───register
-```
+## User Interface Screenshots
+### Landing Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/e3bc2505-b818-40ea-967e-cf0e8478395c)
 
-## Steps to Access the Database in DBeaver
+### Login Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/e7fb1912-d193-4ab9-b4c9-7e69d3e96c2f)
 
-1. Set the host to `localhost`.
-2. Specify the port number as `5433`.
-3. Enter the database name, username, and password as provided in environment variables (env).
+### Register Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/3fd6c290-c7eb-45e8-990e-fae384b16538)
+
+### Poems Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/03d350e9-f19b-490e-bd6d-7c06d5217c6c)
+
+### Poem Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/2b032c44-b7f2-45a0-b437-c1afc48b5a89)
+
+### Playlist Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/8c6ad702-5652-4902-ae36-8048ba6a795b)
+
+### Profile Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/49ea9050-11f1-4f72-a577-832d6932739e)
+
+### Error Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/bc840d08-4394-4301-9e67-84bf5dac25e3)
+
+## Lighthouse Analysis
+### Landing Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/69ed9c6b-a4fd-4af3-90b0-ba229c061f97)
+
+### Login Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/b0b74d5d-b63f-45fb-965c-8f82ff1e959d)
+
+### Register Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/812d5af2-803f-41a4-8bde-bf36c9a976c6)
+
+### Poems Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/111142b1-fe18-4c69-9e00-96b525eea2f1)
+
+### Poem Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/232f91c3-ba0a-4576-a1c3-78c2de94247a)
+
+### Playlist Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/a604448b-8671-4701-9407-0444b91e4a78)
+
+### Profile Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/fddef367-3da8-4535-b741-2d70f50084d6)
+
+### Error Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/743dfc16-4bbf-43cb-a3e3-d6591477b865)
+
+## Task Division
+### Server Side
+
+### Client Side

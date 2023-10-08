@@ -1,58 +1,117 @@
 .information {
-
-}
-
-.playlist-image-container {
-
-}
-
-th{
-    font-family: 'StretchPro';
-    font-size: 2vh;
-    color: white;
-    height: 10vh;
-}
-
-.color-table {
-    color: white;
-}
-
-td{
-    font-size: 2vh;
-    color: white;
-    margin-top: 2vh;
-    text-align: center;
-    height: 5vh;
-}
-
-tr {
-    margin: 10vh;
-}
-
-thead {
-    font-family: "StretchPro";
-    font-size: 1vh;
-}
-
-.playlist-table-container {
-    background-color: var(--dark-purple);
-    border-radius: 4vh;
-    border: 5px solid black;
-    height: 42vh;
-    overflow-y: scroll;
-    width: 85%;
     display: flex;
-    flex-direction: center;
+    gap: 25px;
+
+    margin-left: 30px;
+    
+    @media (max-width: 640px) {
+        flex-direction: column;
+    }
 }
 
-.table-size {
-    width: 100%;
-}
-
-.playlist-image-container img {
+.playlist-image-container img{
     width: 200px;
     height: 200px;
     object-fit: cover;
+    border-radius: 20px;
+}
+
+.playlist-info-container h1 {
+    text-overflow: ellipsis;
+}
+
+.playlist-info-container h3 {
+    font-weight: 600;
+    font-style: italic;
+}
+
+.playlist-update-delete {
+    margin-top: 20px;
+
+    display: flex;
+    gap: 15px;
+}
+
+.playlist-update-delete button {
+    background-color: var(--dark-blue);
+    color: white;
+    font-weight: bold;
+    border: 0;
+    border-radius: 20px;
+    padding: 8px 18px;
+}
+
+.playlist-update-delete button:hover {
+    filter: brightness(0.75);
+}
+
+.playlist-table-container {
+    margin: 30px;
+
+    background-color: var(--dark-purple);
+    color: white;
+
+    border-radius: 20px;
+    border: 3px solid black;
+    /*height: 50vh;*/
+    overflow-y: scroll;
+    padding: 20px;
+
+    width: 800px;
+
+    overflow-x: scroll;
+
+    transition: width 0.3s ease;
+
+    @media (max-width: 1280px) {
+        width: 700px;
+    }
+
+    @media (max-width: 1024px) {
+        width: 600px;
+    }
+
+    @media (max-width: 920px) {
+        width: 450px;
+    }
+
+    @media (max-width: 640px) {
+        width: 225px;
+    }
+}
+
+.playlist-table-container table{
+    /*display: none;*/
+    width: 100%;
+    overflow-x: scroll;
+    white-space: nowrap;
+    border-spacing: 0;
+}
+
+.playlist-table-container .center{
+    text-align: center;
+}
+
+.playlist-table-container a{
+    color: white;
+}
+
+.playlist-table-container tbody tr {
+    margin-top: 5px;
+}
+
+.playlist-table-container thead tr th{
+    font-weight: bold;
+    text-align: center;
+}
+
+.playlist-table-container button {
+    background-color: darkred;
+    color: white;
+    font-weight: bold;
+    border: 0;
+    border-radius: 20px;
+    padding: 8px 18px;
 }
 
 
