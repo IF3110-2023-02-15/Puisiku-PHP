@@ -201,7 +201,6 @@ class Creator extends Controller {
 
         $poemService = new PoemsService();
 
-        
         try {
             $result = $poemService->update($poemId, $title, $genre, $content, $imagePath, $audioPath);
             echo json_encode(['success' => 'Poem updated successfully', 'result' => $result]);

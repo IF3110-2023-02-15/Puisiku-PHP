@@ -126,11 +126,11 @@ document.addEventListener('DOMContentLoaded', function(){
                     }
 
 
-                    window.addEventListener('click', function(event) {
-                                if (event.target === updatePoemListModal) {
-                                    updatePoemListModal.style.display = "none";
-                                }
-                            });
+                        window.addEventListener('click', function(event) {
+                            if (event.target === updatePoemListModal) {
+                                updatePoemListModal.style.display = "none";
+                            }
+                        });
                     });
                 }
             }

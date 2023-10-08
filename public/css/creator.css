@@ -32,6 +32,7 @@
         flex-direction: column;
         padding: 5px 0 0 0;
         justify-content: center;
+        align-items: center;
     }
 }
 
@@ -127,15 +128,16 @@ tbody tr:hover {
     height: 13vh;
     overflow-y: scroll;
     font-weight: bold;
-    @media (max-width: 800px) {
-        font-size: 1.5vh;
-        
-    }
-}
-
-.creator-description p {
     overflow-wrap: break-word;
     white-space: normal;
+    @media (max-width: 800px) {
+        font-size: 1.5vh;
+        height: 4vh;
+        width: 20vw;
+        font-weight: normal;
+        font-size: 1vh;
+        text-align: center;
+    }
 }
 
 .creator-add-poem {
@@ -151,6 +153,11 @@ tbody tr:hover {
     -webkit-text-stroke: 0.5px black;
     cursor: pointer; 
     transition: background-color 0.3s ease;
+    @media (max-width: 800px) {
+        font-size: 0.7vh;
+        height: 20px;
+        width: 60px;
+    }
 }
 
 .creator-add-poem:hover {
