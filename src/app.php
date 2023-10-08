@@ -33,7 +33,6 @@ class App {
             'admin/updatePlaylist/:id' => ['admin', ['admin']],
             'admin/getUserData/:id' => ['admin', ['admin']],
             'admin/getPlaylistData/:id' => ['admin', ['admin']],
-            'home' => ['home', $logged_in_role],
             'logout' => ['logout', $logged_in_role],
             'profile' => ['profile', $logged_in_role],
             'upload' => ['file', $logged_in_role],
