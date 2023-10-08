@@ -9,9 +9,9 @@ $sortOptions = array(
     "Title A-Z" => "Poems.title ASC",
     "Title Z-A" => "Poems.title DESC",
     "Newest Poem" => "Poems.year DESC",
-    "Latest Poem" => "Poems.year ASC",
+    "Oldest Poem" => "Poems.year ASC",
     "Newest Uploaded" => "Poems.created_at DESC",
-    "Latest Uploaded" => "Poems.created_at ASC",
+    "Oldest Uploaded" => "Poems.created_at ASC",
 );
 ?>
 
