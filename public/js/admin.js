@@ -34,15 +34,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 userContainer.innerHTML = users;
 
                 let selectedUserId = null;
-                let deleteUserButton = document.querySelectorAll('.delete-user-button');
-                let updateUserButton = document.querySelectorAll('.update-user-button');
+                const deleteUserButton = document.querySelectorAll('.delete-user-button');
+                const updateUserButton = document.querySelectorAll('.update-user-button');
 
                 
                 let submitUserButton = document.getElementById("update-submit");
                 let closeButtonUpdateUser = document.getElementById("update-close-button");
 
-                let confirmationUserModal = document.getElementById('confirmation-modal-user');
-                let confirmationUserTextModal = document.getElementById('confirmation-modal-text-user');
+                const confirmationUserModal = document.getElementById('confirmation-modal-user');
+                const confirmationUserTextModal = document.getElementById('confirmation-modal-text-user');
                 let closeUserButton = document.getElementById("close-button-user");
                 let yesUserButton = document.getElementById("confirm-delete-user");
                 let noUserButton = document.getElementById("cancel-delete-user");
@@ -215,8 +215,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         notification.textContent = "An error occurred when update user information.";
                         notification.classList.add("notification-error");
                     }
-                    
 
+                    fetchAndDisplayUsers();
+                    fetchAndDisplayPoems();
+                    fetchAndDisplayPlaylists();
+                    
                     setTimeout(function() {
                         notification.textContent = "";
                         notification.classList.remove("notification-success", "notification-error");
@@ -224,10 +227,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         };
-
-        fetchAndDisplayUsers();
-        fetchAndDisplayPoems();
-        fetchAndDisplayPlaylists();
 
         xhr.onerror = function() {
             console.error('Network error occurred.');
@@ -241,16 +240,16 @@ document.addEventListener('DOMContentLoaded', function() {
     updatePoemForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
-            updatePoem(idUpdatePoemForm.value);
-            updatePoemModal.style.display = "none";
+        updatePoem(idUpdatePoemForm.value);
+        updatePoemModal.style.display = "none";
 
     })
     
-    function fetchAndDisplayPoems(id) {
+    function fetchAndDisplayPoems() {
         const poemsContainer = document.getElementById('poems-container');
         
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', `/admin/getPoems/${id}`, true); 
+        xhr.open('GET', `/admin/getPoems`, true); 
         
         xhr.onload = function() {
             if (xhr.status === 200) {
@@ -494,7 +493,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 //update button
                 
                 let submitPlaylistButton = document.getElementById("submit-playlist-poem");
-                const spanClosePlaylistModal = document.getElementById("close-playlist-modal");
+                let spanClosePlaylistModal = document.getElementById("close-playlist-modal");
 
                 //delete button
                 const confirmationPlaylistModal = document.getElementById('confirmation-modal-playlist');
@@ -536,7 +535,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     button.addEventListener('click', function() {
                         
                         selectedPlaylistId = playlistId;
-                        
                         updatePlaylistModal.style.display = "block";
 
                         const xhr2 = new XMLHttpRequest();
@@ -557,6 +555,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     
+
 
                     spanClosePlaylistModal.onclick = function(event) {
                         event.preventDefault();
