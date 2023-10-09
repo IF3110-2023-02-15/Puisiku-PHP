@@ -35,7 +35,7 @@ class PoemsService {
         }
 
         if ($audioPath == null) {
-            $audioPath = '/audio/queencard.mp3';
+            $audioPath = '/audio/audio_1.mp3';
         }
 
         try {

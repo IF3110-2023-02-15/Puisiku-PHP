@@ -78,7 +78,7 @@ $datapoem = $poemService->getData($id);
                 <label for="genre-update-poem-list">Genre:</label>
                 <select id="genre-update-poem-list" name="genre-update-poem-list" required>
                     <?php foreach($genres as $genre) { ?>
-                        <option value="<?php echo $genre; ?>" <?php echo ($datapoem['genre'] === $genre) ? 'selected' : ''; ?>><?php echo $genre; ?></option>
+                        <option value="<?php echo $genre; ?>"><?php echo $genre; ?></option>
                     <?php } ?>
                 </select><br>
 
