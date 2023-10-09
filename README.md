@@ -29,6 +29,7 @@ PSQL_PASSWORD=puisiku
 2. Ensure `Docker Daemon` is running
 3. On root directory, run `make run-build` or `docker compose up -d --build` on terminal
 4. Access the web application by navigating to `localhost:5001` in the web browser
+5. Run `docker compose down` to stop the app.
 
 ## User Interface Screenshots
 ### Landing Page
@@ -55,6 +56,12 @@ PSQL_PASSWORD=puisiku
 ### Error Page
 ![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/bc840d08-4394-4301-9e67-84bf5dac25e3)
 
+### Admin Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/89340189/0dddeabc-d25d-4cc0-812b-a088720de8e1)
+
+### Creator Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/89340189/a046e199-c160-4f17-91d5-56551c55919f)
+
 ## Lighthouse Analysis
 ### Landing Page
 ![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/69ed9c6b-a4fd-4af3-90b0-ba229c061f97)
@@ -80,7 +87,56 @@ PSQL_PASSWORD=puisiku
 ### Error Page
 ![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/88904787/743dfc16-4bbf-43cb-a3e3-d6591477b865)
 
+### Admin Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/89340189/4e3d3e4c-ecca-4c3b-9c73-f0e068753880)
+
+### Creator Page
+![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/89340189/818868fe-1847-48e0-951e-00f646bd1e0f)
+
 ## Task Division
 ### Server Side
+| 10023334                       | 13521046                                                 | 13521103                                          |
+|--------------------------------|----------------------------------------------------------|---------------------------------------------------|
+| Profile Controller (Load View) | Project structure and architecture (docker and database) | Admin Controller and related service and model    |
+| Get Data service               | App and Router                                           | creator controller and related service and model  |
+| User find by id model          | Middleware                                               |                                                   |
+| Database seeding               | Login controller and related service and model           |                                                   |
+|                                | Register controller and related service and model        |                                                   |
+|                                | Landing controller and related service and model         |                                                   |
+|                                | File controller and service                              |                                                   |
+|                                | Errors controller                                        |                                                   |
+|                                | Landing controller                                       |                                                   |
+|                                | Logout controller and service                            |                                                   |
+|                                | Poems controller and related service and model           |                                                   |
+|                                | Poem controller and related service and model            |                                                   |
+|                                | Profile controller and related service and model         |                                                   |
+|                                | Playlist controller and related service and model        |                                                   |
+|                                | Playlist Item controller and related service and model   |                                                   |
+
 
 ### Client Side
+| Feature           | PIC                 |
+|-------------------|---------------------|
+| Landing           | 10023334            |
+| Login             | 13521046, 13521103  |
+| Register          | 13521046, 13521103  |
+| Poems             | 13521046            |
+| Poem              | 13521046            |
+| Playlist          | 13521046            |
+| Profile           | 10023334, 13521046  |
+| Error             | 10023334            |
+| Navbar            | 13521046            |
+| Sidebar           | 13521046            |
+| Search and Filter | 13521046            |
+| Creator           | 13521103            |
+| Admin             | 13521103            |
+| Layout            | 13521046            |
+
+
+## Author
+| NIM      | Nama                    |
+|----------|-------------------------|
+| 10023334 | Tubagus Rahardi         |
+| 13521046 | Jeffrey Chow            |
+| 13521103 | Aulia Mey Diva Annandya |
+
