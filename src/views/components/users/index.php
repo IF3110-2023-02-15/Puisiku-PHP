@@ -42,8 +42,8 @@ function adminBox2($users, $offset) {
 }
 
 
-function adminBox3($users) {
-    $html = '<ol>';
+function adminBox3($users, $offset) {
+    $html = '<ol start="' . $offset + 1 . '">';
     foreach ($users as $user) {
         $id = htmlspecialchars($user['id']);
         $title = htmlspecialchars($user['title']);
