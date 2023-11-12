@@ -5,12 +5,19 @@
     <div class="horizontal-list">
         <div class="items">
             <div class="horizontal-align">
-                <div>Users</div>
+                <div>
+                    Users
+                </div>
                 <a href="/register">
-                    <button class="create-size">Add User</button>
+                    <button class="create-size">
+                        Add User
+                    </button>
                 </a>
             </div>
             <div id="users-container" class="bg-clr"></div>
+            <button id="prev-page-button">Previous Page</button>
+            <p id="user-page-count"></p> 
+            <button id="next-page-button">Next Page</button>
         </div>
         <div class="items">
             <div class="horizontal-align">
