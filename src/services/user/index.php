@@ -39,9 +39,6 @@ class UserService {
         return $this->userModel->getAllUsernames();
     }
 
-    // public function getIDUsernames(){
-    //     return $this->userModel->getIDUsernames();
-    // }
 
     public function getPaginatedUsers($offset, $perPage) {
         return $this->userModel->getIDUsernames($offset, $perPage);
