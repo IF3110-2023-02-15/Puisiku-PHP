@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const idUpdateUserForm = document.getElementById("id-update-user-form");
     const idUpdatePoemForm = document.getElementById("id-update-poem-form");
     const idUpdatePlaylistForm = document.getElementById("id-update-playlist-form");
+    const userPageCount = document.getElementById("user-page-count")
 
     let updateUserModal = document.getElementById("update-user-modal");
     const notification = document.getElementById('notification');
@@ -21,17 +22,42 @@ document.addEventListener('DOMContentLoaded', function() {
         updateUserModal.style.display = "none";
     })
 
-    function fetchAndDisplayUsers() {
+    let userCurrentPage = 1;
+    const usersPerPage = 20;
+    let pageCountUser = 0;
+
+    // Handle pagination user
+    document.getElementById('next-page-button').addEventListener('click', function() {
+        if (userCurrentPage < pageCountUser){
+            userCurrentPage++;
+            fetchAndDisplayUsers(userCurrentPage);
+            userPageCount.innerHTML = userCurrentPage + "of" + pageCountUser;
+        }
+    });
+
+    document.getElementById('prev-page-button').addEventListener('click', function() {
+        if (userCurrentPage > 1) {
+            userCurrentPage--;
+            fetchAndDisplayUsers(userCurrentPage);
+            userPageCount.innerHTML = userCurrentPage + "of" + pageCountUser;
+        } 
+    });
+
+    function fetchAndDisplayUsers(page = 1) {
         const userContainer = document.getElementById('users-container');
         
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', '/admin/getUsers', true); 
+        xhr.open('GET', `/admin/getUsers?page=${page}?usersPerPage=${usersPerPage}`, true); 
         
         xhr.onload = function() {
             if (xhr.status === 200) {
-                const users = JSON.parse(xhr.responseText);
+                console.log(xhr.responseText);
+                const result = JSON.parse(xhr.responseText);
                 
-                userContainer.innerHTML = users;
+                userContainer.innerHTML = result.users;
+                pageCountUser = result.pageCountUser;
+
+                userPageCount.innerHTML = userCurrentPage + "of" + pageCountUser;
 
                 let selectedUserId = null;
                 const deleteUserButton = document.querySelectorAll('.delete-user-button');
@@ -56,8 +82,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         selectedUserId = userId;
                         confirmationUserTextModal.textContent = `Are you sure to delete ${userName}?`;
                         confirmationUserModal.style.display = "block";
-
-                        
                     });
                     
                     closeUserButton.onclick = function() {
