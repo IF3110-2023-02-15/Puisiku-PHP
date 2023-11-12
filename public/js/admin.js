@@ -11,7 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const idUpdateUserForm = document.getElementById("id-update-user-form");
     const idUpdatePoemForm = document.getElementById("id-update-poem-form");
     const idUpdatePlaylistForm = document.getElementById("id-update-playlist-form");
-    const userPageCount = document.getElementById("user-page-count")
+
+    const userPageCount = document.getElementById("user-page-count");
+    const poemPageCount = document.getElementById("poem-page-count");
+    const playlistPageCount = document.getElementById("poem-page-count");
 
     let updateUserModal = document.getElementById("update-user-modal");
     const notification = document.getElementById('notification');
@@ -22,12 +25,12 @@ document.addEventListener('DOMContentLoaded', function() {
         updateUserModal.style.display = "none";
     })
 
+    // Handle pagination user
     let userCurrentPage = 1;
     const usersPerPage = 20;
     let pageCountUser = 0;
 
-    // Handle pagination user
-    document.getElementById('next-page-button').addEventListener('click', function() {
+    document.getElementById('user-next-page-button').addEventListener('click', function() {
         if (userCurrentPage < pageCountUser){
             userCurrentPage++;
             fetchAndDisplayUsers(userCurrentPage);
@@ -35,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    document.getElementById('prev-page-button').addEventListener('click', function() {
+    document.getElementById('user-prev-page-button').addEventListener('click', function() {
         if (userCurrentPage > 1) {
             userCurrentPage--;
             fetchAndDisplayUsers(userCurrentPage);
@@ -43,11 +46,32 @@ document.addEventListener('DOMContentLoaded', function() {
         } 
     });
 
-    function fetchAndDisplayUsers(page = 1) {
+    // Handle pagination user
+    let poemCurrentPage = 1;
+    const poemsPerPage = 20;
+    let pageCountPoem = 0;
+
+    document.getElementById('poem-next-page-button').addEventListener('click', function() {
+        if (poemCurrentPage < pageCountPoem){
+            poemCurrentPage++;
+            fetchAndDisplayPoems(poemCurrentPage);
+            poemPageCount.innerHTML = poemCurrentPage + "of" + pageCountPoem;
+        }
+    });
+
+    document.getElementById('poem-prev-page-button').addEventListener('click', function() {
+        if (poemCurrentPage > 1) {
+            poemCurrentPage--;
+            fetchAndDisplayPoems(poemCurrentPage);
+            poemPageCount.innerHTML = poemCurrentPage + "of" + pageCountPoem;
+        } 
+    });
+
+    function fetchAndDisplayUsers(userpage = 1) {
         const userContainer = document.getElementById('users-container');
         
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', `/admin/getUsers?page=${page}?usersPerPage=${usersPerPage}`, true); 
+        xhr.open('GET', `/admin/getUsers?userpage=${userpage}?usersPerPage=${usersPerPage}`, true); 
         
         xhr.onload = function() {
             if (xhr.status === 200) {
@@ -269,17 +293,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     })
     
-    function fetchAndDisplayPoems() {
+    function fetchAndDisplayPoems(poempage = 1) {
         const poemsContainer = document.getElementById('poems-container');
         
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', `/admin/getPoems`, true); 
+        xhr.open('GET', `/admin/getPoems?poempage=${poempage}?poemsPerPage=${poemsPerPage}`, true); 
         
         xhr.onload = function() {
             if (xhr.status === 200) {
-                const poems = JSON.parse(xhr.responseText);
+                console.log(xhr.responseText);
+                const result = JSON.parse(xhr.responseText);
                 
-                poemsContainer.innerHTML = poems;
+                poemsContainer.innerHTML = result.poems;
+                pageCountPoem = result.pageCountPoem;
+
+                poemPageCount.innerHTML = poemCurrentPage + "of" + pageCountPoem;
 
                 let selectedPoemId = null;
                 const deletePoemButton = document.querySelectorAll('.delete-poem-button');
@@ -353,8 +381,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         xhr2.send();
 
                     });
-
-                    
 
                     closePoemModal.onclick = function(event) {
                         event.preventDefault();
