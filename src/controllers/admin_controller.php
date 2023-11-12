@@ -81,11 +81,23 @@ class Admin extends Controller {
 
         header('Content-Type: application/json');
 
-        $userService = new UserService();
-        $result = $userService->getIDUsernames();
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $perPage = isset($_GET['perPage']) ? (int)$_GET['perPage'] : 20;
 
-        $users = adminBox2($result);
-        echo json_encode($users);
+        $page = $page > 0 ? $page : 1;
+        $perPage = ($perPage > 0 && $perPage <= 100) ? $perPage : 20;
+
+        $offset = ($page - 1) * $perPage;
+
+        $userService = new UserService();
+        $result = $userService->getPaginatedUsers($offset, $perPage);
+
+        $users = adminBox2($result, $offset);
+        $rowCount = $userService->getPageCount();
+
+        $pageCountUser = ceil($rowCount['count'] / $perPage);
+
+        echo json_encode(['users' => $users, 'pageCountUser' => $pageCountUser]);
     }
 
     public function deleteUser($params) {
