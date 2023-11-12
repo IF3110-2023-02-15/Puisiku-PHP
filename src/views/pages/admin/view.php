@@ -15,9 +15,15 @@
                 </a>
             </div>
             <div id="users-container" class="bg-clr"></div>
-            <button id="user-prev-page-button">Previous Page</button>
-            <p id="user-page-count"></p> 
-            <button id="user-next-page-button">Next Page</button>
+            <div class="pagination-element">
+                <button id="user-prev-page-button" class="pagination-button">
+                    <img src="/assets/icons/left-arrow.svg" alt="Previous">
+                </button>
+                <p id="user-page-count" class="pagination-text"></p> 
+                <button id="user-next-page-button" class="pagination-button">
+                    <img src="/assets/icons/right-arrow.svg" alt="Next">
+                </button>
+            </div>
         </div>
         <div class="items">
             <div class="horizontal-align">
@@ -31,9 +37,15 @@
                 </a>
             </div>
             <div id="poems-container" class="bg-clr"></div>
-            <button id="poem-prev-page-button">Previous Page</button>
-            <p id="poem-page-count"></p> 
-            <button id="poem-next-page-button">Next Page</button>
+            <div class="pagination-element">
+                <button id="poem-prev-page-button" class="pagination-button">
+                    <img src="/assets/icons/left-arrow.svg" alt="Previous">
+                </button>
+                <p id="poem-page-count" class="pagination-text"></p> 
+                <button id="poem-next-page-button" class="pagination-button">
+                    <img src="/assets/icons/right-arrow.svg" alt="Next">
+                </button>
+            </div>
         </div>
 
         <div class="items">
@@ -43,9 +55,15 @@
                 </div>
             </div>
             <div id="playlists-container" class="bg-clr"></div>
-            <button id="playlist-prev-page-button">Previous Page</button>
-            <p id="playlist-page-count"></p> 
-            <button id="playlist-next-page-button">Next Page</button>
+            <div class="pagination-element">
+                <button id="playlist-prev-page-button" class="pagination-button">
+                    <img src="/assets/icons/left-arrow.svg" alt="Previous">
+                </button>
+                <p id="playlist-page-count" class="pagination-text"></p> 
+                <button id="playlist-next-page-button" class="pagination-button">
+                    <img src="/assets/icons/right-arrow.svg" alt="Next">
+                </button>
+            </div>
         </div>
     </div>
 
