@@ -253,11 +253,23 @@ class Admin extends Controller {
 
         header('Content-Type: application/json');
 
-        $playlistService = new PlaylistsService();
-        $result = $playlistService->getIDPlaylistName();
-        $playlist = adminBox3($result);
+        $playlistpage = isset($_GET['playlistpage']) ? (int)$_GET['playlistpage'] : 1;
+        $perPage = isset($_GET['playlistsPerPage']) ? (int)$_GET['playlistsPerPage'] : 20;
 
-        echo json_encode($playlist);
+        $page = $playlistpage > 0 ? $playlistpage : 1;
+        $perPage = ($perPage > 0 && $perPage <= 100) ? $perPage : 20;
+
+        $offset = ($page - 1) * $perPage;
+
+        $playlistService = new PlaylistsService();
+        $result = $playlistService->getPaginatedPlaylists($offset, $perPage);
+        $playlists = adminBox3($result, $offset);
+
+        $rowCount = $playlistService->getPageCount();
+
+        $pageCountPlaylist = ceil($rowCount['count'] / $perPage);
+
+        echo json_encode(['playlists' => $playlists, 'pageCountPlaylist' => $pageCountPlaylist]);
     }
 
     public function deletePlaylist($params) {
