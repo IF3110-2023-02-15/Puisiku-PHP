@@ -81,10 +81,10 @@ class Admin extends Controller {
 
         header('Content-Type: application/json');
 
-        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-        $perPage = isset($_GET['perPage']) ? (int)$_GET['perPage'] : 20;
+        $userpage = isset($_GET['userpage']) ? (int)$_GET['userpage'] : 1;
+        $perPage = isset($_GET['usersPerPage']) ? (int)$_GET['usersPerPage'] : 20;
 
-        $page = $page > 0 ? $page : 1;
+        $page = $userpage > 0 ? $userpage : 1;
         $perPage = ($perPage > 0 && $perPage <= 100) ? $perPage : 20;
 
         $offset = ($page - 1) * $perPage;
@@ -167,12 +167,23 @@ class Admin extends Controller {
 
         header('Content-Type: application/json');
 
+        $poempage = isset($_GET['poempage']) ? (int)$_GET['poempage'] : 1;
+        $perPage = isset($_GET['poemsPerPage']) ? (int)$_GET['poemsPerPage'] : 20;
+
+        $page = $poempage > 0 ? $poempage : 1;
+        $perPage = ($perPage > 0 && $perPage <= 100) ? $perPage : 20;
+
+        $offset = ($page - 1) * $perPage;
+
         $poemService = new PoemsService();
-        $result = $poemService->getIDPoemName();
-        $poems = adminBox1($result);
+        $result = $poemService->getPaginatedPoems($offset, $perPage);
+        $poems = adminBox1($result, $offset);
 
+        $rowCount = $poemService->getPageCount();
 
-        echo json_encode($poems);
+        $pageCountPoem = ceil($rowCount['count'] / $perPage);
+
+        echo json_encode(['poems' => $poems, 'pageCountPoem' => $pageCountPoem]);
     }
 
     public function deletePoem($params) {
