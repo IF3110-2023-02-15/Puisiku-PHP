@@ -15,9 +15,9 @@
                 </a>
             </div>
             <div id="users-container" class="bg-clr"></div>
-            <button id="prev-page-button">Previous Page</button>
+            <button id="user-prev-page-button">Previous Page</button>
             <p id="user-page-count"></p> 
-            <button id="next-page-button">Next Page</button>
+            <button id="user-next-page-button">Next Page</button>
         </div>
         <div class="items">
             <div class="horizontal-align">
@@ -31,6 +31,9 @@
                 </a>
             </div>
             <div id="poems-container" class="bg-clr"></div>
+            <button id="poem-prev-page-button">Previous Page</button>
+            <p id="poem-page-count"></p> 
+            <button id="poem-next-page-button">Next Page</button>
         </div>
 
         <div class="items">
@@ -40,6 +43,9 @@
                 </div>
             </div>
             <div id="playlists-container" class="bg-clr"></div>
+            <button id="playlist-prev-page-button">Previous Page</button>
+            <p id="playlist-page-count"></p> 
+            <button id="playlist-next-page-button">Next Page</button>
         </div>
     </div>
 
