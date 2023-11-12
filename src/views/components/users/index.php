@@ -20,8 +20,8 @@ function adminBox1($users) {
     return $html;
 }
 
-function adminBox2($users) {
-    $html = '<ol>';
+function adminBox2($users, $offset) {
+    $html = '<ol start="' . $offset + 1 . '">';
     foreach ($users as $user) {
         $id = htmlspecialchars($user['id']);
         $title = htmlspecialchars($user['username']);
