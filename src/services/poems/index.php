@@ -16,8 +16,13 @@ class PoemsService {
     public function getAllPoemByCreator($id){
         return $this->poemsModel->getAllPoemByCreator($id);
     }
-    public function getIDPoemName(){
-        return $this->poemsModel->getIDPoemName();
+
+    public function getPaginatedPoems($offset, $perPage){
+        return $this->poemsModel->getIDPoemName($offset, $perPage);
+    }
+
+    public function getPageCount(){
+        return $this->poemsModel->getPageCount();
     }
 
     public function deletePoem($id){
