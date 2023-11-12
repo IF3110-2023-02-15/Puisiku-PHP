@@ -95,9 +95,15 @@ class PoemsModel extends Models {
         return $this->db->query($sql, [$id])->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getIDPoemName(){
-        $sql = 'SELECT id, title FROM Poems';
-        return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    public function getIDPoemName($offset, $perPage){
+        $sql = 'SELECT id, title FROM Poems LIMIT ? OFFSET ?';
+        return $this->db->query($sql, [$perPage, $offset])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getPageCount(){
+        $sql = 'SELECT COUNT (*) FROM Poems';
+
+        return $this->db->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
 
     public function readAllPoems(){
