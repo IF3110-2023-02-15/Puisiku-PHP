@@ -1,7 +1,7 @@
 <?php
 
-function adminBox1($users) {
-    $html = '<ol>';
+function adminBox1($users, $offset) {
+    $html = '<ol start="' . $offset + 1 . '">';
     foreach ($users as $user) {
         $id = htmlspecialchars($user['id']);
         $title = htmlspecialchars($user['title']);
