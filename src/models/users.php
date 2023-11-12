@@ -14,10 +14,19 @@ class UsersModel extends Models{
         return $this->db->query($sql)->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    public function getIDUsernames(){
-        $sql ='SELECT id, username, role FROM Users';
-        return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    public function getIDUsernames($offset, $perPage) {
+        $sql = 'SELECT id, username, role FROM Users LIMIT ? OFFSET ?';
+
+        return $this->db->query($sql, [$perPage, $offset])->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+    public function getPageCount(){
+        $sql = 'SELECT COUNT (*) FROM Users';
+
+        return $this->db->query($sql)->fetch(PDO::FETCH_ASSOC);
+    }
+    
 
     public function readAll() {
         $sql = 'SELECT * FROM Users';
