@@ -1,0 +1,25 @@
+.premium {
+    overflow-y: auto;
+    padding-bottom: 50px;
+}
+
+.subscribed-container, .suggestion-container {
+    margin-bottom: 32px;
+}
+
+.subscribed-container h1, .suggestion-container h1 {
+    margin-left: 35px;
+}
+
+.subscribed-creator-container, .suggested-creator-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px;
+    margin-top: 25px;
+    padding: 0px 30px;
+}
+
+.subscribed-creator-container p, .suggested-creator-container p{
+    font-size: 20px;
+}
