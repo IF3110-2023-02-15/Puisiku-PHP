@@ -3,11 +3,11 @@ FROM php:8.0-apache
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
-# Install pdo_pgsql PHP extension
+# Install pdo_pgsql and soap PHP extensions
 RUN apt-get update && \
-    apt-get install -y libpq-dev && \
+    apt-get install -y libpq-dev libxml2-dev && \
     docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql && \
-    docker-php-ext-install pdo pdo_pgsql pgsql
+    docker-php-ext-install pdo pdo_pgsql pgsql soap
 
 # Set the working directory in the container to /var/www/html
 WORKDIR /var/www/html
