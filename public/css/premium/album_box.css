@@ -1,0 +1,19 @@
+.album-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    width: 180px;
+}
+
+.album-box img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.album-box h2 {
+    word-wrap: break-word;
+    text-align: center;
+}

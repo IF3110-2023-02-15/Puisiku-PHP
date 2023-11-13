@@ -1,0 +1,44 @@
+.premium-creator {
+    overflow-y: auto;
+    padding-bottom: 50px;
+}
+
+.creator-profile {
+    display: flex;
+    padding: 0 35px;
+}
+
+.image-wrapper img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+
+    border-radius: 20px;
+}
+
+.profile-wrapper {
+    padding: 5px 25px;
+}
+
+.profile-wrapper h1 {
+
+}
+
+.profile-wrapper p {
+    font-size: 20px;
+}
+
+hr {
+    margin: 20px 35px;
+    height: 1px;
+    border: none;
+    background-color: black;
+}
+
+.creator-albums {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+    padding: 10px 35px;
+}
