@@ -81,11 +81,23 @@ class Admin extends Controller {
 
         header('Content-Type: application/json');
 
-        $userService = new UserService();
-        $result = $userService->getIDUsernames();
+        $userpage = isset($_GET['userpage']) ? (int)$_GET['userpage'] : 1;
+        $perPage = isset($_GET['usersPerPage']) ? (int)$_GET['usersPerPage'] : 20;
 
-        $users = adminBox2($result);
-        echo json_encode($users);
+        $page = $userpage > 0 ? $userpage : 1;
+        $perPage = ($perPage > 0 && $perPage <= 100) ? $perPage : 20;
+
+        $offset = ($page - 1) * $perPage;
+
+        $userService = new UserService();
+        $result = $userService->getPaginatedUsers($offset, $perPage);
+
+        $users = adminBox2($result, $offset);
+        $rowCount = $userService->getPageCount();
+
+        $pageCountUser = ceil($rowCount['count'] / $perPage);
+
+        echo json_encode(['users' => $users, 'pageCountUser' => $pageCountUser]);
     }
 
     public function deleteUser($params) {
@@ -155,12 +167,23 @@ class Admin extends Controller {
 
         header('Content-Type: application/json');
 
+        $poempage = isset($_GET['poempage']) ? (int)$_GET['poempage'] : 1;
+        $perPage = isset($_GET['poemsPerPage']) ? (int)$_GET['poemsPerPage'] : 20;
+
+        $page = $poempage > 0 ? $poempage : 1;
+        $perPage = ($perPage > 0 && $perPage <= 100) ? $perPage : 20;
+
+        $offset = ($page - 1) * $perPage;
+
         $poemService = new PoemsService();
-        $result = $poemService->getIDPoemName();
-        $poems = adminBox1($result);
+        $result = $poemService->getPaginatedPoems($offset, $perPage);
+        $poems = adminBox1($result, $offset);
 
+        $rowCount = $poemService->getPageCount();
 
-        echo json_encode($poems);
+        $pageCountPoem = ceil($rowCount['count'] / $perPage);
+
+        echo json_encode(['poems' => $poems, 'pageCountPoem' => $pageCountPoem]);
     }
 
     public function deletePoem($params) {
@@ -230,11 +253,23 @@ class Admin extends Controller {
 
         header('Content-Type: application/json');
 
-        $playlistService = new PlaylistsService();
-        $result = $playlistService->getIDPlaylistName();
-        $playlist = adminBox3($result);
+        $playlistpage = isset($_GET['playlistpage']) ? (int)$_GET['playlistpage'] : 1;
+        $perPage = isset($_GET['playlistsPerPage']) ? (int)$_GET['playlistsPerPage'] : 20;
 
-        echo json_encode($playlist);
+        $page = $playlistpage > 0 ? $playlistpage : 1;
+        $perPage = ($perPage > 0 && $perPage <= 100) ? $perPage : 20;
+
+        $offset = ($page - 1) * $perPage;
+
+        $playlistService = new PlaylistsService();
+        $result = $playlistService->getPaginatedPlaylists($offset, $perPage);
+        $playlists = adminBox3($result, $offset);
+
+        $rowCount = $playlistService->getPageCount();
+
+        $pageCountPlaylist = ceil($rowCount['count'] / $perPage);
+
+        echo json_encode(['playlists' => $playlists, 'pageCountPlaylist' => $pageCountPlaylist]);
     }
 
     public function deletePlaylist($params) {

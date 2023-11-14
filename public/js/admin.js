@@ -12,6 +12,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const idUpdatePoemForm = document.getElementById("id-update-poem-form");
     const idUpdatePlaylistForm = document.getElementById("id-update-playlist-form");
 
+    const userPageCount = document.getElementById("user-page-count");
+    const poemPageCount = document.getElementById("poem-page-count");
+    const playlistPageCount = document.getElementById("playlist-page-count");
+
     let updateUserModal = document.getElementById("update-user-modal");
     const notification = document.getElementById('notification');
 
@@ -21,17 +25,83 @@ document.addEventListener('DOMContentLoaded', function() {
         updateUserModal.style.display = "none";
     })
 
-    function fetchAndDisplayUsers() {
+    // Handle pagination user
+    let userCurrentPage = 1;
+    const usersPerPage = 20;
+    let pageCountUser = 0;
+
+    document.getElementById('user-next-page-button').addEventListener('click', function() {
+        if (userCurrentPage < pageCountUser){
+            userCurrentPage++;
+            fetchAndDisplayUsers(userCurrentPage);
+            userPageCount.innerHTML = userCurrentPage + " of " + pageCountUser;
+        }
+    });
+
+    document.getElementById('user-prev-page-button').addEventListener('click', function() {
+        if (userCurrentPage > 1) {
+            userCurrentPage--;
+            fetchAndDisplayUsers(userCurrentPage);
+            userPageCount.innerHTML = userCurrentPage + " of " + pageCountUser;
+        } 
+    });
+
+    // Handle pagination poem
+    let poemCurrentPage = 1;
+    const poemsPerPage = 20;
+    let pageCountPoem = 0;
+
+    document.getElementById('poem-next-page-button').addEventListener('click', function() {
+        if (poemCurrentPage < pageCountPoem){
+            poemCurrentPage++;
+            fetchAndDisplayPoems(poemCurrentPage);
+            poemPageCount.innerHTML = poemCurrentPage + " of " + pageCountPoem;
+        }
+    });
+
+    document.getElementById('poem-prev-page-button').addEventListener('click', function() {
+        if (poemCurrentPage > 1) {
+            poemCurrentPage--;
+            fetchAndDisplayPoems(poemCurrentPage);
+            poemPageCount.innerHTML = poemCurrentPage + " of " + pageCountPoem;
+        } 
+    });
+
+    // Handle pagination poem
+    let playlistCurrentPage = 1;
+    const playlistsPerPage = 20;
+    let pageCountPlaylist = 0;
+
+    document.getElementById('playlist-next-page-button').addEventListener('click', function() {
+        if (playlistCurrentPage < pageCountPlaylist){
+            playlistCurrentPage++;
+            fetchAndDisplayPoems(playlistCurrentPage);
+            playlistPageCount.innerHTML = playlistCurrentPage + " of " + pageCountPlaylist;
+        }
+    });
+
+    document.getElementById('playlist-prev-page-button').addEventListener('click', function() {
+        if (playlistCurrentPage > 1) {
+            playlistCurrentPage--;
+            fetchAndDisplayPoems(playlistCurrentPage);
+            playlistPageCount.innerHTML = playlistCurrentPage + " of " + pageCountPlaylist;
+        } 
+    });
+
+    function fetchAndDisplayUsers(userpage = 1) {
         const userContainer = document.getElementById('users-container');
         
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', '/admin/getUsers', true); 
+        xhr.open('GET', `/admin/getUsers?userpage=${userpage}?usersPerPage=${usersPerPage}`, true); 
         
         xhr.onload = function() {
             if (xhr.status === 200) {
-                const users = JSON.parse(xhr.responseText);
+                const result = JSON.parse(xhr.responseText);
                 
-                userContainer.innerHTML = users;
+                userContainer.innerHTML = result.users;
+                pageCountUser = result.pageCountUser;
+
+                userPageCount.innerHTML = userCurrentPage + " of " + pageCountUser;
 
                 let selectedUserId = null;
                 const deleteUserButton = document.querySelectorAll('.delete-user-button');
@@ -56,8 +126,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         selectedUserId = userId;
                         confirmationUserTextModal.textContent = `Are you sure to delete ${userName}?`;
                         confirmationUserModal.style.display = "block";
-
-                        
                     });
                     
                     closeUserButton.onclick = function() {
@@ -245,17 +313,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     })
     
-    function fetchAndDisplayPoems() {
+    function fetchAndDisplayPoems(poempage = 1) {
         const poemsContainer = document.getElementById('poems-container');
         
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', `/admin/getPoems`, true); 
+        xhr.open('GET', `/admin/getPoems?poempage=${poempage}?poemsPerPage=${poemsPerPage}`, true); 
         
         xhr.onload = function() {
             if (xhr.status === 200) {
-                const poems = JSON.parse(xhr.responseText);
+                const result = JSON.parse(xhr.responseText);
                 
-                poemsContainer.innerHTML = poems;
+                poemsContainer.innerHTML = result.poems;
+                pageCountPoem = result.pageCountPoem;
+
+                poemPageCount.innerHTML = poemCurrentPage + " of " + pageCountPoem;
 
                 let selectedPoemId = null;
                 const deletePoemButton = document.querySelectorAll('.delete-poem-button');
@@ -329,8 +400,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         xhr2.send();
 
                     });
-
-                    
 
                     closePoemModal.onclick = function(event) {
                         event.preventDefault();
@@ -473,17 +542,20 @@ document.addEventListener('DOMContentLoaded', function() {
         updatePlaylistModal.style.display = "none";
     })
 
-    function fetchAndDisplayPlaylists() {
+    function fetchAndDisplayPlaylists(playlistpage = 1) {
         const playlistsContainer = document.getElementById('playlists-container');
         
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', `/admin/getPlaylists`, true); 
+        xhr.open('GET', `/admin/getPlaylists?playlistpage=${playlistpage}?playlistsPerPage=${playlistsPerPage}`, true); 
 
         xhr.onload = function() {
             if (xhr.status === 200) {
-                const playlists = JSON.parse(xhr.responseText);
+                const result = JSON.parse(xhr.responseText);
                 
-                playlistsContainer.innerHTML = playlists;
+                playlistsContainer.innerHTML = result.playlists;
+                pageCountPlaylist = result.pageCountPlaylist;
+
+                playlistPageCount.innerHTML = playlistCurrentPage + " of " + pageCountPlaylist;
 
                 let selectedPlaylistId = null;
 
@@ -491,7 +563,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const updatePlaylistButton = document.querySelectorAll('.update-playlist-button');
 
                 //update button
-                
                 let submitPlaylistButton = document.getElementById("submit-playlist-poem");
                 let spanClosePlaylistModal = document.getElementById("close-playlist-modal");
 

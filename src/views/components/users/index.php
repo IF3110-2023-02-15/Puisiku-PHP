@@ -1,7 +1,7 @@
 <?php
 
-function adminBox1($users) {
-    $html = '<ol>';
+function adminBox1($users, $offset) {
+    $html = '<ol start="' . $offset + 1 . '">';
     foreach ($users as $user) {
         $id = htmlspecialchars($user['id']);
         $title = htmlspecialchars($user['title']);
@@ -20,8 +20,8 @@ function adminBox1($users) {
     return $html;
 }
 
-function adminBox2($users) {
-    $html = '<ol>';
+function adminBox2($users, $offset) {
+    $html = '<ol start="' . $offset + 1 . '">';
     foreach ($users as $user) {
         $id = htmlspecialchars($user['id']);
         $title = htmlspecialchars($user['username']);
@@ -42,8 +42,8 @@ function adminBox2($users) {
 }
 
 
-function adminBox3($users) {
-    $html = '<ol>';
+function adminBox3($users, $offset) {
+    $html = '<ol start="' . $offset + 1 . '">';
     foreach ($users as $user) {
         $id = htmlspecialchars($user['id']);
         $title = htmlspecialchars($user['title']);

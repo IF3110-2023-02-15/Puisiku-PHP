@@ -21,9 +21,15 @@ class PlaylistsModel extends Models {
         return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getIDPlaylistName(){
-        $sql = 'SELECT id, title FROM Playlists';
-        return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    public function getIDPlaylistName($offset, $perPage){
+        $sql = 'SELECT id, title FROM Playlists LIMIT ? OFFSET ?';
+        return $this->db->query($sql, [$perPage, $offset])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getPageCount(){
+        $sql = 'SELECT COUNT (*) FROM Playlists';
+
+        return $this->db->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
 
     public function getIDStatusPlaylistName(){

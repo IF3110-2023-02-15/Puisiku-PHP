@@ -70,13 +70,14 @@ class PlaylistsService {
         return $playlistModel->getAllPlaylistName();
     }
 
-    public function getIDPlaylistName(){
+    public function getPaginatedPlaylists($offset, $perPage){
         $playlistModel = new PlaylistsModel();
-        return $playlistModel->getIDPlaylistName();
+        return $playlistModel->getIDPlaylistName($offset, $perPage);
     }
-    public function getIDStatusPlaylistName(){
+
+    public function getPageCount(){
         $playlistModel = new PlaylistsModel();
-        return $playlistModel->getIDStatusPlaylistName();
+        return $playlistModel->getPageCount();
     }
 
     public function getTitle($id){
