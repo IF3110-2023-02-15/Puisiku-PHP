@@ -22,6 +22,14 @@ PSQL_PORT=5432
 PSQL_NAME=puisiku-db
 PSQL_USER=puisiku
 PSQL_PASSWORD=puisiku
+
+REST_BASE_URL=http://puisiku-rest-service:3000
+REST_PUBLIC_BASE_URL=http://localhost:3000
+
+SOAP_BASE_URL=http://puisiku-soap-service:8888
+
+REST_API_KEY=restnibos
+SOAP_API_KEY=fromphp
 ```
 
 ## Running the Program

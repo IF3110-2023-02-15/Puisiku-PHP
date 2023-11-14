@@ -50,6 +50,8 @@ class App {
             'creator/deletePoem/:id' => ['creator', ['admin', 'creator']],
             'creator/updatePoem/:id' => ['creator', ['admin', 'creator']],
             'profile/upgrade' => ['profile', ['user']],
+            'premium/:creatorId' => ['albums', $logged_in_role],
+            'premium' => ['premium', $logged_in_role]
         ]);
     }
 

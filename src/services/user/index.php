@@ -31,6 +31,7 @@ class UserService {
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
         $_SESSION['profile_url'] = $user['image_path'];
+        $_SESSION['email'] = $user['email'];
 
         return SUCCESS;
     }

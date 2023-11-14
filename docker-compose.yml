@@ -13,6 +13,9 @@ services:
       - puisiku_img_volume:/var/www/html/public/img
     depends_on:
       - puisiku-db
+    networks:
+      - puisiku
+
   puisiku-db:
     image: postgres
     hostname: ${PSQL_HOST}
@@ -27,7 +30,14 @@ services:
     volumes:
       - puisiku_db_volume:/var/lib/postgresql/data
       - ./migrations:/docker-entrypoint-initdb.d
+    networks:
+      - puisiku
+
 volumes:
   puisiku_audio_volume:
   puisiku_img_volume:
   puisiku_db_volume:
+
+networks:
+  puisiku:
+    external: true

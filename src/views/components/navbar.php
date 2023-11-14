@@ -6,6 +6,10 @@ function navbar($display_search, $profile_url) {
         ob_start();
         include 'search.php';
         $search_bar = ob_get_clean();
+    } else {
+        ob_start();
+        include VIEWS_DIR . '/components/buttons/back_button.php';
+        $search_bar = ob_get_clean();
     }
 
     $navbar = <<<EOT

@@ -1,0 +1,26 @@
+.creator-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 180px;
+
+    cursor: pointer;
+}
+
+.creator-avatar:hover {
+    filter: brightness(0.75);
+}
+
+.creator-avatar img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.creator-avatar h2 {
+    margin-top: 6px;
+    word-wrap: break-word;
+    text-align: center;
+}
