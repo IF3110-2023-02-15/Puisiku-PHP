@@ -1,0 +1,89 @@
+.premium-album-container {
+    overflow-y: auto;
+}
+
+.premium-album-container hr{
+    margin: 20px 35px;
+    height: 1px;
+    border: none;
+    background-color: black;
+}
+
+.album-profile {
+    display: flex;
+    gap: 20px;
+    padding: 0 35px;
+}
+
+.album-profile img {
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+}
+
+.album-profile h2 {
+    font-size: 20px;
+    font-style: italic;
+}
+
+.poems-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 50px;
+    padding: 0 50px;
+
+    text-align: center;
+}
+
+.poem {
+    background-color: var(--dark-purple);
+    width: 250px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 5px;
+    border: 3px solid black;
+    border-radius: 20px;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @media (max-width: 640px) {
+        width: 175px;
+    }
+}
+
+.poem h1 {
+    color: #fad3d3;
+    margin-top: 10px;
+    font-size: 20px;
+    width: 100%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.poem h2 {
+    color: var(--pink);
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.poem-title {
+    font-size: 10px;
+}
+
+.poem-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+
+    @media (max-width: 640px) {
+        width: 100px;
+        height: 100px;
+    }
+}
