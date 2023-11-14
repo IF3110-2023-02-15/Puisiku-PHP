@@ -1,21 +1,20 @@
 <?php
 
+require_once 'poem_box.php';
+
 function poems($poems) {
     $html = '';
     foreach ($poems as $poem) {
         // Assign poem values to variables
         $id = htmlspecialchars($poem['id']);
-        $img = htmlspecialchars($poem['image_path']);
+        $imagePath = htmlspecialchars($poem['image_path']);
         $title = htmlspecialchars($poem['title']);
         $creator = htmlspecialchars($poem['username']);
 
-        // Start output buffering
+        $onClick = '/poem/' . $id;
+
         ob_start();
-
-        // Include the poem_box.php file
-        include 'poem_box.php';
-
-        // Get the contents of the output buffer
+        poemBox($onClick, $imagePath, $title, $creator);
         $html .= ob_get_clean();
     }
     return $html;

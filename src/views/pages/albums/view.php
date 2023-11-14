@@ -5,6 +5,7 @@
     $creatorDescription = $creator->description;
 
     $albums = $creatorData->albums;
+    $albumsCount = count($albums)
 ?>
 
 <div class="premium-creator">
@@ -16,6 +17,9 @@
             <h1>
                 <?php echo $creatorName; ?>
             </h1>
+            <h2>
+                <?php echo $albumsCount; ?> albums
+            </h2>
             <p>
                 <?php echo $creatorDescription; ?>
             </p>
