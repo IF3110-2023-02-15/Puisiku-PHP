@@ -50,8 +50,10 @@ class App {
             'creator/deletePoem/:id' => ['creator', ['admin', 'creator']],
             'creator/updatePoem/:id' => ['creator', ['admin', 'creator']],
             'profile/upgrade' => ['profile', ['user']],
+            'premium' => ['premium', $logged_in_role],
             'premium/:creatorId' => ['albums', $logged_in_role],
-            'premium' => ['premium', $logged_in_role]
+            'premium/album/:albumId' => ['album', $logged_in_role],
+            'premium/poem/:poemId' => ['premiumPoem', $logged_in_role]
         ]);
     }
 
@@ -77,8 +79,7 @@ class App {
                 // Instantiate the controller class and call the appropriate method
                 $controllerClass = ucfirst($controllerName);
                 $controller = new $controllerClass();
-                $controller->$methodName($params); // Pass the params to the method
-
+                $controller->$methodName($params);
             } else {
                 // Handle the case where no matching route is found
                 require CONTROLLER_DIR . 'errors_controller.php';
