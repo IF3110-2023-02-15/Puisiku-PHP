@@ -31,6 +31,11 @@ class Albums extends Controller
             // Get albums from REST
             $creatorData = json_decode($restService->call('GET', '/album/creator/' . $creatorId));
 
+            if (!in_array($creatorId, $this->getSubscribedCreators())) {
+                $this->unauthorized();
+                return;
+            }
+
             $this->view('albums/index', ['current_page' => $current_page, 'playlists'=> $playlists, 'role' => $role, 'display_search' => $display_search, 'profile_url' => $profile_url, 'creatorData' => $creatorData]);
         } catch (Exception $e) {
             $this->notFound();

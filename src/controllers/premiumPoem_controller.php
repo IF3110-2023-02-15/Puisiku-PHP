@@ -24,6 +24,11 @@ class PremiumPoem extends Controller
             $poem = json_decode($restService->call('GET', '/poem/' . $poemId));
             $creator = json_decode($restService->call('GET', '/user/creator/' . $poem->creatorId));
 
+            if (!in_array($poem->creatorId, $this->getSubscribedCreators())) {
+                $this->unauthorized();
+                return;
+            }
+
             $this->view('premiumPoem/index', ['current_page' => $current_page, 'playlists'=> $playlists, 'role' => $role, 'display_search' => $display_search, 'profile_url' => $profile_url, 'poem' => $poem, 'creator' => $creator]);
         } catch (Exception $e) {
             $this->notFound();
