@@ -1,7 +1,9 @@
-const subscribeModal = document.querySelector('.subscribe-modal');
+// const subscribeModal = document.querySelector('.subscribe-modal');
+let subscribeModal;
 const premiumNotification = document.getElementById('premium-notification');
 
-function openSubscribeModal() {
+function openSubscribeModal(creatorId) {
+    subscribeModal = document.getElementById('subscribe-modal-' + creatorId);
     subscribeModal.style.display = 'block';
 }
 
