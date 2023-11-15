@@ -2,7 +2,7 @@
 
 function subscribeModal($creatorId, $creatorName, $imagePath, $description) {
     $html = <<<EOT
-        <div class="subscribe-modal">
+        <div class="subscribe-modal" id="subscribe-modal-$creatorId">
             <div class="subscribe-modal-content">
                 <img src="$imagePath" />
                 <h1>$creatorName</h1>

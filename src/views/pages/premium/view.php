@@ -39,7 +39,7 @@
                 $imagePath = getenv('REST_PUBLIC_BASE_URL') . $creator->imagePath;
                 $description = $creator->description;
 
-                echo "<div onclick=\"openSubscribeModal()\">";
+                echo "<div onclick=\"openSubscribeModal($creatorId)\">";
                 echo creatorAvatar($creatorName, $imagePath);
                 echo "</div>";
                 echo subscribeModal($creatorId, $creatorName, $imagePath, $description);
