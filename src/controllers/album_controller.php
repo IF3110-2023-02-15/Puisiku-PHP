@@ -24,6 +24,11 @@ class Album extends Controller
             $album = json_decode($restService->call('GET', '/album/' . $albumId));
             $poems = json_decode($restService->call('GET', '/poem/album/' . $albumId));
 
+            if (!in_array($album->creatorId, $this->getSubscribedCreators())) {
+                $this->unauthorized();
+                return;
+            }
+
             $this->view('album/index', ['current_page' => $current_page, 'playlists'=> $playlists, 'role' => $role, 'display_search' => $display_search, 'profile_url' => $profile_url, 'album' => $album, 'poems' => $poems]);
         } catch (Exception $e) {
             $this->notFound();

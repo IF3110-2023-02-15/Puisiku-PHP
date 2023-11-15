@@ -20,8 +20,6 @@ class Premium extends Controller {
 
     private function loadView() {
         $restService = new RestService();
-        $soapService = new SOAPService("/subscription");
-        $email = $_SESSION['email'];
 
         try {
             $current_page = 'Premium';
@@ -32,9 +30,7 @@ class Premium extends Controller {
             // Get creators from REST
             $creators = json_decode($restService->call('GET', '/user/creators'));
 
-            // Get subscribed creators from SOAP
-            $subscribedCreatorsId = $soapService->call('getSubscribedCreators', ['email' => $email]);
-            $subscribedCreatorsId = json_decode($subscribedCreatorsId->return->message);
+            $subscribedCreatorsId = $this->getSubscribedCreators();
 
             $subscribedCreators = array();
             foreach($creators as $key => $creator) {
@@ -62,6 +58,7 @@ class Premium extends Controller {
             $message = $subscribe->return->message;
 
             if ($status == 200) {
+                unset($_SESSION['subscribedCreators']);
                 echo json_encode(['success' => $message]);
             } else {
                 throw new Exception('Error subscribing to creator');

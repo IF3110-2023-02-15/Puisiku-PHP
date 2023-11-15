@@ -3,7 +3,6 @@
 class SOAPService {
     private $client;
 
-
     public function __construct($endpoint)
     {
         $baseUrl = getenv('SOAP_BASE_URL');

@@ -1,6 +1,7 @@
 <?php
 
 require_once SERVICES_DIR . 'playlists/index.php';
+require_once SERVICES_DIR . 'external/soap/index.php';
 
 class Controller {
     public function __call($name, $arguments) {
@@ -43,5 +44,21 @@ class Controller {
     protected function getData() {
         $json_str = file_get_contents('php://input');
         return json_decode($json_str, true);
+    }
+
+    protected function getSubscribedCreators() {
+        if (isset($_SESSION['subscribedCreators'])) {
+            return $_SESSION['subscribedCreators'];
+        }
+
+        $soapService = new SOAPService("/subscription");
+        $email = $_SESSION['email'];
+
+        $subscribedCreatorsId = $soapService->call('getSubscribedCreators', ['email' => $email]);
+        $subscribedCreators = json_decode($subscribedCreatorsId->return->message);
+
+        $_SESSION['subscribedCreators'] = $subscribedCreators;
+
+        return $subscribedCreators;
     }
 }
