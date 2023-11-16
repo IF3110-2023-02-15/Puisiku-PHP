@@ -2,6 +2,9 @@
 
 Puisiku is a unique digital platform designed for both creators and readers of poetry. Built with PHP, HTML, CSS, and JS, it provides a user-friendly interface where creators can effortlessly publish their poems. Readers, on the other hand, can enjoy a vast collection of poems at their fingertips. The application utilizes a PostgreSQL database for reliable data persistence, ensuring that every piece of poetry is safely stored and readily retrievable. Moreover, Puisiku runs in a Docker container, which simplifies setup and deployment, making it easily accessible across various systems. Experience the joy of poetry like never before with Puisiku - your personal poetry library!
 
+## What's New? (17 November 2023)
+Introducing the integration with Puisiku Premium! This feature enables users to subscribe to premium creators, unlocking access to their exclusive albums and poems. Premium creators can register at `localhost:5173`. Enjoy a richer experience with the diverse content from our premium creators.
+
 ## Prerequisites
 
 To run Puisiku, `Docker` must be installed. If Docker is not yet installed, it can be downloaded from the official Docker website.
@@ -33,8 +36,8 @@ SOAP_API_KEY=fromphp
 ```
 
 ## Running the Program
-1. Clone this repository
-2. Ensure `Docker Daemon` is running
+1. Ensure `Docker Daemon` is running
+2. This service depends on Puisiku SOAP service on `localhost:8888` and Puisiku REST Service on `localhost:3000`. Make sure these services are up!
 3. On root directory, run `make run-build` or `docker compose up -d --build` on terminal
 4. Access the web application by navigating to `localhost:5001` in the web browser
 5. Run `docker compose down` to stop the app.
@@ -69,6 +72,18 @@ SOAP_API_KEY=fromphp
 
 ### Creator Page
 ![image](/assets/creator.png)
+
+### Premium Creators Page (new)
+![image](/assets/premium-creator.png)
+
+### Premium Creator's Albums Page (new)
+![image](/assets/premium-albums.png)
+
+### Premium Album's Poems Page (new)
+![image](/assets/premium-poems.png)
+
+### Premium Poem Page (new)
+![image](/assets/premium-poem.png)
 
 ## Lighthouse Analysis
 ### Landing Page
@@ -120,6 +135,8 @@ SOAP_API_KEY=fromphp
 |                                | Profile controller and related service and model         |                                                   |
 |                                | Playlist controller and related service and model        |                                                   |
 |                                | Playlist Item controller and related service and model   |                                                   |
+|                                | SOAP Service                                             |                                                   |
+|                                | REST Service                                             |                                                   |
 
 
 ### Client Side
@@ -139,6 +156,10 @@ SOAP_API_KEY=fromphp
 | Creator           | 13521103            |
 | Admin             | 13521103            |
 | Layout            | 13521046            |
+| Premium Creator   | 13521046            |
+| Premium Albums    | 13521046            |
+| Premium Poems     | 13521046            |
+| Premium Poem      | 13521046            |
 
 
 ## Author
@@ -147,4 +168,3 @@ SOAP_API_KEY=fromphp
 | 10023334 | Tubagus Rahardi         |
 | 13521046 | Jeffrey Chow            |
 | 13521103 | Aulia Mey Diva Annandya |
-
