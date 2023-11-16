@@ -41,65 +41,65 @@ SOAP_API_KEY=fromphp
 
 ## User Interface Screenshots
 ### Landing Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/landing.png)
+![image](/assets/landing.png)
 
 ### Login Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/login.png)
+![image](/assets/login.png)
 
 ### Register Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/register.png)
+![image](/assets/register.png)
 
 ### Poems Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/poems.png)
+![image](/assets/poems.png)
 
 ### Poem Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/poem.png)
+![image](/assets/poem.png)
 
 ### Playlist Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/playlist.png)
+![image](/assets/playlist.png)
 
 ### Profile Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/profile.png)
+![image](/assets/profile.png)
 
 ### Error Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/error.png)
+![image](/assets/error.png)
 
 ### Admin Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/admin.png)
+![image](/assets/admin.png)
 
 ### Creator Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/creator.png)
+![image](/assets/creator.png)
 
 ## Lighthouse Analysis
 ### Landing Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/landingpage.png)
+![image](/assets/landingpage.png)
 
 ### Login Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/loginpage.png)
+![image](/assets/loginpage.png)
 
 ### Register Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/registerpage.png)
+![image](/assets/registerpage.png)
 
 ### Poems Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/poemspage.png)
+![image](/assets/poemspage.png)
 
 ### Poem Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/poempage.png)
+![image](/assets/poempage.png)
 
 ### Playlist Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/playlistpage.png)
+![image](/assets/playlistpage.png)
 
 ### Profile Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/profilepage.png)
+![image](/assets/profilepage.png)
 
 ### Error Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/errorpage.png)
+![image](/assets/errorpage.png)
 
 ### Admin Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/adminpage.png)
+![image](/assets/adminpage.png)
 
 ### Creator Page
-![image](https://github.com/JeffreyChow19/IF3110-2023-01-15-Milestone-1/assets/creatorpage.png)
+![image](/assets/creatorpage.png)
 
 ## Task Division
 ### Server Side
